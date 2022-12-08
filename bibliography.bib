@@ -1,18 +1,784 @@
-
-@article{Pantale-2022-EIN,
-	title = {Efficient implementation of non-linear flow law using neural network into the {Abaqus} {Explicit} {FEM} code},
-	volume = {198},
-	issn = {0168-874X},
-	url = {https://www.sciencedirect.com/science/article/pii/S0168874X21001293},
-	doi = {10.1016/j.finel.2021.103647},
-	abstract = {Machine learning techniques are increasingly used to predict material behavior in scientific applications and offer a significant advantage over conventional numerical methods. In this work, an Artificial Neural Network (ANN) model is used in a finite element formulation to define the flow law of a metallic material as a function of plastic strain ɛp, plastic strain rate ɛ.p and temperature T. First, we present the general structure of the neural network, its operation and focus on the ability of the network to deduce, without prior learning, the derivatives of the flow law with respect to the model inputs. In order to validate the robustness and accuracy of the proposed model, we compare and analyze the performance of several network architectures with respect to the analytical formulation of a Johnson–Cook behavior law for a 42CrMo4 steel. In a second part, after having selected an Artificial Neural Network architecture with 2 hidden layers, we present the implementation of this model in the Abaqus Explicit computational code in the form of a VUHARD subroutine. The predictive capability of the proposed model is then demonstrated during the numerical simulation of two test cases: the necking of a circular bar and a Taylor impact test. The results obtained show a very high capability of the ANN to replace the analytical formulation of a Johnson–Cook behavior law in a finite element code, while remaining competitive in terms of numerical simulation time compared to a classical approach.},
+@article{Johnson-1983,
+	title = {{A constitutive model and data for materials subjected to large strains, high strain rates, and high temperatures}},
 	language = {en},
-	urldate = {2021-12-15},
-	journal = {Finite Elements in Analysis and Design},
-	author = {Pantalé, Olivier and Tize Mha, Pierre and Tongne, Amèvi},
+	urldate = {2021-06-22},
+	journal = {Proceedings 7th International Symposium on Ballistics, The Hague, 19-21 April },
+	author = {Johnson, Gordon R. and Cook, William H.},
+	month = {apr},
+	doi = {10.1299/kikaia.65.1412},
+	year = {1983},
+	pages = {541-547}
+}
+
+@article{Zerilli-1987,
+	title = {{Dislocation‐mechanics‐based constitutive relations for material dynamics calculations}},
+	volume = {61},
+	issn = {0021-8979},
+	number = {5},
+	urldate = {2021-06-07},
+	journal = {Journal of Applied Physics},
+	author = {Zerilli, Frank J. and Armstrong, Ronald W.},
+	month = mar,
+	doi = {10.1063/1.338024},
+	year = {1987},
+	pages = {1816-1825}
+}
+
+@article{Khan-2004,
+	title = {{Quasi-static and dynamic loading responses and constitutive modeling of titanium alloys}},
+	volume = {20},
+	issn = {0749-6419},
+	language = {en},
+	number = {12},
+	urldate = {2021-06-08},
+	journal = {International Journal of Plasticity},
+	author = {Khan, Akhtar S. and Sung Suh, Yeong and Kazmi, Rehan},
+	month = dec,
+	doi = {10.1016/j.ijplas.2003.06.005},
+	year = {2004},
+	pages = {2233-2248}
+}
+
+@article{NematNasser-2003,
+	title = {{Thermomechanical response of DH-36 structural steel over a wide range of strain rates and temperatures}},
+	volume = {35},
+	issn = {0167-6636},
+	language = {en},
+	number = {11},
+	urldate = {2021-06-08},
+	journal = {Mechanics of Materials},
+	author = {Nemat-Nasser, Sia and Guo, Wei-Guo},
+	month = nov,
+	doi = {10.1016/S0167-6636(02)00323-X},
+	year = {2003},
+	pages = {1023-1047}
+}
+
+@article{Jia-2021,
+	title = {{Modified Johnson-Cook model of aluminum alloy 6016-T6 sheets at low dynamic strain rates}},
+	volume = {820},
+	issn = {0921-5093},
+	language = {en},
+	journal = {Materials Science and Engineering: A},
+	author = {Jia, Zhe and  Guan, Ben and Zang, Yong and Wang, Yuan and Lei, Mu},
+	month = may,
+	doi = {10.1016/j.msea.2021.141565},
+	year = {2021},
+	pages = {141565}
+}
+
+@article{Rule-1998,
+	title = {{A revised form for the Johnson-Cook Strengh Model}},
+	volume = {21},
+	issn = {0734-743X},
+	language = {en},
+	number = {8},
+	urldate = {2021-06-08},
+	journal = {International Journal of Impact Engineering},
+	author = {Rule, WILLIAM K. and Jones, S. E.},
+	month = sep,
+	doi = {10.1016/S0734-743X(97)00081-X},
+	year = {1998},
+	pages = {609-624}
+}
+
+@article{Vural-2003,
+	title = {{Large strain mechanical behavior of 1018 cold-rolled steel over a wide range of strain rates}},
+	volume = {34},
+	issn = {1543-1940},
+	language = {en},
+	number = {12},
+	urldate = {2021-06-08},
+	journal = {Metallurgical and Materials Transactions A},
+	author = {Vural, M. and Ravichandran, G. and Rittel, D.},
+	month = dec,
+	doi = {10.1007/s11661-003-0188-8},
+	year = {2003},
+	pages = {2873-2885}
+}
+
+@article{Lin-2010,
+	title = {{A modified Johnson–Cook model for tensile behaviors of typical high-strength alloy steel}},
+	volume = {527},
+	issn = {09215093},
+	language = {en},
+	number = {26},
+	urldate = {2021-01-27},
+	journal = {Materials Science and Engineering: A},
+	author = {Lin, Y.C. and Chen, Xiao-Min and Liu, Ge},
+	month = oct,
+	doi = {10.1016/j.msea.2010.07.061},
+	year = {2010},
+	pages = {6980-6986}
+}
+
+@article{Lin-2012,
+	title = {{A phenomenological constitutive model for high temperature flow stress prediction of Al–Cu–Mg alloy}},
+	volume = {534},
+	issn = {09215093},
+	language = {en},
+	urldate = {2021-01-27},
+	journal = {Materials Science and Engineering: A},
+	author = {Lin, Y.C. and Li, Qi-Fei and Xia, Yu-Chi and Li, Lei-Ting},
+	month = feb,
+	doi = {10.1016/j.msea.2011.12.023},
+	year = {2012},
+	pages = {654-662}
+}
+
+@article{Li-2013,
+	title = {{A modified Johnson Cook model for elevated temperature flow behavior of T24 steel}},
+	volume = {577},
+	issn = {0921-5093},
+	language = {en},
+	urldate = {2021-01-19},
+	journal = {Materials Science and Engineering: A},
+	author = {Li, Hong-Ying and Wang, Xiao-Feng and Duan, Jun-Ying and Liu, Jiao-Jiao},
+	month = aug,
+	doi = {10.1016/j.msea.2013.04.041},
+	year = {2013},
+	pages = {138--146}
+}
+
+@article{Zhou-2019,
+	title = {{Research on several constitutive models to predict the flow behaviour of GCr15 continuous casting bloom with heavy reduction}},
+	volume = {6},
+	language = {en},
+	number = {12},
+	journal = {Materials Research Express},
+	author = {Zhou, Qian and Ji, Cheng and Zhu, Miao-yong },
 	month = jan,
+	doi = {10.1088/2053-1591/ab52c2},
+	year = {2019},
+	pages = {1265f2}
+}
+
+@article{Zhang-2015,
+	title = {{A modified Johnson–Cook model of dynamic tensile behaviors for 7075-T6 aluminum alloy}},
+	volume = {619},
+	issn = {0925-8388},
+	journal = {Journal of Alloys and Compounds},
+	author = {Zhang, Ding-Ni. and Shangguan, Qian-Qian and Xie, Can-Jun and Liu, Fu},
+	month = jan,
+	doi = {10.1016/j.jallcom.2014.09.002},
+	year = {2015},
+	pages = {186-194}
+}
+
+@article{Johnson-1988,
+	title = {{Evaluation of cylinder‐impact test data for constitutive model constants}},
+	volume = {64},
+	issn = {0021-8979},
+	number = {8},
+	urldate = {2021-06-08},
+	journal = {Journal of Applied Physics},
+	author = {Johnson, Gordon R. and Holmquist, Tim J.},
+	month = oct,
+	doi = {10.1063/1.341344},
+	year = {1988},
+	pages = {3901-3910}
+}
+
+@article{Voyiadjis-2005,
+	title = {{Microstructural based models for bcc and fcc metals with temperature and strain rate dependency}},
+	volume = {37},
+	issn = {0167-6636},
+	language = {en},
+	number = {2},
+	urldate = {2021-06-08},
+	journal = {Mechanics of Materials},
+	author = {Voyiadjis, George Z. and Abed, Farid H.},
+	month = feb,
+	doi = {10.1016/j.mechmat.2004.02.003},
+	year = {2005},
+	keywords = {Activation energy, Constitutive modeling, Dislocation density, Flow stress, Plasticity, Strain rate and temperature effect},
+	pages = {355-378}
+}
+
+@article{Dey-2007,
+	title = {{On the influence of constitutive relation in projectile impact of steel plates}},
+	volume = {34},
+	issn = {0734-743X},
+	language = {en},
+	number = {3},
+	urldate = {2021-06-08},
+	journal = {International Journal of Impact Engineering},
+	author = {Dey, S. and Borvik, T. and Hopperstad, O. S. and Langseth, M.},
+	month = mar,
+	doi = {10.1016/j.ijimpeng.2005.10.003},
+	year = {2007},
+	pages = {464-486}
+}
+
+@article{Chiou-2005,
+	title = {{Strain rate effects on the mechanical properties of a Fe–Mn–Al alloy under dynamic impact deformations}},
+	volume = {392},
+	issn = {0921-5093},
+	language = {en},
+	number = {1},
+	urldate = {2021-06-08},
+	journal = {Materials Science and Engineering: A},
+	author = {Chiou, Su-Tang and Cheng, Wei-Chun and Lee, Woei-Shyan},
+	month = feb,
+	doi = {10.1016/j.msea.2004.09.055},
+	year = {2005},
+	pages = {156-162}
+}
+
+@article{Lee-2005,
+	title = {{Comparison of dynamic compressive flow behavior of mild and medium steels over wide temperature range}},
+	volume = {36},
+	issn = {1073-5623},
+	language = {en},
+	number = {11},
+	urldate = {2021-06-08},
+	journal = {Metallurgical and Materials Transactions A: Physical Metallurgy and Materials Science},
+	author = {Chiou, Woei Shyan and Liu, Chen Yang},
+	month = feb,
+	doi ={10.1007/s11661-005-0088-1},
+	year = {2005},
+	pages = {3175-3186}
+}
+
+@article{Chen-2007,
+	title = {{A comparative study of a back propagation artificial neural network and a Zerilli–Armstrong model for pure molybdenum during hot deformation}},
+	volume = {25},
+	issn = {0263-4368},
+	language = {en},
+	number = {5},
+	urldate = {2021-06-08},
+	journal = {International Journal of Refractory Metals and Hard Materials},
+	author = {Chen, Cheng and Yin, Haiqing and Humail, Islam S. and Wang, Yuhui and Qu, Xuanhui},
+	month = sep,
+	doi ={10.1016/j.ijrmhm.2006.11.004},
+	year = {2007},
+	pages = {411-416}
+}
+
+@article{Lee-2006,
+	title = {{The effects of temperature and strain rate on the dynamic flow behaviour of different steels}},
+	volume = {426},
+	issn = {0921-5093},
+	language = {en},
+	number = {1},
+	urldate = {2021-06-08},
+	journal = {Materials Science and Engineering: A},
+	author = {Lee, Woei-Shyan and Liu, Chen-Yang},
+	month = jun,
+	doi = {10.1016/j.msea.2006.03.087},
+	year = {2006},
+	keywords = {Activation energy, Dislocation density, High carbon steel, Impact, Low carbon steel, Medium carbon steel},
+	pages = {101-113}
+}
+
+@article{Samantaray-2009,
+	title = {{A thermo-viscoplastic constitutive model to predict elevated-temperature flow behaviour in a titanium-modified austenitic stainless steel}},
+	volume = {526},
+	issn = {0921-5093},
+	language = {en},
+	number = {1},
+	urldate = {2021-06-08},
+	journal = {Materials Science and Engineering: A},
+	author = {Samantaray, Dipti and Mandal, Sumantra and Borah, Utpal and Bhaduri, A. K. and Sivaprasad, P. V.},
+	month = nov,
+	doi = {10.1016/j.msea.2009.08.009},
+	year = {2009},
+	pages = {1-6}
+}
+
+@book{NematNasser-2004,
+	title = {{Plasticity: a treatise on finite deformation of heterogeneous inelastic materials}},
+	issn = {978-0-521-83979-2},
+	language = {en},
+	journal = {Cambridge University Press},
+	author = {Nemat-Nasser, S.},
+	month = nov,
+	year = {2004},
+	pages = {854}
+}
+
+@article{Lennon-2004,
+	title = {{The influence of crystal structure on the dynamic behavior of materials at high temperatures}},
+	volume = {20},
+	issn = {0749-6419},
+	language = {en},
+	number = {2},
+	urldate = {2021-06-08},
+	journal = {International Journal of Plasticity},
+	author = {Lennon, A. M. and Ramesh, K. T.},
+	month = feb,
+	doi = {10.1016/S0749-6419(03)00037-8},
+	year = {2004},
+	pages = {269-290}
+}
+
+@article{Muralli-2017,
+	title = {{On the performance of modified Zerilli-Armstrong constitutive model in simulating the metal-cutting process}},
+	volume = {28},
+	issn = {0749-6419},
+	language = {en},
+	journal = {Journal of Manufacturing Processes},
+	author = {Lennon, A. M. and Ramesh, K. T.},
+	month = aug,
+	doi ={10.1016/j.jmapro.2017.06.011},
+	year = {2017},
+	pages = {253-265}
+}
+
+@article{Cheng-2021,
+	title = {{A modified Zerilli–Armstrong model as the asymmetric visco-plastic part of a multi-mechanism model for cutting simulations}},
+	issn = {1432-0681},
+	language = {en},
+	journal = {Archive of Applied Mechanics},
+	author = {Cheng, C. and Mahnken,R.},
+	month = may,
+	doi = {10.1007/s00419-021-01982-6},
+	year = {2021}
+}
+
+@article{Muralli-2021,
+	title = {{A Finite Element Study of Large Strain Extrusion Machining Using Modified Zerilli–Armstrong Constitutive Relation}},
+	volume = {143},
+	issn = {0749-6419},
+	language = {en},
+	number = {10},
+	journal = {Journal of Manufacturing Science and Engineering},
+	author = {Gurusamy, Muralimohan. and Palaniappan, Karthik. and Murthy, H and Rao, Balkrishna C.},
+	month = apr,
+	doi ={10.1115/1.4050652},
+	year = {2021},
+}
+
+@book{Hull-2011,
+	title={Introduction to dislocations},
+	author={Hull, Derek and Bacon, David J},
+	publisher={Butterworth-Heinemann},
+	year = {2001},
+	pages = {268}
+}
+
+@article{Newville-2016,
+  title = {{LMFIT: Non-linear least-square minimization and curve-Fitting for Python}},
+  author = {Newville, Matthew and Stensitzki, Till and Allen, Daniel B. and Rawlik, Michal and Ingargiola, Antonino and Nelson, Andrew},
+  year = {2016},
+  month = jun,
+  journal = {Astrophysics Source Code Library},
+  pages = {ascl:1606.014},
+  keywords = {Software}
+}
+
+@article{Pantale-2021,
+	title = {{Efficient implementation of non-linear flow law using neural network into the Abaqus Explicit FEM code}},
+	author = {Pantalé, Olivier and Tize Mha, Pierre and Tongne, Amèvi},
 	year = {2022},
-	keywords = {Finite element method, Artificial Neural Network, Constitutive behavior, Johnson–Cook flow law, Numerical implementation},
+	month = sep,
+	volume = {198},
+	doi = {10.1016/j.finel.2021.103647},
 	pages = {103647},
-	file = {Pantalé - 2022 - Efficient implementation of non-linear flow law us.pdf:/home/pantale/SynologyDrive/Recherche/Bibliography/Zotero/storage/HCSNDRR3/Pantalé - 2022 - Efficient implementation of non-linear flow law us.pdf:application/pdf},
+	journal = {Finite Elements in Analysis \& Design},
+	language = {en}
+}
+
+@incollection{Chadha-2018,
+	title={{An Approach to Develop Hansel–Spittel Constitutive Equation during Ingot Breakdown Operation of Low Alloy Steels}},
+	author={Chadha, Kanwal and Shahriari, Davood and Jahazi, Mohammad},
+	booktitle={Frontiers in materials processing, applications, research and technology},
+	pages={239--246},
+	doi ={10.1007/978-981-10-4819-7_20},
+	year={2018},
+	publisher={Springer}
+}
+
+@article{Rudnytskyj-2020,
+	title={{Constitutive modelling of the 6061 aluminium alloy under hot rolling conditions and large strain ranges}},
+	author={Rudnytskyj, Andre and Simon, Peter and Jech, Martin and Gachot, Carsten},
+	journal={Materials \& Design},
+	volume={190},
+	pages={108568},
+	doi ={10.1016/j.matdes.2020.108568},
+	year={2020},
+	publisher={Elsevier}
+}
+
+@article{Mehtedi-2015,
+	title={{Comparison Study of Constitutive Models in Predicting the Hot Deformation Behavior of AA6060 and AA6063 Aluminium Alloys}},
+	author={El Mehtedi, M and Spigarelli, S and Gabrielli, F and Donati, L},
+	journal={Materials Today: Proceedings},
+	volume={2},
+	number={10},
+	pages={4732--4739},
+	doi ={10.1016/j.matpr.2015.10.006},
+	year={2015},
+	publisher={Elsevier}
+}
+
+@article{TizeMha-2022,
+	title={{A generalized non-linear flow law based on modified Zerilli-Armstrong model and its implementation into Abaqus/Explicit FEM Code}},
+	author={Tize Mha, Pierre and Tongne, Am{\`e}vi and Pantal{\'e}, Olivier},
+	journal={World Journal of Engineering and Technology},
+	volume={10},
+	number={02},
+	pages={334--362},
+	doi ={10.4236/wjet.2022.102021},
+	year={2022}
+}
+
+@article{Phaniraj-2003,
+	title={{The applicability of neural network model to predict flow stress for carbon steels}},
+	author={Phaniraj, Madakasira Prabhakar and Lahiri, Ashok Kumar},
+	journal={Journal of Materials Processing Technology},
+	volume={141},
+	number={2},
+	pages={219--227},
+	doi ={10.1016/S0924-0136(02)01123-8},
+	year={2003},
+	publisher={Elsevier}
+}
+
+@article{Srinivasulu-2006,
+	title={{A comparative analysis of training methods for artificial neural network rainfall--runoff models}},
+	author={Srinivasulu, Sanaga and Jain, Ashu},
+	journal={Applied Soft Computing},
+	volume={6},
+	number={3},
+	pages={295--306},
+	doi ={10.1016/j.asoc.2005.02.002},
+	year={2006},
+	publisher={Elsevier}
+}
+
+@article{Changizian-2012,
+	title={{The high temperature flow behavior modeling of AZ81 magnesium alloy considering strain effects}},
+	author={Changizian, P and Zarei-Hanzaki, A and Roostaei, Ali A},
+	journal={Materials \& Design},
+	volume={39},
+	pages={384--389},
+	doi ={10.1016/j.matdes.2012.02.049},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Qin-2010,
+	title={{Modeling of flow stress for magnesium alloy during hot deformation}},
+	author={Qin, Yin-Jiang and Pan, Qing-Lin and He, Yun-Bin and Li, Wen-Bin and Liu, Xiao-Yan and Fan, Xi},
+	journal={Materials Science and Engineering: A},
+	volume={527},
+	number={10-11},
+	pages={2790--2797},
+	doi = {10.1016/j.msea.2010.01.035},
+	year={2010},
+	publisher={Elsevier}
+}
+
+@article{Mandal-2009,
+	title={{Constitutive equations to predict high temperature flow stress in a Ti--modified austenitic stainless steel}},
+	author={Mandal, Sumantra and Rakesh, V and Sivaprasad, PV and Venugopal, S and Kasiviswanathan, KV},
+	journal={Materials Science and Engineering: A},
+	volume={500},
+	number={1-2},
+	pages={114--121},
+	doi = {10.1016/j.msea.2008.09.019},
+	year={2009},
+	publisher={Elsevier}
+}
+
+@article{He-2013,
+	title={{A comparative study on Johnson–Cook, modified Johnson--Cook and Arrhenius--type constitutive models to predict the high temperature flow stress in 20CrMo alloy steel}},
+	author={He, An and Xie, Ganlin and Zhang, Hailong and Wang, Xitao},
+	journal={Materials \& Design (1980-2015)},
+	volume={52},
+	pages={677--685},
+	doi = {10.1016/j.matdes.2013.06.010},
+	year={2013},
+	publisher={Elsevier}
+}
+
+@article{Ji-2018,
+	title={{Constitutive Modeling of the Flow Stress of GCr15 Continuous Casting Bloom in the Heavy Reduction Process}},
+	author={Ji, Cheng and Wang, Zilin and Wu, Chenhui and Zhu, Miaoyong},
+	journal={Metallurgical and Materials Transactions B},
+	volume={49},
+	number={2},
+	pages={767--782},
+	doi = {10.1007/s11663-018-1188-9},
+	year={2018},
+	publisher={Springer}
+}
+
+@article{Ashtiani-2012,
+	title={{Constitutive equations for elevated temperature flow behavior of commercial purity aluminum}},
+	author={Ashtiani, HR Rezaei and Parsa, MH and Bisadi, H},
+	journal={Materials Science and Engineering: A},
+	volume={545},
+	pages={61--67},
+	doi = {10.1016/j.msea.2012.02.090},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Lin-2008-P,
+	title={{Prediction of 42CrMo steel flow stress at high temperature and strain rate}},
+	author={Lin, YC and Chen, Ming-Song and Zhong, Jue},
+	journal={Mechanics Research Communications},
+	volume={35},
+	number={3},
+	pages={142--150},
+	doi = {10.1016/j.mechrescom.2007.10.002},
+	year={2008},
+	publisher={Elsevier}
+}
+
+@article{Wu-2012,
+	title={{The flow behavior and constitutive equations in isothermal compression of 7050 aluminum alloy}},
+	author={Wu, Bin and Li, MQ and Ma, DW},
+	journal={Materials Science and Engineering: A},
+	volume={542},
+	pages={79--87},
+	doi = {10.1016/j.msea.2012.02.035},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Lin-2011,
+	title={{A critical review of experimental results and constitutive descriptions for metals and alloys in hot working}},
+	author={Lin, YC and Chen, Xiao-Min},
+	journal={Materials \& Design},
+	volume={32},
+	number={4},
+	pages={1733--1759},
+	doi = {10.1016/j.matdes.2010.11.048},
+	year={2011},
+	publisher={Elsevier}
+}
+
+@article{Shin-2010,
+	title={{A Phenomenological Constitutive Equation to Describe Various Flow Stress Behaviors of Materials in Wide Strain Rate and Temperature Regimes}},
+	author={Shin, Hyunho and Kim, Jong-Bong},
+	doi = {10.1115/1.4000225},
+	year={2010}
+}
+
+@article{Rusinek-2010,
+	title={{A thermo--viscoplastic constitutive model for FCC metals with application to OFHC copper}},
+	author={Rusinek, Alexis and Rodr{\'\i}guez-Mart{\'\i}nez, Jos{\'e} A and Arias, A},
+	journal={International Journal of Mechanical Sciences},
+	volume={52},
+	number={2},
+	pages={120--135},
+	doi ={10.1016/j.ijmecsci.2009.07.001},
+	year={2010},
+	publisher={Elsevier}
+}
+
+@article{Jonas-1969,
+	title={{Strength and structure under hot-working conditions}},
+	author={Jonas, JJ and Sellars, CM and Tegart, WJ McG},
+	journal={Metallurgical reviews},
+	volume={14},
+	number={1},
+	pages={1--24},
+	doi = {10.1179/mtlr.1969.14.1.1},
+	year={1969},
+	publisher={Taylor \& Francis}
+}
+
+@article{Zhang-2012,
+	title={{Effect of initial microstructure on the hot compression deformation behavior of a 2219 aluminum alloy}},
+	author={Zhang, Jing and Chen, Boquan and Baoxiang, Zhang},
+	journal={Materials \& Design},
+	volume={34},
+	pages={15--21},
+	doi = {10.1016/j.matdes.2011.07.061},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Mostafaei-2012,
+	title={{Hot deformation behavior of hot extruded Al--6Mg alloy}},
+	author={Mostafaei, MA and Kazeminezhad, Mohsen},
+	journal={Materials Science and Engineering: A},
+	volume={535},
+	pages={216--221},
+	doi = {10.1016/j.msea.2011.12.067},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Slooff-2007,
+	title={{Constitutive Analysis of wrought magnesium alloy Mg--Al4--Zn1}},
+	author={Slooff, FA and Zhou, J and Duszczyk, J and Katgerman, L},
+	journal={Scripta Materialia},
+	volume={57},
+	number={8},
+	pages={759--762},
+	doi = {10.1016/j.scriptamat.2007.06.023},
+	year={2007},
+	publisher={Pergamon}
+}
+
+@article{Li-2012,
+	title={{Flow behavior modeling of the 7050 aluminum alloy at elevated temperatures considering the compensation of strain}},
+	author={Li, Jiang and Li, Fuguo and Cai, Jun and Wang, Ruiting and Yuan, Zhanwei and Xue, Fengmei},
+	journal={Materials \& Design},
+	volume={42},
+	pages={369--377},
+	doi = {10.1016/j.matdes.2012.06.032},
+	year={2012},
+	publisher={Elsevier}
+}
+
+@article{Xu-2013,
+	title={{Constitutive relationship for high temperature deformation of Al--3Cu--0.5Sc alloy}},
+	author={Xu, Guo-fu and Peng, Xiao-yan and Liang, Xiao-peng and Xu, LI and Yin, Zhi-min},
+	journal={Transactions of Nonferrous Metals Society of China},
+	volume={23},
+	number={6},
+	pages={1549--1555},
+	doi = {10.1016/S1003-6326(13)62629-1},
+	year={2013},
+	publisher={Elsevier}
+}
+
+@article{Lin-2008-C,
+	title={{Constitutive modeling for elevated temperature flow behavior of 42CrMo steel}},
+	author={Lin, YC and Chen, Ming-Song and Zhong, Jue},
+	journal={Computational Materials Science},
+	volume={42},
+	number={3},
+	pages={470--477},
+	doi = {10.1016/j.commatsci.2007.08.011},
+	year={2008},
+	publisher={Elsevier}
+}
+
+@article{Lin-2008-ANN,
+  title = {{Application of neural networks to predict the elevated temperature flow behavior of a low alloy steel}},
+  author = {Lin, Y.C. and Zhang, Jun and Zhong, Jue},
+  year = {2008},
+  month = {oct},
+  volume = {43},
+  doi = {10.1016/j.commatsci.2008.01.039},
+  pages = {752--758},
+  issn = {09270256},
+  journal = {Computational Materials Science},
+  language = {en},
+  number = {4}
+}
+
+@article{Lu-2011-ANN,
+  title = {{Artificial neural network prediction to the hot compressive deformation behavior of Al--Cu--Mg--Ag heat-resistant aluminum alloy}},
+  author = {Lu, Zhilun and Pan, Qinglin and Liu, Xiaoyan and Qin, Yinjiang and He, Yunbin and Cao, Sufang},
+  year = {2011},
+  month = {apr},
+  volume = {38},
+  doi = {10.1016/j.mechrescom.2011.02.015},
+  pages = {192--197},
+  issn = {00936413},
+  journal = {Mechanics Research Communications},
+  language = {en},
+  number = {3}
+}
+
+@article{Ashtiani-2016-CSP,
+  title = {{A comparative study on the phenomenological and artificial neural network models to predict hot deformation behavior of AlCuMgPb alloy}},
+  author = {Ashtiani, H.R. Rezaei and Shahsavari, P.},
+  year = {2016},
+  month = {dec},
+  volume = {687},
+  doi = {10.1016/j.jallcom.2016.04.300},
+  pages = {263--273},
+  issn = {09258388},
+  journal = {Journal of Alloys and Compounds},
+  language = {en}
+}
+
+@article{Stoffel-2019-NNB,
+  title = {{Neural network based constitutive modeling of nonlinear viscoplastic structural response}},
+  author = {Stoffel, Marcus and Bamer, Franz and Markert, Bernd},
+  year = {2019},
+  month = {jan},
+  volume = {95},
+  doi = {10.1016/j.mechrescom.2019.01.004},
+  pages = {85--88},
+  issn = {00936413},
+  journal = {Mechanics Research Communications},
+  language = {en}
+}
+
+@book{Hensel-1978,
+  title={{Kraft- und arbeitsbedarf bildsamer formgebungsverfahren}},
+  author={Hensel, A. and Spittel, T.},
+  lccn={78392942},
+  year={1978},
+  publisher={Deutscher Verlag f{\"u}r Grundstoffindustrie}
+}
+
+@article{Zener-1944,
+title = {{Effect of Strain Rate Upon Plastic Flow of Steel}},
+author = {Zener,C.  and Hollomon,J. H. },
+journal = {Journal of Applied Physics},
+volume = {15},
+number = {1},
+pages = {22-32},
+year = {1944},
+doi = {10.1063/1.1707363}
+}
+
+@article{Sellars-1966,
+title = {{On the mechanism of hot deformation}},
+journal = {Acta Metallurgica},
+volume = {14},
+number = {9},
+pages = {1136-1138},
+year = {1966},
+issn = {0001-6160},
+doi = {10.1016/0001-6160(66)90207-0},
+author = {C.M. Sellars and W.J. McTegart}
+}
+
+@inproceedings{Abadi-2016,
+  title = {{TensorFlow: A System for Large-Scale Machine Learning}},
+  booktitle = {Proceedings of the 12th {{USENIX}} Conference on {{Operating Systems Design}} and {{Implementation}}},
+  author = {Abadi, Mart{\'i}n and Barham, Paul and Chen, Jianmin and Chen, Zhifeng and Davis, Andy and Dean, Jeffrey and Devin, Matthieu and Ghemawat, Sanjay and Irving, Geoffrey and Isard, Michael and Kudlur, Manjunath and Levenberg, Josh and Monga, Rajat and Moore, Sherry and Murray, Derek G. and Steiner, Benoit and Tucker, Paul and Vasudevan, Vijay and Warden, Pete and Wicke, Martin and Yu, Yuan and Zheng, Xiaoqiang},
+  year = {2016},
+  month = nov,
+  pages = {265--283},
+  publisher = {{USENIX Association}},
+  address = {{USA}},
+  isbn = {978-1-931971-33-1},
+  series = {{{OSDI}}'16}
+}
+
+@article{Kingma-2015,
+  title = {{Adam: A method for stochastic optimization}},
+  author = {Kingma, Diederik P and Lei, Jimmy},
+  year = {2015},
+  doi = {10.48550/arXiv.1412.6980},
+  pages = {15},
+  language = {en}
+}
+
+@article{Liang-2022,
+author = {Liang, Pei and Kong, Ning and Zhang, Jie and Li, Hongbo},
+title = {{A Modified Arrhenius-Type Constitutive Model and its Implementation by Means of the Safe Version of Newton–Raphson Method}},
+journal = {steel research international},
+keywords = {Arrhenius-type constitutive model, parameter calibration, radial return mapping algorithms, thermomechanical, VUMAT},
+doi = {10.1002/srin.202200443},
+year = {2022}
+}
+
+@article{Pantale-2004-DOF,
+	series = {Selected {Papers} from the {Second} {International} {Conference} on {Advanced} {Computational} {Methods} in {Engineering} ({ACOMEN} 2002)},
+	title = {Development of an object-oriented finite element program: application to metal-forming and impact simulations},
+	volume = {168},
+	copyright = {All rights reserved},
+	issn = {0377-0427},
+	doi = {10.1016/j.cam.2003.04.009},
+	number = {1},
+	journal = {Journal of Computational and Applied Mathematics},
+	author = {Pantalé, Olivier and Caperaa, Serge and Rakotomalala, Roger},
+	month = jul,
+	year = {2004},
+	keywords = {C++, Explicit integration, Impact, Large deformations, Nonlinear finite-element, Object-oriented programming, Plasticity},
+	pages = {341--351}
 }
