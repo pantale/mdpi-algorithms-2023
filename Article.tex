@@ -43,6 +43,7 @@
 \usepackage{subcaption}
 \DeclareRobustCommand{\w}{\mbox{\large\ensuremath{\mathsf{w}}}}
 \DeclareRobustCommand{\dotp}{\boldsymbol{\cdot}}
+\DeclareRobustCommand{\ccirc}{\kern0.5ex\vcenter{\hbox{$\scriptstyle\circ$}}\kern0.5ex}
 \DeclareRobustCommand{\e}[1]{{\rm e}^{#1}}
 \DeclareRobustCommand{\lay}[1]{^{(#1)}}
 \DeclareRobustCommand{\mdot}[1]{\accentset{\mbox{\bfseries .}}{#1}}
@@ -191,7 +192,7 @@ $^{2}$ \quad Affiliation 2; e-mail@e-mail.com}
 %
 
 %------------------------------------------------------------------------------------
-\section{Introduction}
+\section{Introduction}\label{sec:Introduction}
 %------------------------------------------------------------------------------------
 
 Numerical methods for simulating the behavior of structures subjected to high thermomechanical loads, as in the case of high-temperature forming of metallic materials, are generally based on the use of commercial Finite Element (FE) codes such as Abaqus or laboratory codes such as DynELA \cite{Pantale-2004-DOF}, which has been developed at LGP for many years.
@@ -252,9 +253,129 @@ Finally, a conclusion and perspective section will be presented at the end.
 \section{Training of the ANN flow law}\label{sec:Training}
 %------------------------------------------------------------------------------------
 
+In this section, we briefly recall, as an introduction, some basic principles of Artificial Neural Networks that are relevant to this work.
+The global architecture chosen to model the behavior of a material is based on a multi-layer feed-forward ANN which as proposed by Hornik \eal \cite{Hornik-1989-MFN} can be used as a universal approximator.
+The architecture retained for this study concerns a neural network with two hidden layers containing a variable number of neurons on these two layers, $3$ inputs corresponding to the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ respectively and a single output concerning the flow stress of the material $\sigma^y$.
+Figure \ref{fig:ANN-scheme} shows a graphical representation of the global architecture of this neural network.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.7\columnwidth]{Figures/ANN-scheme-2HL}
+\caption{Global structure of the ANN flow law with two hidden layers, 3 inputs and one output.}
+\label{fig:ANN-scheme}
+\end{figure}
+The choice of the number of neurons in the two hidden layers is free, but must be reasonable.
+Indeed, the more neurons the network contains, the more it will be able to reproduce faithfully the training data, but the less it will be able to generalize to new data (the classical problem of overlearning of neural networks).
+Moreover, the more neurons it contains, the more complex its mathematical structure will be, and the more computation time it will require within the routine included in the FE code.
+It is therefore necessary to respect a balance between the capacity of the network to minimize errors during the learning phase, its complexity and the speed of execution once it is transcribed into the FE code.
+
+%------------------------------------------------------------------------------------
+\subsection{Neural Network governing equations}\label{sec:ANN-equations}
+%------------------------------------------------------------------------------------
+
+According to Figure \ref{fig:ANN-scheme}, the neural network has $3$ inputs (referred as the input vector $\overrightarrow{x}$ of the ANN) corresponding to the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ respectively.
+These inputs are first normalized within the range $[0,1]$ in order to avoid a ill-conditioning of the system as presented by many other authors in the literature \cite{Lin-2008-ANN, Lu-2011-ANN} since these three variables represent different physical data with a very different amplitudes ($0.7$ for the plastic strain, $100$ for the strain rate and $550~\celsius$ for the temperature in the case of the data reported in Figure \ref{fig:Zhou-OriginalData}).
+Therefore, the three components of the input vector $\overrightarrow{x}$ are obtained from the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ using the following expressions:
+\begin{equation}
+\overrightarrow{x}=
+\begin{cases}
+x_1 = \frac{\varepsilon^p - [\varepsilon^p]_{min}}{[\varepsilon^p]_{max} - [\varepsilon^p]_{min}}\\
+x_2 = \frac{\ln(\mdot\varepsilon/\mdot\varepsilon_0)-[\ln(\mdot\varepsilon/\mdot\varepsilon_0)]_{min}}{[\ln(\mdot\varepsilon/\mdot\varepsilon_0)]_{max}-[\ln(\mdot\varepsilon/\mdot\varepsilon_0)]_{min}}\label{eq:CR1}\\
+x_3 = \frac{T-[T]_{min}}{[T]_{max}-[T]_{min}}
+\end{cases}
+\end{equation}
+where $[~]_{min}$ and $[~]_{max}$  are the boundaries of the range of the corresponding field.
+Concerning the strain rate $\mdot\varepsilon$, and taking into account that its amplitude in a real case can reach $10^5~\ps$, as proposed in Pantalé \cite{Pantale-2021}, we chose at first to substitute $\ln(\mdot\varepsilon/\mdot\varepsilon_0)$, with $\mdot\varepsilon_0$ equal to the lowest strain rate test, for the value of $\mdot\varepsilon$.
+After normalization, these three input variables are introduced into the neural network and are propagated within it by the feed-forward propagation mechanism.
+
+Conforming to the structure of the ANN reported in Figure \ref{fig:ANN-scheme} any hidden layer $k$, containing $n$ neurons, takes a weighted sum of the outputs $\overrightarrow{\hat{y}}$ of the immediately previous layer $(k-1)$, containing $m$ neurons, given by the following equation:
+\begin{equation}
+y_i\lay{k} = \sum_{j=1}^m w_{ij}\lay{k} \hat{y}_j^{(k-1)}+ b_i\lay{k},\label{eq:ANN1}
+\end{equation}
+where $y_i\lay{k}$ is the entry of the $i^{th}$ neuron of layer $k$, $\hat{y}_j\lay{k-1}$ is the output of the $j^{th}$ neuron of layer $(k-1)$, $w_{ij}\lay{k}$ is the associated weight parameter between the $i^{th}$ neuron of layer $k$ and the $j^{th}$ neuron of layer $(k-1)$ and $b_i\lay{k}$ is the associated bias of the $i^{th}$ neuron of layer $k$.
+Those weights $w_{ij}$ and bias $b_i$, for each layer, are the training parameters of the ANN that we have to adjust during the training process.
+For the proposed model, we have selected the Sigmoid activation function, so that, each neuron in the hidden layer $k$ provides an output value ${\hat{y}}$ from the input value $y$ of the same neuron defined by Equation (\ref{eq:ANN1}) according to the following equation:
+\begin{equation}
+\hat{y}=\frac{1}{1 + \e{-y}}\label{eq:ANN2}
+\end{equation}
+
+According to equations (\ref{eq:ANN1}) and (\ref{eq:ANN2}), the output of each of the two hidden layers is given by the following two equations:
+\begin{equation}
+\overrightarrow{y}_1 = \left[1 + \exp{\left(- \w_1 \dotp \overrightarrow{x}- \overrightarrow{b}_1\right)}\right]^{-1}\label{eq:ANN3}
+\end{equation}
+\begin{equation}
+\overrightarrow{y}_2 = \left[1 + \exp{\left(- \w_2 \dotp \overrightarrow{y}_1- \overrightarrow{b}_2\right)}\right]^{-1}\label{eq:ANN4}
+\end{equation}
+Then we compute the output $s$ of the ANN from the output vector of the second hidden layer $\overrightarrow{y}_2$ using the following equation:
+\begin{equation}
+s = \overrightarrow{w}^T \dotp \overrightarrow{y}_2 + b\label{eq:ANN5}
+\end{equation}
+Finally, since no activation function is used for the output neuron of the ANN as usually done in regression ANN, the flow stress $\sigma^y$ can be obtained from the output $s$ using the following equation:
+\begin{equation}
+\sigma^y =  \left([\sigma]_{max}-[\sigma]_{min}\right)s + [\sigma]_{min} \label{eq:CR2}
+\end{equation}
+
+%------------------------------------------------------------------------------------
+\subsection{Computation of the derivatives of the Neural Network}\label{sec:ANN-derivative}
+%------------------------------------------------------------------------------------
+
+As introduced in Section \ref{sec:Introduction}, the implementation of a flow law in a FE code requires both the computation of the flow stress $\sigma^y$ as a function of the input data, but also the evaluation of the three derivatives of $\sigma^y$ with respect to the input data in order to be able to use a Newton-Raphson algorithm within the stress integration scheme, as proposed by Ming \eal \cite{Ming-2018-ERV, Liang-2022} based on the radial return algorithm in the Abaqus or DynELA FE codes.
+It is therefore necessary to perform a numerical evaluation of these three derivatives based on the ANN in order to obtain these quantities.
+It seems obvious that it is not possible to train a neural network to evaluate these values of derivatives insofar as the training data are not physically collectible data during the experimental tests.
+It is therefore necessary to predict these derivatives from the neural network architecture itself.
+One straightforward, but not recommended, solution to this problem is to numerically compute the derivative of $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following relation:
+\begin{equation}
+\frac{\partial \sigma(x)}{\partial x} = \frac{\sigma(x+\delta x) - \sigma(x)}{\delta x}
+\end{equation}
+where $\delta x$ is a small increase ($\delta x=10^{-6}$ for example) applied to one of the $3$ variables $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
+We need to compute $4$ times a result from the ANN to compute the flow stress and approximate the three derivatives which is quite time-consuming.
+The solution for this study consists, insofar as the architecture of the neural network is known through equations \ref{eq:ANN1} to \ref{eq:ANN5}, in analytically deriving the output $s$ of the network with respect to the input $\overrightarrow{x}$, then integrating the data normalization operations defined by equations \ref{eq:CR1} and \ref{eq:CR2}.
+Given equations \ref{eq:CR1} to \ref{eq:CR2}, we can then establish in the case of a neural network containing two hidden layers and a sigmoid activation function on the two hidden layers that the derivative of $\sigma^y$ with respect to the input data $\varepsilon^p$, $\mdot\varepsilon$ and $T$ is given by the following equations. First we compute the internal terms of the ANN to compute the derivative of the ANN with respect to the input vector $\overrightarrow{x}$:
+\begin{equation}
+\begin{cases}
+\overrightarrow{z}_1 = \exp{\left(- \w_1 \dotp \overrightarrow{x}- \overrightarrow{b}_1\right)}\\
+\overrightarrow{z}_2 = \exp{\left(\w_2 \dotp \frac{1}{1+\overrightarrow{z}_1} + \overrightarrow{b}_2\right)}\\
+\overrightarrow{z}_3 = \overrightarrow{w} \ccirc \frac{ \overrightarrow{z}_2}{\left(1 + \overrightarrow{z}_2\right)^2}\\
+\overrightarrow{z}_4 = \frac{\overrightarrow{z}_1}{\left(1+\overrightarrow{z}_1\right)^2}
+\end{cases}
+\label{eq:DANN1}
+\end{equation}
+Then, from the two terms $\overrightarrow{z}_3$ and $\overrightarrow{z}_4$ we can therefore compute the three derivatives of the output $s$ with respect to the input vector $\overrightarrow{x}$ with the following equation where $\overrightarrow{s}'$ is a vector of $3$ components containing the $3$ derivatives $\partial s/\partial\varepsilon^p$, $\partial s/\partial\mdot\varepsilon$ and $\partial s/\partial T$:
+\begin{equation}
+\overrightarrow{s}' = \w_1^T \dotp \left[\left(\w_2^T \dotp \overrightarrow{z}_3 \right) \ccirc \overrightarrow{z}_4\right]\label{eq:DANN2}
+\end{equation}
+Finally, from Equation (\ref{eq:DANN2}) and conforming to the normalization of the inputs introduced earlier, one can obtain the $3$ derivatives of the yield stress $\sigma^y$ with respect to the three inputs $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following final equation:
+\begin{equation}
+\begin{cases}
+\partial \sigma/\partial \varepsilon^p = s'_1 \frac{[\sigma]_{max} -[\sigma]_{min}}{[\varepsilon^p]_{max} -[\varepsilon^p]_{min}}\\
+\partial \sigma/\partial\mdot\varepsilon = \frac{s'_2}{\mdot\varepsilon} \frac{[\sigma]_{max} -[\sigma]_{min}}{[\mdot\varepsilon]_{max} -[\mdot\varepsilon]_{min}} \\
+\partial \sigma/\partial T = s'_3 \frac{[\sigma]_{max} -[\sigma]_{min}}{[T]_{max} -[T]_{min}}
+\end{cases}
+\label{eq:DANN3}
+\end{equation}
+
+Equations (\ref{eq:DANN1}-\ref{eq:DANN3}) defines the derivatives of the yield stress $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$, as computed by the ANN, and, as shown in \cite{Pantale-2021}, these derivatives can be used for the numerical implementation of the ANN constitutive law in a FE code.
+
+%------------------------------------------------------------------------------------
+\subsection{Training of the Neural Network}\label{sec:ANN-traning}
+%------------------------------------------------------------------------------------
+
 %------------------------------------------------------------------------------------
 \section{Implementation of the ANN flow law in FE softwares}\label{sec:Implementation}
 %------------------------------------------------------------------------------------
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.9\columnwidth]{Figures/StressUpdate}
+\caption{General flowchart of a FE code, focus on the stresses computation.}
+\label{fig:StressUpdate}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.35\columnwidth]{Figures/RadialReturn}
+\caption{The Radial return algorithm used to restore consistency of the stress tensor in FE simulation.}
+\label{fig:RadialReturn}
+\end{figure}
 
 %------------------------------------------------------------------------------------
 \section{Numerical simulations and benchmarks tests}\label{sec:Simulations}
@@ -263,244 +384,6 @@ Finally, a conclusion and perspective section will be presented at the end.
 %------------------------------------------------------------------------------------
 \section{Conclusions and future work}\label{sec:Conclusions}
 %------------------------------------------------------------------------------------
-
-%
-%The introduction should briefly place the study in a broad context and highlight why it is important. It should define the purpose of the work and its significance. The current state of the research field should be reviewed carefully and key publications cited. Please highlight controversial and diverging hypotheses when necessary. Finally, briefly mention the main aim of the work and highlight the principal conclusions. As far as possible, please keep the introduction comprehensible to scientists outside your particular field of research. Citing a journal paper \cite{ref-journal}. Now citing a book reference \cite{ref-book1,ref-book2} or other reference types \cite{ref-unpublish,ref-communication,ref-proceeding}. Please use the command \citep{ref-thesis,ref-url} for the following MDPI journals, which use author--date citation: Administrative Sciences, Arts, Econometrics, Economies, Genealogy, Humanities, IJFS, Journal of Intelligence, Journalism and Media, JRFM, Languages, Laws, Religions, Risks, Social Sciences, Literature.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Materials and Methods}
-%
-%Materials and Methods should be described with sufficient details to allow others to replicate and build on published results. Please note that publication of your manuscript implicates that you must make all materials, data, computer code, and protocols associated with the publication available to readers. Please disclose at the submission stage any restrictions on the availability of materials or information. New methods and protocols should be described in detail while well-established methods can be briefly described and appropriately cited.
-%
-%Research manuscripts reporting large datasets that are deposited in a publicly avail-able database should specify where the data have been deposited and provide the relevant accession numbers. If the accession numbers have not yet been obtained at the time of submission, please state that they will be provided during review. They must be provided prior to publication.
-%
-%Interventionary studies involving animals or humans, and other studies require ethical approval must list the authority that provided approval and the corresponding ethical approval code.
-%\begin{quote}
-%This is an example of a quote.
-%\end{quote}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Results}
-%
-%This section may be divided by subheadings. It should provide a concise and precise description of the experimental results, their interpretation as well as the experimental conclusions that can be drawn.
-%\subsection{Subsection}
-%\subsubsection{Subsubsection}
-%
-%Bulleted lists look like this:
-%\begin{itemize}
-%\item	First bullet;
-%\item	Second bullet;
-%\item	Third bullet.
-%\end{itemize}
-%
-%Numbered lists can be added as follows:
-%\begin{enumerate}
-%\item	First item;
-%\item	Second item;
-%\item	Third item.
-%\end{enumerate}
-%
-%The text continues here.
-%
-%\subsection{Figures, Tables and Schemes}
-%
-%All figures and tables should be cited in the main text as Figure~\ref{fig1}, Table~\ref{tab1}, Table~\ref{tab2}, etc.
-%
-%\begin{figure}[H]
-%\includegraphics[width=10.5 cm]{Definitions/logo-mdpi}
-%\caption{This is a figure. Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.\label{fig1}}
-%\end{figure}
-%\unskip
-%
-%\begin{table}[H]
-%\caption{This is a table caption. Tables should be placed in the main text near to the first time they are~cited.\label{tab1}}
-%\newcolumntype{C}{>{\centering\arraybackslash}X}
-%\begin{tabularx}{\textwidth}{CCC}
-%\toprule
-%\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
-%\midrule
-%Entry 1		& Data			& Data\\
-%Entry 2		& Data			& Data\\
-%\bottomrule
-%\end{tabularx}
-%\end{table}
-%\unskip
-%
-%\begin{table}[H]
-%\caption{This is a wide table.\label{tab2}}
-%	\begin{adjustwidth}{-\extralength}{0cm}
-%		\newcolumntype{C}{>{\centering\arraybackslash}X}
-%		\begin{tabularx}{\fulllength}{CCCC}
-%			\toprule
-%			\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}     & \textbf{Title 4}\\
-%			\midrule
-%			Entry 1		& Data			& Data			& Data\\
-%			Entry 2		& Data			& Data			& Data \textsuperscript{1}\\
-%			\bottomrule
-%		\end{tabularx}
-%	\end{adjustwidth}
-%	\noindent{\footnotesize{\textsuperscript{1} This is a table footnote.}}
-%\end{table}
-%
-%%\begin{listing}[H]
-%%\caption{Title of the listing}
-%%\rule{\columnwidth}{1pt}
-%%\raggedright Text of the listing. In font size footnotesize, small, or normalsize. Preferred format: left aligned and single spaced. Preferred border format: top border line and bottom border line.
-%%\rule{\columnwidth}{1pt}
-%%\end{listing}
-%
-%Text.
-%
-%Text.
-%
-%\subsection{Formatting of Mathematical Components}
-%
-%This is the example 1 of equation:
-%\begin{linenomath}
-%\begin{equation}
-%a = 1,
-%\end{equation}
-%\end{linenomath}
-%the text following an equation need not be a new paragraph. Please punctuate equations as regular text.
-%%% If the documentclass option "submit" is chosen, please insert a blank line before and after any math environment (equation and eqnarray environments). This ensures correct linenumbering. The blank line should be removed when the documentclass option is changed to "accept" because the text following an equation should not be a new paragraph.
-%
-%This is the example 2 of equation:
-%\begin{adjustwidth}{-\extralength}{0cm}
-%\begin{equation}
-%a = b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z
-%\end{equation}
-%\end{adjustwidth}
-%
-%% Example of a page in landscape format (with table and table footnote).
-%%\startlandscape
-%%\begin{table}[H] %% Table in wide page
-%%\caption{This is a very wide table.\label{tab3}}
-%%	\begin{tabularx}{\textwidth}{CCCC}
-%%		\toprule
-%%		\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}	& \textbf{Title 4}\\
-%%		\midrule
-%%		Entry 1		& Data			& Data			& This cell has some longer content that runs over two lines.\\
-%%		Entry 2		& Data			& Data			& Data\textsuperscript{1}\\
-%%		\bottomrule
-%%	\end{tabularx}
-%%	\begin{adjustwidth}{+\extralength}{0cm}
-%%		\noindent\footnotesize{\textsuperscript{1} This is a table footnote.}
-%%	\end{adjustwidth}
-%%\end{table}
-%%\finishlandscape
-%
-%% Example of a figure that spans the whole page width. The same concept works for tables, too.
-%\begin{figure}[H]
-%\begin{adjustwidth}{-\extralength}{0cm}
-%\centering
-%\includegraphics[width=13.5cm]{Definitions/logo-mdpi}
-%\end{adjustwidth}
-%\caption{This is a wide figure.\label{fig2}}
-%\end{figure}
-%
-%Please punctuate equations as regular text. Theorem-type environments (including propositions, lemmas, corollaries etc.) can be formatted as follows:
-%%% Example of a theorem:
-%\begin{Theorem}
-%Example text of a theorem.
-%\end{Theorem}
-%
-%The text continues here. Proofs must be formatted as follows:
-%
-%%% Example of a proof:
-%\begin{proof}[Proof of Theorem 1]
-%Text of the proof. Note that the phrase ``of Theorem 1'' is optional if it is clear which theorem is being referred to.
-%\end{proof}
-%The text continues here.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Discussion}
-%
-%Authors should discuss the results and how they can be interpreted from the perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Conclusions}
-%
-%This section is not mandatory, but can be added to the manuscript if the discussion is unusually long or complex.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Patents}
-%
-%This section is not mandatory, but may be added if there are patents resulting from the work reported in this manuscript.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\vspace{6pt}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
-%\supplementary{The following supporting information can be downloaded at:  \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.}
-
-% Only for the journal Methods and Protocols:
-% If you wish to submit a video article, please do so with any other supplementary material.
-% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title. A supporting video article is available at doi: link.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
-%
-%\funding{Please add: ``This research received no external funding'' or ``This research was funded by NAME OF FUNDER grant number XXX.'' and  and ``The APC was funded by XXX''. Check carefully that the details given are accurate and use the standard spelling of funding agency names at \url{https://search.crossref.org/funding}, any errors may affect your future funding.}
-%
-%\institutionalreview{In this section, you should add the Institutional Review Board Statement and approval number, if relevant to your study. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add “The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans. OR “The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals. OR “Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR “Not applicable” for studies not involving humans or animals.}
-%
-%\informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
-%
-%Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper'' if applicable.}
-%
-%\dataavailability{In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Please refer to suggested Data Availability Statements in section ``MDPI Research Data Policies'' at \url{https://www.mdpi.com/ethics}. If the study did not report any data, you might add ``Not applicable'' here.}
-%
-%\acknowledgments{In this section you can acknowledge any support given which is not covered by the author contribution or funding sections. This may include administrative and technical support, or donations in kind (e.g., materials used for experiments).}
-%
-%\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflict of interest.'' Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the~results''.}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Optional
-%\sampleavailability{Samples of the compounds ... are available from the authors.}
-%
-%%% Only for journal Encyclopedia
-%%\entrylink{The Link to this entry published on the encyclopedia platform.}
-%
-%\abbreviations{Abbreviations}{
-%The following abbreviations are used in this manuscript:\\
-%
-%\noindent
-%\begin{tabular}{@{}ll}
-%MDPI & Multidisciplinary Digital Publishing Institute\\
-%DOAJ & Directory of open access journals\\
-%TLA & Three letter acronym\\
-%LD & Linear dichroism
-%\end{tabular}
-%}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Optional
-%\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
-%\appendixstart
-%\appendix
-%\section[\appendixname~\thesection]{}
-%\subsection[\appendixname~\thesubsection]{}
-%The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Data. Mathematical proofs of results not central to the paper can be added as an appendix.
-%
-%\begin{table}[H]
-%\caption{This is a table caption.\label{tab5}}
-%\newcolumntype{C}{>{\centering\arraybackslash}X}
-%\begin{tabularx}{\textwidth}{CCC}
-%\toprule
-%\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
-%\midrule
-%Entry 1		& Data			& Data\\
-%Entry 2		& Data			& Data\\
-%\bottomrule
-%\end{tabularx}
-%\end{table}
-%
-%\section[\appendixname~\thesection]{}
-%All appendix sections must be cited in the main text. In the appendices, Figures, Tables, etc. should be labeled, starting with ``A''---e.g., Figure A1, Figure A2, etc.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{adjustwidth}{-\extralength}{0cm}
-%%\printendnotes[custom] % Un-comment to print a list of endnotes
 
 \reftitle{References}
 
@@ -512,35 +395,6 @@ Finally, a conclusion and perspective section will be presented at the end.
 %=====================================
 \bibliography{bibliography}
 
-%=====================================
-% References, variant B: internal bibliography
-%=====================================
-%\begin{thebibliography}{999}
-%% Reference 1
-%\bibitem[Author1(year)]{ref-journal}
-%Author~1, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142--149.
-%% Reference 2
-%\bibitem[Author2(year)]{ref-book1}
-%Author~2, L. The title of the cited contribution. In {\em The Book Title}; Editor 1, F., Editor 2, A., Eds.; Publishing House: City, Country, 2007; pp. 32--58.
-%% Reference 3
-%\bibitem[Author3(year)]{ref-book2}
-%Author 1, A.; Author 2, B. \textit{Book Title}, 3rd ed.; Publisher: Publisher Location, Country, 2008; pp. 154--196.
-%% Reference 4
-%\bibitem[Author4(year)]{ref-unpublish}
-%Author 1, A.B.; Author 2, C. Title of Unpublished Work. \textit{Abbreviated Journal Name} year, \textit{phrase indicating stage of publication (submitted; accepted; in press)}.
-%% Reference 5
-%\bibitem[Author5(year)]{ref-communication}
-%Author 1, A.B. (University, City, State, Country); Author 2, C. (Institute, City, State, Country). Personal communication, 2012.
-%% Reference 6
-%\bibitem[Author6(year)]{ref-proceeding}
-%Author 1, A.B.; Author 2, C.D.; Author 3, E.F. Title of presentation. In Proceedings of the Name of the Conference, Location of Conference, Country, Date of Conference (Day Month Year); Abstract Number (optional), Pagination (optional).
-%% Reference 7
-%\bibitem[Author7(year)]{ref-thesis}
-%Author 1, A.B. Title of Thesis. Level of Thesis, Degree-Granting University, Location of University, Date of Completion.
-%% Reference 8
-%\bibitem[Author8(year)]{ref-url}
-%Title of Site. Available online: URL (accessed on Day Month Year).
-%\end{thebibliography}
 
 % If authors have biography, please use the format below
 %\section*{Short Biography of Authors}
