@@ -356,8 +356,79 @@ Finally, from Equation (\ref{eq:DANN2}) and conforming to the normalization of t
 Equations (\ref{eq:DANN1}-\ref{eq:DANN3}) defines the derivatives of the yield stress $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$, as computed by the ANN, and, as shown in \cite{Pantale-2021}, these derivatives can be used for the numerical implementation of the ANN constitutive law in a FE code.
 
 %------------------------------------------------------------------------------------
-\subsection{Training of the Neural Network}\label{sec:ANN-traning}
+\subsection{Training of the Neural Networks}\label{sec:ANN-traning}
 %------------------------------------------------------------------------------------
+
+In the context of neural network learning, it is necessary to define the objective function to be minimized and the evaluation of the model error. In this study, the error evaluation is based on the Root Mean Square Error ($\RMSE$) given by the following equation:
+\begin{equation}
+\RMSE (\MPa) = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left(\square_i^e - \square_i^y\right)^2}, \label{eq:RMSE}
+\end{equation}
+where $N$ is the total number of numerical training data used, $\square^y$ is the value predicted by the neural network, and $\square^e$ is the corresponding experimental value of coming from the experimental tests.
+The accuracy and predictive ability of the models is assessed by the Mean Absolute Relative Error ($\AARE$) defined by Equation (\ref{eq:AARE}):
+\begin{equation}
+\AARE(\%) = \frac{1}{N} \sum_{i=1}^{N}{\left|\frac{\square_i^y -\square_i^e}{\square_i^e}\right|} \times 100, \label{eq:AARE}
+\end{equation}
+
+The numerical implementation of the learning phase of the neural network was done in Python language, using the Tensorflow library \cite{Abadi-2016}.
+The minimization procedure of the objective function is based on the use of the Adaptive Moment Estimation (ADAMS) solver \cite{Kingma-2015}.
+The training data used in this section are taken from the publication of Zhou \eal \cite{Zhou-2019}.
+Thus, data for which compression tests were performed for $3$ strain rates $\mdot\varepsilon=0.001~\ps$, $\mdot\varepsilon=0.01~\ps$, and $\mdot\varepsilon=0.1~\ps$, and $12$ temperature values between $750~\celsius$ and $1300~\celsius$ in $50~\celsius$ steps are used.
+For each pair of data $\mdot\varepsilon$, $T$, we have a record of $71$ values of flow stress $\sigma^e$ corresponding to values of deformation between $0$ and $0.7$, regularly spaced of $0.01$.
+In total, we have a database of $2~556$ quadruplets of values $\varepsilon^p$, $\mdot\varepsilon$, $T$ and $\sigma^e$.
+The set of these data is used as training data for the neural network.
+Several neural network architectures have been studied in this work, they differ from each other by the number of neurons present on the two hidden layers.
+Among them, we have selected 4 different architectures named 3-7-4-1, 3-9-4-1, 3-9-7-1 and 3-15-7-1 for which the name 3-$n$-$m$-1 translates an ANN with 2 hidden layers having $n$ neurons on the first layer and $m$ neurons on the second layer.
+
+All models have been trained for the same number of iterations ($50~000$ iterations), and around $50$ minutes of training on a Dell XPS-13 7390 laptop running Ubuntu 22.04 LTS 64 bits with 16 GB of Ram and an Intel 4-core i7-10510U processor allow obtaining the converged parameters of the ANN models.
+Figure \ref{fig:Convergence-ANN} shows the evolution of the training error defined by the $\log_{10}$ of the internal $\RMSE$ during the training phase.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.9\columnwidth]{Figures/Convergence-ANN}
+\caption{Convergence of the ANN models during the training phase.}
+\label{fig:Convergence-ANN}
+\end{figure}
+As we can see on this figure, after $50~000$ iterations, we can consider that we have reached a stationary state of the model learning and that it is useless to continue the learning phase.
+
+As expected, the more neurons the model contains, the more it is able to follow the non-linear evolution of the material's behavior and therefore the more the internal error $\Delta s$ during the learning phase decreases. 
+Table \ref{tab:ErrorANN} shows the main results of the training of these neural networks. 
+\begin{table}[h!]
+\centering
+\caption{Results concerning the training of the four ANN flow laws.}
+\begin{tabular}{lccccc}
+	\hline
+	ANN    & $n_v$ &  $t$  &    $\Delta s$    & $\AARE$ & $\RMSE$ \\
+	         &     & (min) & $\times 10^{-5}$ &  (\%)   &  (MPa)  \\ \hline
+	3-7-4-1  & 65  &  48   &       3.91       &  1.88   &  3.05   \\
+	3-9-4-1  & 81  &  48   &       3.29       &  1.70   &  2.75   \\
+	3-9-7-1  & 114 &  49   &       1.83       &  1.25   &  2.44   \\
+	3-15-7-1 & 180 &  50   &       1.01       &  0.97   &  2.30\\ \hline
+\end{tabular}
+\label{tab:ErrorANN}
+\end{table}
+
+It can be noted that the number of internal variables $n_v$ of the networks varies from $65$ to $180$ for the most complex and the most powerful one, but that this complexity has no real influence on the learning time $t$ which oscillates around a value of $50$ minutes whatever the architecture chosen. 
+Concerning the internal accuracy $\Delta s$ of the network, it varies in proportions in accordance with the graphical representation of Figure \ref{fig:Convergence-ANN}. 
+From a more physical point of view, Figure \ref{fig:CompExpANN} shows the correlation between the data predicted by the neural network and the experimental data for the 3-15-7-1 network. 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\columnwidth]{Figures/CompExpANN-3-15-7-1}
+\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-15-7-1 ANN and the experimental data for the GCr15.}
+\label{fig:CompExpANN}
+\end{figure}
+There is a very good correlation between the ANN results and the experimental results, which is reflected in the $\AARE$ and $\RMSE$ coefficients in Table \ref{tab:ErrorANN}. 
+As reported by Phaniraj \cite{Phaniraj-2003}, the correlation coefficient ($\R$) is generally not a good measure in our case of study because it only shows the correlation of the model with respect to the data and not its accuracy, which is a determining factor in the qualification of a model.
+This correlation is much better than the one obtained by Zhou \eal \cite{Zhou-2019} during his work on the same material with $4$ different flow laws, especially since he was obliged to split the data into two groups according to the temperature value (one on the range $T=750-850~\celsius$ and one on the range $T=850-1300~\celsius$) and to identify two sets of parameters for each flow law in order to reduce the error of his models. 
+This of course raises the question of the usability of these laws in the case where the temperature of the material changes from one group to the other during a thermomechanical transformation. 
+In our approach and by using an ANN flow law, the identified law is not only valid over the whole temperature range, but it displays an $\AARE$ coefficient $5$ times lower than the best flow law proposed by Zhou \eal, the Arrhenius law with an $\AARE=3.74\%$ over the range $T=750-850~\celsius$ and $\AARE=5.76\%$ over the range $T=850-1300~\celsius$ while the $\AARE=0.97\%$ for the 3-15-7-1 ANN flow law.
+
+One of the disadvantages of developing a flow law model based on neural networks is the number of internal variables in the network ($180$ in the case of the 3-15-7-1 network), which makes it difficult to translate the network into printable results. 
+The use of a Johnson-Cook type flow law, for example, allows the reader to quickly get an idea of the law, insofar as the analytical formulation of the law is known to the users, and the behavior of a given material is based on the knowledge of only $5$ internal parameters to be identified, which makes it easy to publish in a table. 
+Concerning an Arrhenius law, this task becomes a little more complex as one can have from $24$ to $36$ coefficients. 
+But in our case, the publication of the $180$ coefficients of the model makes this task delicate. 
+As an example, the Appendix contains all the coefficients of the 3-15-7-1 model identified during this study.
+
+Once the identification phase has been completed, it is now necessary to transpose this ANN model into a subroutine in FORTRAN or C++ that can be used by a FE code such as Abaqus or DynELA. 
+This is the subject of the next section.
 
 %------------------------------------------------------------------------------------
 \section{Implementation of the ANN flow law in FE softwares}\label{sec:Implementation}
@@ -395,6 +466,114 @@ Equations (\ref{eq:DANN1}-\ref{eq:DANN3}) defines the derivatives of the yield s
 %=====================================
 \bibliography{bibliography}
 
+
+%----------------------------------------------------------------------------------
+\section*{Appendix\label{sec:Appendix}}
+%----------------------------------------------------------------------------------
+
+In order to complete this paper, we report here after the computing process and the $180$ coefficients of the Artificial Neural Network ANN-3-15-7-1 model used in Section \ref{sec:ANN-traning}.
+The weight matrix for the first hidden layer $\w_1$ is a $15\times3$ matrix:
+\begin{equation*}
+\w_1 = \left[
+\begin{array}{rrr}
+1.9555 & -1.4358 & 3.8147\\ 
+-3.7376 & 2.5796 & -63.8787\\ 
+-1.0201 & 0.4169 & -7.6105\\ 
+4.7550 & -8.2280 & -39.1221\\ 
+-4.4573 & 1.6931 & -16.1442\\ 
+-7.4413 & 4.9264 & -10.9690\\ 
+-0.0151 & -0.3780 & -43.0122\\ 
+0.7121 & 0.6326 & -3.0630\\ 
+-2.9821 & -1.0429 & -8.6435\\ 
+0.7087 & 3.3178 & -22.7078\\ 
+-1.1669 & -7.5672 & -8.5390\\ 
+-46.2443 & -0.0546 & -2.2126\\ 
+-5.1689 & -1.1643 & -5.3561\\ 
+3.2716 & 2.5842 & -8.8036\\ 
+-14.9815 & 3.7360 & -4.4927\\ 
+\end{array}\right]
+\end{equation*}
+The biases of the first hidden layer $\overrightarrow{b_1}$ is a $15$ components vector:
+\begin{equation*}
+\overrightarrow{b}_1 = \left[
+\begin{array}{r}
+-1.9351\\ 
+-0.7234\\ 
+1.0962\\ 
+5.5862\\ 
+0.9015\\ 
+-1.7936\\ 
+4.5917\\ 
+-0.7919\\ 
+0.1110\\ 
+-1.4496\\ 
+0.5536\\ 
+0.0852\\ 
+0.7880\\ 
+1.4652\\ 
+-1.8652\\ 
+\end{array}\right]
+\end{equation*}
+The weight matrix for the second hidden layer $\w_2$ is a $7\times15$ matrix:
+\begin{equation*}
+\w_2^T = \left[
+\begin{array}{rrrrrrr}
+1.3033 & -6.6636 & -1.1191 & 0.0640 & -1.2000 & -0.7778 & -0.0832\\ 
+3.4156 & -1.9712 & 1.1247 & 11.3150 & -5.3441 & 2.6273 & -7.4426\\ 
+0.6366 & -1.5008 & 0.3228 & -3.6627 & 1.1657 & -0.4301 & -2.1017\\ 
+2.7161 & 1.8167 & 3.1051 & 3.3271 & 3.1566 & -3.7084 & -0.0561\\ 
+3.2426 & 0.5226 & 1.0579 & -4.6344 & -4.8619 & 1.8223 & -0.6718\\ 
+-2.0943 & 2.4590 & -1.0508 & 4.5012 & 6.6691 & 2.7379 & -3.2888\\ 
+-5.2160 & -3.2763 & -0.7033 & -1.1473 & 3.9384 & -0.9496 & -0.5450\\ 
+-3.7103 & -0.3289 & 0.5146 & -0.8302 & -1.6758 & 2.1605 & 0.5720\\ 
+0.0661 & 0.6169 & 0.5066 & -5.5835 & -2.0816 & 0.0687 & -3.8897\\ 
+-0.8534 & 5.1127 & -0.4439 & 2.7771 & -2.8935 & 0.8596 & -3.8329\\ 
+-2.7441 & -1.8542 & -5.3622 & -1.9153 & -0.6710 & 1.2238 & 1.3638\\ 
+13.2086 & -21.6848 & 1.9939 & 6.0605 & 4.1271 & 12.2979 & -3.0547\\ 
+1.3170 & 2.2413 & -0.8415 & -1.1919 & 1.0253 & 0.4586 & 2.4214\\ 
+-1.3138 & -2.2316 & 0.6675 & 0.5940 & 1.3283 & -1.8264 & -0.1424\\ 
+3.4473 & -1.1443 & -0.4509 & 12.7328 & 4.0328 & -0.4105 & -0.1603\\ 
+\end{array}\right]
+\end{equation*}
+The biases of the second hidden layer $\overrightarrow{b_2}$ is a 7 components vector:
+\begin{equation*}
+\overrightarrow{b}_2 = \left[
+\begin{array}{r}
+-1.8551\\ 
+-0.7994\\ 
+-0.8867\\ 
+0.5204\\ 
+-3.4375\\ 
+-0.7264\\ 
+-0.4300\\ 
+\end{array}\right]
+\end{equation*}
+The weight vector for the output layer $\overrightarrow{w}$ is a 7 components vector:
+\begin{equation*}
+\overrightarrow{w} = \left[
+\begin{array}{r}
+-0.4036\\ 
+1.9957\\ 
+0.3469\\ 
+-0.1811\\ 
+-0.1828\\ 
+0.2522\\ 
+-0.8099\\ 
+\end{array}\right]
+\end{equation*}
+The bias of the output layer $b$ is a scalar:
+\begin{equation*}
+b = 0.4699
+\end{equation*}
+
+The boundaries of the range of the corresponding field are:
+\begin{itemize}
+\item $\varepsilon^p\!\in\!\left[0.0,0.7\right]$
+\item $\mdot{\varepsilon}\!\in\!\left[0.001~\ps,0.1~\ps\right]$
+\item $T\!\in\!\left[750~\celsius,1300~\celsius\right]$ 
+\item $\sigma\!\in\!\left[3.052~\MPa,306.0956~\MPa\right]$.
+\end{itemize} 
+The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 
 % If authors have biography, please use the format below
 %\section*{Short Biography of Authors}
