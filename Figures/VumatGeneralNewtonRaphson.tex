@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{mathptmx}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{accents}
+%\newcommand{\mdot}[1]{\accentset{\mbox{\bfseries .}}{#1}}
+%\usetikzlibrary{shapes,arrows,chains,calc}
+%\usepackage{color}
+\usepackage[active,pdftex,tightpage]{preview}
+\PreviewEnvironment[]{tikzpicture}
+\PreviewEnvironment[]{pgfpicture}
+
+% Inclusion des macros
+%\input{/home/pantale/SynologyDrive/Cours/Templates/macrosGene.template}
+\DeclareRobustCommand{\mdot}[1]{\accentset{\mbox{\bfseries .}}{#1}}
+\DeclareRobustCommand{\Dev}{\mbox{\Large\ensuremath{\mathsf{s}}}}
+
+% Inclusion des macros
+\input{/home/pantale/SynologyDrive/Cours/Templates/TikZ.template}
+
+\begin{document}
+\begin{tikzpicture} [flowChart]
+
+\node [endPoint, text width=30 mm]  (startPoint)  {Start};
+
+\node [bloc, join]  (predStart)  {
+Elastic predictor : $\Dev_{tr}$, $\overline{\sigma}_{tr}$\\
+$\Gamma=0$
+};
+
+\node [test, join] (strialYield) {$\overline{\sigma}_{tr}>\sigma^{y}$};
+\path (strialYield.east)  to node [above right]  {No}  (strialYield);
+\path (strialYield.south)  to node [below right]  {Yes}  (strialYield);
+
+\node [bloc, join]  (NRloop0)  {
+$\varepsilon_1^p=\varepsilon_0^p+\sqrt{\frac{2}{3}}\Gamma$\\
+$\mdot{\varepsilon}_1=\frac{1}{\Delta t}\sqrt{\frac{2}{3}}\Gamma$\\
+};
+
+\node [bloc, join, fill=yellow!100, text width=60 mm]  (NRloop1)  {
+Use the ANN to compute:\\
+$\sigma^y$;~ $\partial \sigma^y/\partial \varepsilon^p$;~
+$\partial \sigma^y/\partial\mdot{\varepsilon}^p$;~
+$\partial \sigma^y/\partial T$};
+
+\node [bloc, join, text width=60 mm]  (NRloop2)  {
+$\frac{d\sigma^{y}}{d\Gamma} = \sqrt{\frac{2}{3}}\left(\frac{\partial\sigma^y}{\partial\varepsilon^{p}}+\frac{1}{\Delta t}\frac{\partial\sigma^y}{\partial\mdot{\varepsilon}}+\frac{\eta\sigma^y}{\rho C_{p}}\frac{\partial\sigma^y}{\partial T}\right)$\\
+$\gamma(\Gamma)=\overline{\sigma}_{tr} - \sqrt{6}G\Gamma- \sigma^{y}$\\
+$\gamma^{'} (\Gamma)= -\sqrt{6}G-\frac{d\sigma^{y}}{d\Gamma}$\\
+$\Delta\Gamma=-\gamma(\Gamma)/\gamma^{'}(\Gamma)$\\
+$\Gamma\leftarrow\Gamma+\Delta\Gamma$
+};
+
+\node [test, join] (NRloops) {$\|\Delta\Gamma\| < NR_{prec}$};
+\path (NRloops.west)  to node [above left]  {No}  (NRloops);
+\path (NRloops.south)  to node [below right]  {Yes}  (NRloops);
+\draw [norm]  (NRloops.west) -| +(-2,+1) |- (NRloop0.west);
+
+\node [bloc, join]  (updateStresses)  {
+$\Dev_1=\Dev_{tr}-2G\Gamma \frac{\Dev_{tr}}{\left\Vert \sigma\right\Vert }$
+};
+\draw [norm]  (strialYield.east) -| +(+3,-1) |-  (updateStresses.east);
+
+\node [endPoint, join, text width=30 mm]  (endPoint)  {End};
+
+\end{tikzpicture}
+\end{document}
