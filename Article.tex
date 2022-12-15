@@ -209,22 +209,23 @@ If the first equations are generally well established on the basis of physics an
 Thus, in a general way, the conservation equations concern the fundamental principles of physics such as the mass conservation law, the momentum law (fundamental equation) and the energy law (declined in the form of the first and second principles of thermodynamics).
 By themselves, these laws are not sufficient to describe the behavior of a material or a structure subjected to thermomechanical solicitations, because the nature of the material's behavior, generally translated by means of the behavior laws, is not included in the system previously proposed.
 Therefore, for each type of material, it is necessary to define behavior laws whose formulation is based on observation, in order to describe the behavior of this material under external forces.
-The quality and the accuracy of the results of any numerical simulation depend on the choice of these behavior laws and on the ability of the user to identify the coefficients of these behavior laws for a given material by performing experiments under conditions close to those encountered during the real stress of the structure in service that one wishes to design.
+The quality and the accuracy of the results of any numerical simulation depend on the choice of these behavior laws and on the ability of the user to identify the coefficients of these behavior laws for a given material by performing experiments under conditions close to those encountered during the real stress of the structure in service that one wishes to design \cite{Dey-2007}.
 Depending on the nature of the solicitations, these tests are based on quasi-static or dynamic tensile or compression tests, tests on thermomechanical simulators such as Gleeble \cite{Lin-2009} or impact tests using gas launchers or Hopkinson bars \cite{Kolsky-1949}.
 
-In the context of thermomechanical simulation of forming processes, these behavior laws define the dependence of the flow stress of the material $\sigma^y$ as a function of the three input variables which are the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following expression:
+In the context of thermomechanical simulation of forming processes, these behavior laws define the dependence \cite{Lee-2006} of the flow stress of the material $\sigma^y$ as a function of the three input variables which are the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following expression:
 \begin{equation}
 \sigma^y = f\left(\varepsilon^p,\mdot\varepsilon,T\right)\label{eq:GenFlow}
 \end{equation}
 
-These laws, due to the nature of materials and the phenomena involved (work hardening, movement of dislocations, structural hardening, phase transformations, ...) are highly non-linear and their validity is restricted to a certain range of strains $\varepsilon$, strain rates $\mdot\varepsilon$ and temperatures $T$.
+These laws, due to the nature of materials and the phenomena involved \cite{Lennon-2004, Zhang-2012} (work hardening, movement of dislocations, structural hardening, phase transformations, ..) are highly non-linear and their validity is restricted to a certain range of strains $\varepsilon$, strain rates $\mdot\varepsilon$ and temperatures $T$.
 From the observations made, we can define two main classes of behavior laws: the flow laws based on physics and the empirical flow laws.
-From the mechanics of continuous media and experimental tests and depending on the nature of the materials used, a number of flow models have been developed in the past, including: the Johnson-Cook flow law \cite{Johnson-1983}, the Zerilli Armstrong flow law \cite{Zerilli-1987} and their respective derived forms \cite{Rule-1998, Lin-2011, Li-2013, Zhang-2015, Zhou-2020}, the Hansel-Spittle \cite{Hensel-1978} or the Arrhenius \cite{Jonas-1969} flow laws, to name only a few of the most widely used in the context of the metal forming processes at high temperature.
+From the mechanics of continuous media and experimental tests and depending on the nature of the materials used, a number of flow models have been developed in the past, including: the Johnson-Cook flow law \cite{Johnson-1983, Johnson-1988}, the Zerilli Armstrong flow law \cite{Zerilli-1987} and their respective derived forms \cite{Lin-2011, Li-2013, Zhang-2015, Zhou-2020, Jia-2021, Rule-1998, Lin2010, Muralli-2017, Cheng-2021}, the Hansel-Spittle \cite{Hensel-1978, Chadha-2018} or the Arrhenius \cite{Jonas-1969, He-2013, Liang-2022} flow laws, to name only a few of the most widely used in the context of the metal forming processes at high temperature.
 As an example, and because it is widely used in numerical simulation of metal forming processes, the equation that describes the Johnson-Cook flow law \cite{Johnson-1983} is given as follows:
 \begin{equation}
 \sigma^y=\left(A+B\varepsilon^{p^{n}}\right) \left[1+C\ln\left(\frac{\mdot\varepsilon}{\mdot\varepsilon_0}\right)\right] \left[1-\left(\frac{T-T_0}{T_m-T_0}\right)^{m}\right],\label{eq:Johnson-Cook}
 \end{equation}
 where $A$ is the initial elastic limit of the material, $B$ is the strain hardening coefficient, $n$ is the strain hardening exponent, $C$ and $m$ are the material constants that describe the strain rate hardening coefficient and the thermal softening coefficient, respectively.
+The Johnson-Cook model is the most widely used because it is simple to identify and use and has few parameters to determine \cite{NematNasser-2003, Khan-2004}.
 
 Once the choice has been made concerning the type of flow law to be used for a given material, it is then necessary, from a set of experimental tests carried out in the laboratory under conditions close to those of the structure in service, to identify the parameters of these flow laws by machine learning methods based on approaches of minimization of the calculated experiment.
 Therefore, the use of the Johnson-Cook flow law defined by Equation (\ref{eq:Johnson-Cook}) require the identification of $5$ material parameters.
@@ -503,7 +504,7 @@ Thus, the complexity of the ANN, \ie the number of computational steps that must
 As an example, for the model presented in section \ref{sec:ANN-traning}, $180$ internal variables, $15$ neurons on the first hidden layer and $7$ neurons on the second hidden layer were listed.
 Given the equations described in Sections \ref{sec:ANN-equations} and \ref{sec:ANN-derivative}, it will be necessary to compute $22$ exponentials, to make matrix-vector products of size $15\times3$ and $15\times7$ plus many other numerical operations in order to compute the flow stress $\sigma^y$ and the $3$ derivatives of it with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
 
-The implementation of the ANN flow law identified above is realized here in a VUHARD subroutine used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3 derivatives as a function of the model input data.
+The implementation of the ANN flow law identified above is realized here in a VUHARD subroutine, similarly as proposed by van Rensburg \eal \cite{JansenVanRensburg-2012}, used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3 derivatives as a function of the model input data.
 This subroutine is used when calculating the stress tensor $\Sig_1$ at the end of an increment from the stress tensor at the beginning of the increment $\Sig_0$, the deformations, the material parameters and the history of the deformation at each finite element integration points, according to the stress integration algorithm based on the Radial-Return method as described in Simo \eal \cite{Simo-1998} for the general aspects, Ming \eal \cite{Ming-2018} for Abaqus Explicit FE code or Pantalé \eal \cite{Pantale-2004} for the DynELA FE code.
 Thus, without going into too much detail about the stress integration scheme used in finite element codes (the curious reader can refer to \cite{Ponthot-2002, Ming-2018, Pantale-2004, Liang-2022} for details about this method), Figure \ref{fig:RadialReturn} shows the location of the VUHARD subroutine used to compute the flow stress $\sigma^y$ and its derivative $\partial\sigma^y/\partial\Gamma$ used in the writing of the two quantities $\gamma(\Gamma)$ and $\gamma^{'}(\Gamma)$ used in the Newton-Raphson solving procedure from the following relation:
 \begin{equation}
@@ -739,7 +740,7 @@ The boundaries of the range of the corresponding field are:
 \item $\varepsilon^p\!\in\!\left[0.0,0.7\right]$
 \item $\mdot{\varepsilon}\!\in\!\left[0.001~\ps,0.1~\ps\right]$
 \item $T\!\in\!\left[750~\celsius,1300~\celsius\right]$
-\item $\sigma\!\in\!\left[3.052~\MPa,306.0956~\MPa\right]$.
+\item $\sigma\!\in\!\left[3.052~\MPa,306.096~\MPa\right]$.
 \end{itemize}
 The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 
