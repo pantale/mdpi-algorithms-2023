@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%	MDPI class for LaTeX files	 12 August 2022
+%%%%	MDPI class for LaTeX files	 22 December 2022
 %% %%	For any information please send an e-mail to:
 %% %%		latex@mdpi.com
 %% %%
@@ -17,11 +17,11 @@
 %% %%		v2.0 when Dr. Janine Daum started (March 2013)
 %% %%		v3.0 layout change September 2015
 %%%%		v4.0 layout change December 2020
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% IDENTIFICATION
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Definitions/mdpi}[12/08/2022 MDPI paper class]
+\ProvidesClass{Definitions/mdpi}[22/12/2022 MDPI paper class]
 
  %% PRELIMINARY DECLARATIONS
 \LoadClass[10pt,a4paper]{article}
@@ -33,10 +33,10 @@
 \RequirePackage{graphicx,epstopdf}
 \RequirePackage{lastpage}
 \RequirePackage{ifthen}
-\RequirePackage[right]{lineno}
 \RequirePackage{float}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb} % For math environment bold format
+\RequirePackage[right]{lineno}
 \RequirePackage{setspace}
 \RequirePackage{enumitem}
 \RequirePackage{mathpazo}
@@ -344,6 +344,7 @@
 	pdfpagemode= UseNone]{hyperref}
 	} 
 }
+\RequirePackage{cleveref}
 }
 \ifdef{\AddToHook}{
 \DeclareHookRule{begindocument}{hyperref}{before}{mdpi}
@@ -847,13 +848,7 @@
 	}
 }
 
-% Part 4: Publisher's note
-\newcommand{\leftcolPublishersNote}{
-	\leftcolFont
-	\textbf{Publisher's Note:} MDPI stays neutral with regard to jurisdictional claims in published maps and institutional affil-\linebreak iations.
-}
-
-% Part 5: Copyright
+% Part 4: Copyright
 \newcommand{\leftcolumnCright}{
 	\leftcolFont
 	\cright
@@ -865,11 +860,10 @@
 	\leftcolUpdateCitation\vspace{-2pt} %1
 	\leftcolExternalEditor %2
 	\leftcolDates\vspace{-2pt} %3
-	\leftcolPublishersNote %4
 	\ifthenelse{\equal{\@status}{submit}}{%
 		\vspace{-8pt}
 		}{}
-	\vspace{6pt}\leftcolumnCright %5
+	\vspace{6pt}\leftcolumnCright %4
 }
 }
 
@@ -897,47 +891,32 @@
 	\leftcolUpdateCitation\vspace{-2pt} %1
 	\leftcolExternalEditor %2
 	\leftcolDates\vspace{-2pt} %3
-	\leftcolPublishersNote %4
 }
 		
 \newcommand{\OptionOneB}{
-	\leftcolumnCright %5
+	\leftcolumnCright %4
 }
 
 % Split option 2	
 \newcommand{\OptionTwoA}{
 	\leftcolUpdateCitation\vspace{-2pt} %1
-	\leftcolExternalEditor %2
-	\leftcolDates %3
-}
-		
-\newcommand{\OptionTwoB}{
-	\leftcolPublishersNote %4
-	\vspace{6pt}\leftcolumnCright %5
-}
-
-% Split option 3	
-\newcommand{\OptionThreeA}{
-	\leftcolUpdateCitation\vspace{-2pt} %1
 	\leftcolExternalEditor\vspace{-10pt} %2
 }
 
-\newcommand{\OptionThreeB}{
+\newcommand{\OptionTwoB}{
 	\leftcolDates\vspace{-2pt} %3
-	\leftcolPublishersNote %4
-	\vspace{6pt}\leftcolumnCright %5
+	\vspace{6pt}\leftcolumnCright %4
 }
 
-% Split option 4
-\newcommand{\OptionFourA}{
+% Split option 3
+\newcommand{\OptionThreeA}{
 	\leftcolUpdateCitation %1
 }
 
-\newcommand{\OptionFourB}{
+\newcommand{\OptionThreeB}{
 	\leftcolExternalEditor %2
 	\leftcolDates\vspace{-2pt} %3
-	\leftcolPublishersNote %4
-	\vspace{6pt}\leftcolumnCright %5
+	\vspace{6pt}\leftcolumnCright %4
 }
 
 %%%% Maketitle part 2
@@ -1570,6 +1549,11 @@
 }
 \let\endthebibliography=\endlist
 
+
+%%%% Publisher's note
+\newcommand{\PublishersNote}{
+\null\par\noindent\fontsize{9}{11}\selectfont\textbf{Disclaimer/Publisher's Note:} The statements, opinions and data contained in all publications are solely those of the individual author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to people or property resulting from any ideas, methods, instructions or products referred to in the content.
+}
 
 %%%% Copyright info
 \newcommand{\cright}{%
