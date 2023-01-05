@@ -460,12 +460,12 @@ Concerning the internal accuracy $\MSE$ of the network, it varies in proportions
 From the plot in Figure \ref{fig:Convergence-ANN} and the results reported in Table \ref{tab:ErrorANN}, the user would normally be tempted to select the most complex model, namely 3-15-7-1, as it gives the smallest deviation between predicted and experimental values of flow stress $\sigma^y$.
 This will be analyzed in the next Section concerning the numerical simulation of the compression of a cylinder on the Abaqus Explicit software using the ANN flow law.
 
-Since, as reported in Figure \ref{fig:Convergence-ANN}, the 3-9-4-1 model seems to have converged after the training phase, we are going to compare it with the 'accurate' model, the 3-15-7-1 model.
-From a more physical point of view, Figures \ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} show the correlation between the data predicted by the neural network and the experimental data for the 3-9-4-1 and 3-15-7-1 networks respectively.
+Since, as reported in Figure \ref{fig:Convergence-ANN}, the 3-7-4-1 model seems to have converged after the training phase, we are going to compare it with the 'accurate' model, the 3-15-7-1 model.
+From a more physical point of view, Figures \ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} show the correlation between the data predicted by the neural network and the experimental data for the 3-7-4-1 and 3-15-7-1 networks respectively.
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\columnwidth]{Figures/CompExpANN-3-9-4-1}
-\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-9-4-1 ANN and the experimental data for the GCr15.}
+\includegraphics[width=\columnwidth]{Figures/CompExpANN-3-7-4-1}
+\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-7-4-1 ANN and the experimental data for the GCr15.}
 \label{fig:CompExpANN-9-4}
 \end{figure}
 \begin{figure}[!ht]
@@ -481,13 +481,13 @@ This is why this type of coefficient is not used in this work for comparing the 
 Concerning the performance of the ANN flow laws, the correlation results for both reported models, are much better than the ones obtained by Zhou \eal \cite{Zhou-2020} during his work on the same material with four different analytical flow laws, especially since he was obliged to split the data into two groups according to the temperature value (one on the range $T=750-850~\celsius$ and one on the range $T=850-1300~\celsius$) and to identify two sets of parameters for each flow law in order to reduce the error of his identified analytical models.
 This of course raises the question of the usability of those analytical laws in the case where the temperature of the material changes from one group to the other during a thermomechanical transformation.
 
-In our approach and by using an ANN flow law, the identified law is not only valid over the whole temperature range, but it displays an $\MARE$ value $5$ times lower than the best flow law proposed by Zhou \eal \cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750-850~\celsius$ and $\MARE=5.76\%$ over the range $T=850-1300~\celsius$ while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.70\%$ for the 3-9-4-1 ANN flow laws proposed here.
+In our approach and by using an ANN flow law, the identified law is not only valid over the whole temperature range, but it displays an $\MARE$ value $5$ times lower than the best flow law proposed by Zhou \eal \cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750-850~\celsius$ and $\MARE=5.76\%$ over the range $T=850-1300~\celsius$ while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.88\%$ for the 3-7-4-1 ANN flow laws proposed here.
 
 One of the disadvantages of developing a flow law model based on neural networks is the number of internal variables in the network ($180$ in the case of the 3-15-7-1 network), which makes it difficult to translate the network into printable results.
 The use of a Johnson-Cook type flow law, for example, allows the reader to quickly get an idea of the law, insofar as the analytical formulation of the law is known to the users, and the behavior of a given material is based on the knowledge of only $5$ internal parameters to be identified, which makes it easy to publish in a table.
 Concerning an Arrhenius law, this task becomes a little more complex as one can have from $24$ to $36$ coefficients.
-But in our case, the publication of the $81$ coefficients of the 3-9-7-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
-As an illustration, we provide in the Appendix \ref{sec:Appendix} all the coefficients of the 3-9-7-1 model identified during this study.
+But in our case, the publication of the $65$ coefficients of the 3-7-4-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
+As an illustration, we provide in the Appendix \ref{sec:Appendix} all the coefficients of the 3-7-4-1 model identified during this study.
 
 Once the identification phase has been completed, it is now necessary to transpose this ANN model into a subroutine in FORTRAN or C++ that can be used by a FE code such as Abaqus (for the FORTRAN 77 version) or DynELA (for the C++ version not presented in this paper).
 This is the topic of the next Section.
@@ -549,21 +549,21 @@ All benchmarks tests have been solved using Abaqus Explicit 2022 on a Dell XPS 1
 16~GiB of Ram and one 4 core i7-10510U Intel Processor.
 All computations have been done using the double precision option of Abaqus, with parallel threads execution on two cores.
 
-Figure \ref{fig:peeqContourplot} shows the plastic strain field $\varepsilon^p$ contourplot within the structure at the end of the simulation for both the 3-9-4-1 (left side) and the 3-15-7-1 (right side) flow laws, while Figure \ref{fig:dpeeqContourplot} shows the temperature field $T$ contourplot for the same models.
+Figure \ref{fig:peeqContourplot} shows the plastic strain field $\varepsilon^p$ contourplot within the structure at the end of the simulation for both the 3-7-4-1 (left side) and the 3-15-7-1 (right side) flow laws, while Figure \ref{fig:dpeeqContourplot} shows the temperature field $T$ contourplot for the same models.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.90\columnwidth]{Figures/peeq}
-\caption{Equivalent plastic strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-9-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
+\caption{Equivalent plastic strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
 \label{fig:peeqContourplot}
 \end{figure}
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.90\columnwidth]{Figures/temp}
-\caption{Temperature $T$ contourplot for the compression of a cylinder using the 3-9-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
+\caption{Temperature $T$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
 \label{fig:dpeeqContourplot}
 \end{figure}
 Both sides of the figures looks more or less the same with some visible differences from the left to the right concerning the shape of the isovalues zones and the maximum value, but in fact the two models with the lowest and the highest number of neurons give coherent results concerning for the plastic strain $\varepsilon^p$ and temperature $T$ contourplots.
-The maximum plastic strains are concentrated in the center of the specimen with a maximum value of $\varepsilon^p=0.89$ for the 3-9-4-1 model and $\varepsilon^p=0.95$ for the 3-15-7-1 model, which is slightly beyond the limit set by the training data which varies from $0$ to $0.7$.
+The maximum plastic strains are concentrated in the center of the specimen with a maximum value of $\varepsilon^p=0.89$ for the 3-7-4-1 model and $\varepsilon^p=0.95$ for the 3-15-7-1 model, which is slightly beyond the limit set by the training data which varies from $0$ to $0.7$.
 Nevertheless, as shown by Pantalé \eal \cite{Pantale-2021}, the flow laws defined by neural networks are able to correctly extrapolate the flow stresses $\sigma^y$ when the plastic deformations are higher than at least $150\%$ of the maximum plastic strain used during training.
 Concerning the temperature $T$, the maximum value is around $T=796~\celsius$ and $T=795~\celsius$, which is very close and in accordance to the experiments used for the learning phase.
 
@@ -574,9 +574,9 @@ Figure \ref{fig:radiusCurve} shows the evolution of the maximum radius $r$ of th
 \caption{Evolution of the external radius $r$ of the specimen during the compression process using the four ANN flow laws (only the 3-15-7-1 model differs).}
 \label{fig:radiusCurve}
 \end{figure}
-This figure shows a perfect match of the first three first flow models (the 3-7-4-1, 3-9-4-1 and 3-9-7-1 models) as the 3 curves superpose perfectly and a difference of the fourth model (the 3-15-7-1 model) during the numerical simulation.
-In the rest of this Section, the first three models will be referred as $M_{123}$ and the last one as $M_4$.
-The final value therefore differs from $r=5.870~\text{mm}$ for $M_{123}$ to  $r=5.917~\text{mm}$ for $M_4$.
+This figure shows a slight difference of the four models during the numerical simulation.
+In the rest of this Section, the four models will be referred as $M_{1234}$.
+The final value therefore differs from $r=5.870~\text{mm}$ for $M_{1}$ to  $r=5.917~\text{mm}$ for $M_{34}$.
 
 Table \ref{tab:SimuResults}, gathers the results allowing the comparison of the four identified flow laws.
 \begin{table}[h!]
@@ -586,29 +586,29 @@ Table \ref{tab:SimuResults}, gathers the results allowing the comparison of the 
 	\hline
 	Model &   ANN    & $N_{inc}$ & $t$  &  $r$  & $\varepsilon^p$ &    $T$     & $\sigma$ \\
 	      &          &           & (s)  & (mm)  &                 & (\celsius) &  (MPa)   \\ \hline
-	$M_1$ & 3-7-4-1  &  1367147  & 879  & 5.870 &      0.891      &   794.74   &  161.95  \\
-	$M_2$ & 3-9-4-1  &  1367147  & 882  & 5.870 &      0.891      &   794.74   &  161.95  \\
-	$M_3$ & 3-9-7-1  &  1367147  & 883  & 5.870 &      0.891      &   794.74   &  161.95  \\
-	$M_4$ & 3-15-7-1 &  1418586  & 1202 & 5.917 &      0.950      &   796.56   &  165.80  \\ \hline
+	$M_1$ & 3-7-4-1  &  1367147  & 886  & 5.870 &      0.891      &   794.74   &  161.95  \\
+	$M_2$ & 3-9-4-1  &  1405471  & 941  & 5.895 &      0.927      &   798.29   &  178.78  \\
+	$M_3$ & 3-9-7-1  &  1408680  & 1023 & 5.917 &      0.965      &   798.76   &  164.25  \\
+	$M_4$ & 3-15-7-1 &  1418586  & 1263 & 5.917 &      0.950      &   796.56   &  165.80  \\ \hline
 \end{tabular}
 \label{tab:SimuResults}
 \end{table}
-It appears from the study of this table that the modification of the number of neurons in the hidden layers has an influence on the computation time $t$ which increases with the complexity of the network structure as expected and varies within the rage from $879$~s to $1202$~s approximately, since this information is hard to capture from a commercial software that does not contain accurate CPU time reports as the Abaqus software.
-It is obvious from this table that models $M_{123}$ give exactly the same results, while model $M_4$ gives different results.
-Computing time is almost the same for any of the three models $M_{123}$, proof that the increase in complexity of the ANN has a very little influence on the global computation time $t$.
+It appears from the study of this table that the modification of the number of neurons in the hidden layers has an influence on the computation time $t$ which increases with the complexity of the network structure as expected and varies within the range from $886$~s to $1263$~s approximately, since this information is hard to capture from a commercial software that does not contain accurate CPU time reports as the Abaqus software.
+It is obvious from this table that all models do not give exactly the same results.
+Computing time is increasing from $M_{1}$ to $M_4$, proof that the increase in complexity of the ANN has an influence on the global computation time $t$.
 
-The results, both from the point of view of the dimensional characteristics of the sample (maximum radius $r$), or the internal fields such as the temperatures $T$ and the plastic strains $\varepsilon^p$ in the center of the sample are identical for all $M_{123}$ flow models.
+The results, both from the point of view of the dimensional characteristics of the sample (maximum radius $r$), or the internal fields such as the temperatures $T$ and the plastic strains $\varepsilon^p$ and equivalent stresses $\sigma$ in the center of the sample are more or less the same for all $M_{1234}$ flow models.
 
-In order to have a better analysis of the difference between models $M_{123}$ and $M_4$, Figure \ref{fig:misesCurve} shows the evolution of the equivalent von Mises stress $\sigma$ for the element located in the center of the cylinder during the compression.
+In order to have a better analysis of the difference between models $M_{1234}$, Figure \ref{fig:misesCurve} shows the evolution of the equivalent von Mises stress $\sigma$ for the element located in the center of the cylinder during the compression.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.75\columnwidth]{Figures/vonMisesCurve}
-\caption{Evolution of the equivalent von Mises stress $\sigma$ of the specimen during the compression process using the four ANN flow laws (only the 3-15-7-1 model differs).}
+\caption{Evolution of the equivalent von Mises stress $\sigma$ of the specimen during the compression process using the four ANN flow laws.}
 \label{fig:misesCurve}
 \end{figure}
-As shown in this figure, the $M_{123}$ models give exactly the same results and the $3$ curves overlap perfectly, while the $M_4$ model gives a different result with more or less the same value of the equivalent stress $\sigma$ at the end of the cylinder as shown in the table \ref{tab:SimuResults}.
-The appearance of the curve for the $M_4$ model is very oscillating in the first $1/3$ of the graph.
-This is probably related to the fact that the $M_4$ model is over-fitted and is not able to serve as a universal approximator for the flow stress.
+As shown in this figure, the $M_{1234}$ models give equivalent results with more or less the same value of the equivalent stress $\sigma$ at the end of the cylinder compression as shown in Table \ref{tab:SimuResults}.
+The appearance of the curve for the $M_3$ and $M_4$ models is very oscillating in the first $1/3$ of the graph.
+This is probably related to the fact that the $M_{34}$ models are over-fitted and are not able to serve as a universal approximator for the flow stress.
 
 In order to verify this assumption, Figure \ref{fig:ShapeOF1} shows a plot of the predicted flow stress $\sigma^y$ using the 3-15-7-1 ANN model as a function of the plastic strain $\varepsilon^p$ and the plastic strain rate $\mdot\varepsilon$ for a fixed temperature $T=750~\celsius$.
 \begin{figure}[!ht]
@@ -617,22 +617,22 @@ In order to verify this assumption, Figure \ref{fig:ShapeOF1} shows a plot of th
 \caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-15-7-1 model.}
 \label{fig:ShapeOF1}
 \end{figure}
-This figure shows that when $\mdot\varepsilon$ varies between $0.001~\ps$ and $0.01~\ps$, and for a value of $\varepsilon^p<0.3$, the representative curves of sy 'cross', which shows the poor interpolation of the flow stresses $\sigma^y$ when the strain rate varies.
+This figure shows that when $\mdot\varepsilon$ varies between $0.001~\ps$ and $0.01~\ps$, and for a value of $\varepsilon^p<0.3$, the representative curves of $\sigma^y$ 'cross', which shows the poor interpolation of the flow stresses $\sigma^y$ when the strain rate varies (there is a zone in black dashed lines above the blue line).
 Thus, for a strain rate between $0.001~\ps$ and $0.01~\ps$, and for a plastic strain less than $0.3$, the flow stress $\sigma^y$ is greater than the value of $\sigma^y$ calculated for the same plastic strain and $\mdot\varepsilon=0.001~\ps$, which is physically not admissible for the behavior of GCr15 material.
 This is the cause of the oscillations visible in Figure \ref{fig:misesCurve}.
-For comparison, Figure \ref{fig:ShapeOF2} shows a similar study to Figure \ref{fig:ShapeOF1}, for the 3-9-4-1 model.
+For comparison, Figure \ref{fig:ShapeOF2} shows a similar study to Figure \ref{fig:ShapeOF1}, for the 3-7-4-1 model.
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.75\columnwidth]{Figures/Shape-3-9-4-1}
-\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-9-4-1 model.}
+\includegraphics[width=0.75\columnwidth]{Figures/Shape-3-7-4-1}
+\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-7-4-1 model.}
 \label{fig:ShapeOF2}
 \end{figure}
-This time, there is no area where the representative curves 'cross'.
+This time, there is no visible area where the representative curves 'cross' except perhaps for low values of the strain where it is hard to distinguish the curves.
 
 This problem occurs for the 3-15-7-1 ANN because we do not have a sufficient number of training points regarding the strain rate $\mdot\varepsilon$ (only 3 strain rates are used) with regard to the number of internal variable of the ANN, and this leads to erroneous calculations of the flow stress $\sigma^y$ when the strain rate values differ from those used during training ($0.001~\ps$, $0.01~\ps$ and $0.1~\ps$).
-Even though the $M_4$ model has the lowest values of $\MARE$ and $\RMSE$ during the training phase, it is not usable for numerical simulation of the GCr15 flow law in FE simulations.
+Even though the $M_4$ model has the lowest values of $\MARE$ and $\RMSE$ during the training phase, it is not usable for numerical simulation of the GCr15 flow law in FE simulations. The same type of conclusions can be draw for the $M_3$ model.
 
-We can conclude here that any of the three models $M_{123}$ can be used for numerical simulation of the compression of a cylinder, but we must avoid the model $M_4$, as it seems to be over-fitted, and the behavior of the GCr15 alloy is badly represented event if the curves reported in Figure \ref{fig:CompExpANN-15-7} tends to show that the prediction of this model is excellent.
+We can conclude here that only the two first models $M_{12}$ can be used for numerical simulation of the compression of a cylinder, but we must avoid the models $M_{34}$, as it seems to be over-fitted, and the behavior of the GCr15 alloy is badly represented event if the curves reported in Figure \ref{fig:CompExpANN-15-7} tends to show that the prediction of model $M_4$ is excellent.
 
 %------------------------------------------------------------------------------------
 \section{Conclusions and future work}\label{sec:Conclusions}
@@ -697,75 +697,69 @@ The following abbreviations are used in this manuscript:\\
 \section[\appendixname~\thesection]{ANN flow law coefficients\label{sec:Appendix}}
 %----------------------------------------------------------------------------------
 
-In order to complete this paper, we report here after the computing process and the $81$ coefficients of the Artificial Neural Network ANN-3-9-4-1 model used in Section \ref{sec:ANN-traning}.
-The weight matrix for the first hidden layer $\w_1$ is a $9\times3$ matrix:
+In order to complete this paper, we report here after the computing process and the $65$ coefficients of the Artificial Neural Network ANN-3-7-4-1 model used in Section \ref{sec:ANN-traning}.
+The weight matrix for the first hidden layer $\w_1$ is a $7\times3$ matrix:
 \begin{equation*}
 \w_1 = \left[
 \begin{array}{rrr}
-0.7393 & -1.5459 & -20.8016\\
--9.5152 & 3.0979 & -3.5620\\
--4.3782 & -11.3825 & 0.9006\\
--0.5907 & 0.3921 & -10.2277\\
--4.4714 & 3.5413 & -3.2122\\
--0.3266 & 1.0411 & -4.1043\\
--1.9463 & 0.4738 & -7.5042\\
-2.0241 & 5.7676 & -24.9657\\
--34.6340 & 0.0500 & -3.8260\\
+-0.4234 & 0.6361 & -3.3756\\ 
+0.9035 & -2.0141 & -85.3653\\ 
+6.3799 & -1.9357 & -0.3671\\ 
+-26.7227 & 0.9218 & -2.5756\\ 
+-0.7105 & 0.7599 & 11.5957\\ 
+-0.4727 & -18.4137 & 11.6583\\ 
+3.4733 & 6.0173 & -2.2098\\ 
 \end{array}\right]
 \end{equation*}
-The biases of the first hidden layer $\overrightarrow{b_1}$ is a $9$ components vector:
+The biases of the first hidden layer $\overrightarrow{b_1}$ is a $7$ components vector:
 \begin{equation*}
 \overrightarrow{b}_1 = \left[
 \begin{array}{r}
-3.7316\\
--1.0772\\
-6.3268\\
--0.3068\\
--3.0117\\
-1.8411\\
--0.7134\\
--7.4591\\
-0.9090\\
+1.1200\\ 
+0.8351\\ 
+-2.9032\\ 
+-1.1547\\ 
+-4.7023\\ 
+-3.9429\\ 
+-7.2849\\ 
 \end{array}\right]
 \end{equation*}
-The weight matrix for the second hidden layer $\w_2$ is a $4\times9$ matrix:
+The weight matrix for the second hidden layer $\w_2$ is a $4\times7$ matrix:
 \begin{equation*}
 \w_2^T = \left[
 \begin{array}{rrrr}
-0.3349 & 2.1692 & -1.9821 & -0.5171\\
-4.6629 & -2.6475 & -0.7217 & 0.2588\\
-0.4099 & 1.6378 & -2.3032 & -0.3488\\
-0.0048 & 0.1216 & 0.6760 & -21.8180\\
--0.5644 & 0.9986 & -2.7897 & -3.4737\\
--0.3008 & -0.6269 & -0.3724 & -0.0841\\
--3.5176 & -5.2911 & 1.9761 & 11.0598\\
--4.0534 & 0.5098 & -0.4955 & -23.3603\\
-3.3827 & -3.3096 & 4.6988 & -3.3598\\
+1.0488 & -2.2694 & 4.7134 & -8.6149\\ 
+1.2225 & 1.7295 & 0.6877 & 8.2364\\ 
+-0.9681 & -16.4026 & -1.9820 & -0.2577\\ 
+-2.2942 & -7.3726 & -14.0394 & 16.5637\\ 
+-11.3020 & -2.9066 & -1.9601 & 0.3557\\ 
+-35.7421 & -3.0537 & -1.8083 & 0.1603\\ 
+0.9444 & 3.5816 & 0.4988 & -0.6497\\ 
 \end{array}\right]
 \end{equation*}
 The biases of the second hidden layer $\overrightarrow{b_2}$ is a $4$ components vector:
 \begin{equation*}
 \overrightarrow{b}_2 = \left[
 \begin{array}{r}
--0.4876\\
--0.6451\\
-1.1612\\
-0.7281\\
+-1.0302\\ 
+-1.6695\\ 
+-1.6705\\ 
+1.7122\\ 
 \end{array}\right]
 \end{equation*}
 The weight vector for the output layer $\overrightarrow{w}$ is a $4$ components vector:
 \begin{equation*}
 \overrightarrow{w} = \left[
 \begin{array}{r}
--0.7858\\
--0.9820\\
--0.7954\\
--0.4940\\
+0.6684\\ 
+3.0013\\ 
+0.1998\\ 
+-0.1879\\ 
 \end{array}\right]
 \end{equation*}
 The bias of the output layer $b$ is a scalar:
 \begin{equation*}
-b =1.5718
+b = 0.1631
 \end{equation*}
 
 The boundaries of the range of the corresponding field are:
