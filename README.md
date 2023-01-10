@@ -1,6 +1,6 @@
-# TITLE
+# Development and Implementation of an ANN based flow law for Numerical Simulations Thermo-mechanical Processes at High Temperatures in FEM Software
 
-This repository contains...
+This repository contains the paper entitled "Development and Implementation of an ANN based flow law for Numerical Simulations Thermo-mechanical Processes at High Temperatures in FEM Software" accepted for publication in MDPI Algorithms 10/01/2023
 
 
 
