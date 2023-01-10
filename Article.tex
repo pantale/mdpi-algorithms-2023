@@ -257,7 +257,7 @@ The results of these compression tests, plotted in Figure \ref{fig:Zhou-Original
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.9\columnwidth]{Figures/Zhou-OriginalData}
-\caption{Original Data.}
+\caption{Original data extracted from the publication of Ji \eal \cite{Ji-2018}.}
 \label{fig:Zhou-OriginalData}
 \end{figure}
 The evolution of the flow stress as a function of the plastic deformation shows the presence of a dynamic recrystallization (DRX) phenomenon within the material.
@@ -271,6 +271,11 @@ This requires a certain expertise in the development and implementation of flow 
 From this observation, and from the necessity to select a flow law for a given type of material, then to identify the parameters of this flow law according to experimental tests, and finally to implement this flow law in the form of a user subroutine in FORTRAN in the Abaqus FE code, we have recently proposed in Pantalé \eal \cite{Pantale-2021} an alternative approach based on the ability of Artificial Neural Networks (ANNs) to behave as universal approximators as reported by Minsky \eal \cite{Minsky-1969} and Hornik \eal \cite{Hornik-1989}.
 In fact, Artificial Neural Networks can solve problems that are difficult to conceptualize using traditional computational methods.
 Unlike a classical approach based on a regression method, an ANN does not need to know the mathematical form of the model it seeks to reproduce, hence we do not need anymore to postulate the mathematical form of the constitutive equation to use it in a FE simulation using this kind of approach.
+Using a Neural Network instead of an analytical constitutive law can lead to a bias related to the validity of the answers according to the domain of use and the learning domain. 
+Thus, if ANNs are efficient for the interpolation of results inside the learning domain, their behavior outside of it is not controlled. 
+Therefore, if the input values are far from those provided during the training, the outputs can be far from the physical reality of the process. 
+It is, of course, the same for analytical laws when modeling non-linear behavior, but if the choice of the model has been made properly, based on physical considerations, they will provide results closer to reality than the ANN model. 
+Therefore, care should be taken when using ANN-based flow laws and the validity of the model input data should always be verified.
 
 The implementation of ANNs for plasticity in thermomechanics has been studied and a review of the literature can be found for example in Gorji \eal \cite{Gorji-2020} concerning the use of recurrent neural networks, in Jamli \eal \cite{Jamli-2019-SNN} concerning their application in finite element analysis of metal forming processes, or in Jiao \eal \cite{Jiao-2020} concerning the applicability to meta-materials and their characterization.
 A distinction must be made between ANN-based flow models (the focus of this study) and ANN-based constitutive models.
@@ -465,13 +470,13 @@ From a more physical point of view, Figures \ref{fig:CompExpANN-9-4} and \ref{fi
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{Figures/CompExpANN-3-7-4-1}
-\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-7-4-1 ANN and the experimental data for the GCr15.}
+\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-7-4-1 ANN (continuous line) and the experimental data for the GCr15 (square markers).}
 \label{fig:CompExpANN-9-4}
 \end{figure}
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\columnwidth]{Figures/CompExpANN-3-15-7-1}
-\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-15-7-1 ANN and the experimental data for the GCr15.}
+\caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-15-7-1 ANN (continuous line) and the experimental data for the GCr15 (square markers).}
 \label{fig:CompExpANN-15-7}
 \end{figure}
 Analysis of Figures \ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} shows a very good correlation between the ANN results and the experimental results, which is reflected by the very low values of the $\MARE$ and $\RMSE$ coefficients reported in Table \ref{tab:ErrorANN}.
