@@ -2,7 +2,7 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[algorithms,article,submit,pdftex,moreauthors]{Definitions/mdpi}
+\documentclass[algorithms,article,accept,pdftex,moreauthors]{Definitions/mdpi}
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 %--------------------
@@ -47,10 +47,11 @@
 \articlenumber{0}
 \pubyear{2023}
 \copyrightyear{2023}
-%\externaleditor{Academic Editor: Firstname Lastname}
-\datereceived{}
-%\daterevised{} % Only for the journal Acoustics
-\dateaccepted{}
+\externaleditor{{ Xiang Zhang, Xiaoxiao Li } %MDPI: please add the academic editors.
+}
+\datereceived{16 December 2022}
+\daterevised{10 January 2023} % Only for the journal Acoustics
+\dateaccepted{12 January 2023}
 \datepublished{}
 %\datecorrected{} % Corrected papers include a "Corrected: XXX" date in the original paper.
 %\dateretracted{} % Corrected papers include a "Retracted: XXX" date in the original paper.
@@ -80,7 +81,7 @@
 \DeclareRobustCommand{\e}[1]{{\rm e}^{#1}}
 \DeclareRobustCommand{\lay}[1]{^{(#1)}}
 \DeclareRobustCommand{\mdot}[1]{\accentset{\mbox{\bfseries .}}{#1}}
-\DeclareRobustCommand{\ie}{\emph{i.e.}\@\xspace}
+\DeclareRobustCommand{\ie}{{i.e.,}\@\xspace}
 \DeclareRobustCommand{\eal}{et \emph{al.}\@\xspace}
 \DeclareRobustCommand{\eg}{e.g.,\@\xspace}
 \DeclareRobustCommand{\MSE}{\text{E}_\text{MS}}
@@ -97,32 +98,29 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Development and Implementation of an ANN based flow law for Numerical Simulations of Thermo-mechanical Processes at High Temperatures in FEM Software}
+\Title{Development and Implementation of an ANN Based Flow Law for Numerical Simulations of Thermo-Mechanical Processes at High Temperatures in FEM Software}
 
 % MDPI internal command: Title for citation in the left column
-\TitleCitation{Development and Implementation of an ANN based flow law for Numerical Simulations Thermo-mechanical Processes at High Temperatures in FEM Software}
+\TitleCitation{Development and Implementation of an ANN Based Flow Law for Numerical Simulations of Thermo-Mechanical Processes at High Temperatures in FEM Software}
 
 % Author Orchid ID: enter ID or remove command
 \newcommand{\orcidauthorA}{0000-0001-7367-5453} % Add \orcidA{} behind the author's name
 %\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Olivier Pantalé \orcidA{}}
+\Author{Olivier Pantal\'{e}\orcidA{}}
 
 %\longauthorlist{yes}
 
 % MDPI internal command: Authors, for metadata in PDF
-\AuthorNames{Olivier Pantalé}
+\AuthorNames{Olivier Pantal\'{e}}
 
 % MDPI internal command: Authors, for citation in the left column
-\AuthorCitation{Pantalé, O.}
+\AuthorCitation{Pantal\'{e}, O.}
 % If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
 
 % Affiliations / Addresses (Add [XX] after \address if there is only one affiliation.)
-\address[1]{Laboratoire Génie de Production, Institut National Polytechnique/Ecole Nationale d'Ingénieurs de Tarbes, Université de Toulouse, 47 Av d'Azereix, F-65016, Tarbes, France}
-
-% Contact information of the corresponding author
-\corres{Correspondence: Olivier.Pantale@enit.fr; Tel.: +33-562442933}
+\address[1]{Laboratoire Génie de Production, Institut National Polytechnique/Ecole Nationale d'Ingénieurs de Tarbes, Université de Toulouse, 47 Av d'Azereix, F-65016 Tarbes, France; Olivier.Pantale@enit.fr; Tel.: +33-562442933}
 
 % Current address and/or shared authorship
 
@@ -133,15 +131,15 @@
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\)
-\abstract{Numerical methods based on Finite Element (FE) have proven their efficiency for many years in the thermomechanical simulation of forming processes.
-Nevertheless, the application of these methods to new materials requires the identification and implementation of constitutive and flow laws within FE codes which sometimes pose problems, in particular because of the strongly non-linear character of the behavior of these materials.
-Computational techniques based on Machine Learning and Artificial Neural Networks are becoming more and more important in the development of these models and help the FE codes to integrate more complex behavior.
-In this paper, we present the development, implementation and use of an Artificial Neural Network (ANN) based flow law for a GrC15 alloy under high temperature thermomechanical solicitations.
-The flow law modeling by ANN shows a significant superiority in terms of model prediction quality compared to classical approaches based on widely used Johnson-Cook or Arrhenius models.
-Once the ANN parameters have been identified on the base of experiments, the implementation of this flow law in a Finite Element code shows promising results in terms of solution quality and respect of the material behavior.}
+\abstract{Numerical methods based on finite element (FE) have proven their efficiency for many years in the thermomechanical simulation of forming processes.
+Nevertheless, the application of these methods to new materials requires the identification and implementation of constitutive and flow laws within FE codes, which sometimes pose problems, particularly because of the strongly non-linear character of the behavior of these materials.
+Computational techniques based on machine learning and artificial neural networks are becoming more and more important in the development of these models and help the FE codes to integrate more complex behavior.
+In this paper, we present the development, implementation and use of an artificial neural network (ANN) based flow law for a GrC15 alloy under high temperature thermomechanical solicitations.
+The flow law modeling by ANN shows a significant superiority in terms of model prediction quality compared to classical approaches based on widely used Johnson--Cook or Arrhenius models.
+Once the ANN parameters have been identified on the base of experiments, the implementation of this flow law in a finite element code shows promising results in terms of solution quality and respect of the material behavior.}
 
 % Keywords
-\keyword{ANN flow law; Constitutive behavior; Radial Return algorithm; Numerical implementation; VUHARD ; GrC15; Abaqus Explicit}
+\keyword{ANN flow law; constitutive behavior; radial return algorithm; numerical implementation; VUHARD ; GrC15; Abaqus Explicit}
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -204,125 +202,123 @@ Once the ANN parameters have been identified on the base of experiments, the imp
 \section{Introduction}\label{sec:Introduction}
 %------------------------------------------------------------------------------------
 
-Numerical methods for simulating the behavior of structures subjected to high thermomechanical loads, as in the case of high-temperature forming of metallic materials, are generally based on the use of commercial Finite Element (FE) codes such as Abaqus or laboratory codes such as DynELA \cite{Pantale-2004}.
+Numerical methods for simulating the behavior of structures subjected to high thermomechanical loads, as~in the case of the high-temperature forming of metallic materials, are generally based on the use of commercial finite element (FE) codes, such as Abaqus, or laboratory codes, such as DynELA~\cite{Pantale-2004}.
 These FE codes are based on two types of equations: conservation equations and constitutive equations.
 If the first equations are well established on the basis of physics and mechanics, it is not the same for the second type of equations: the constitutive equations.
-Thus, in a general way, the conservation equations concern the fundamental principles of physics such as the mass conservation law, the momentum law (fundamental equation) and the energy law (declined as the first and second principles of thermodynamics).
-By themselves, these laws are not sufficient to describe the behavior of a material or a structure subjected to thermomechanical solicitations, because the nature of the material’s behavior translated through the behavior laws, is not included in the system previously proposed.
-Therefore, for each type of material, it is necessary to define behavior laws whose formulation is based on observation, in order to describe the behavior of this material under external forces.
-The quality and the accuracy of the results of any numerical simulation depend on the choice of these behavior laws and on the ability of the user to identify the coefficients of these behavior laws for a given material by performing experiments under conditions close to those encountered during the real stress of the structure in service that one wishes to design \cite{Dey-2007}.
-Depending on the nature of the solicitations, these tests are based on quasi-static or dynamic tensile or compression tests, tests on thermomechanical simulators such as Gleeble \cite{Lin-2009} or impact tests using gas launchers or Hopkinson bars \cite{Kolsky-1949}.
+Thus, in~a general way, the~conservation equations concern the fundamental principles of physics, such as the mass conservation law, the~momentum law (fundamental equation) and the energy law (declined as the first and second principles of thermodynamics).
+By themselves, these laws are not sufficient to describe the behavior of a material or a structure subjected to thermomechanical solicitations because~the nature of the material’s behavior translated through the behavior laws is not included in the system previously proposed.
+Therefore, for~each type of material, it is necessary to define behavior laws whose formulation is based on observation in~order to describe the behavior of this material under external forces.
+The quality and the accuracy of the results of any numerical simulation depend on the choice of these behavior laws and on the ability of the user to identify the coefficients of these behavior laws for a given material by performing experiments under conditions close to those encountered during the real stress of the structure in service that one wishes to design~\cite{Dey-2007}.
+Depending on the nature of the solicitations, these tests are based on quasi-static or dynamic tensile or compression tests, tests on thermomechanical simulators such as Gleeble~\cite{Lin-2009} or impact tests using gas launchers or Hopkinson bars~\cite{Kolsky-1949}.
 
-In thermomechanical simulation of forming processes, these behavior laws define the dependence \cite{Lee-2006} of the flow stress of the material $\sigma^y$ as a function of the three input variables which are the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following expression:
+In the thermomechanical simulation of forming processes, these behavior laws define the dependence~\cite{Lee-2006} of the flow stress of the material $\sigma^y$ as a function of the three input variables, which are the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following expression:
 \begin{equation}
 \sigma^y = f\left(\varepsilon^p,\mdot\varepsilon,T\right)\label{eq:GenFlow}
 \end{equation}
 
-These laws, due to the nature of materials and the phenomena involved \cite{Lennon-2004, Zhang-2012} (work hardening, movement of dislocations, structural hardening, phase transformations,...) are highly non-linear and their validity is restricted to a certain range of strains $\varepsilon$, strain rates $\mdot\varepsilon$ and temperatures $T$.
+These laws, due to the nature of materials and the phenomena involved~\cite{Lennon-2004, Zhang-2012} (work hardening, movement of dislocations, structural hardening, phase transformations, etc.) are highly non-linear, and their validity is restricted to a certain range of strains $\varepsilon$, strain rates $\mdot\varepsilon$ and temperatures $T$.
 From the observations made, we can define two main classes of behavior laws: the flow laws based on physics and the empirical flow laws.
-From the mechanics of continuous media and experimental tests and depending on the materials used, several flow models have been developed in the past, including: the Johnson-Cook flow law \cite{Johnson-1983, Johnson-1988}, the Zerilli Armstrong flow law \cite{Zerilli-1987} and their respective derived forms \cite{Lin-2011, Li-2013, Zhang-2015, Zhou-2020, Jia-2021, Rule-1998, Lin2010, Muralli-2017, Cheng-2021}, the Hansel-Spittle \cite{Hensel-1978, Chadha-2018} or the Arrhenius \cite{Jonas-1969, He-2013, Liang-2022} flow laws, to name only a few of the most widely used in the metal forming processes at high temperature.
-As an example, and because it is widely used in numerical simulation of metal forming processes, the equation that describes the Johnson-Cook flow law \cite{Johnson-1983} is given as follows:
+From the mechanics of continuous media and experimental tests and depending on the materials used, several flow models have been developed in the past, including the Johnson--Cook flow law~\cite{Johnson-1983, Johnson-1988}, the~Zerilli--Armstrong flow law~\cite{Zerilli-1987} and their respective derived \mbox{forms~\cite{Lin-2011, Li-2013, Zhang-2015, Zhou-2020, Jia-2021, Rule-1998, Lin2010, Muralli-2017, Cheng-2021}}, the~Hansel--Spittle~\cite{Hensel-1978, Chadha-2018} or the Arrhenius~\cite{Jonas-1969, He-2013, Liang-2022} flow laws, to~name only a few of the most widely used in the metal-forming processes at high temperature.
+As an example, and~because it is widely used in numerical simulation of metal forming processes, the~equation that describes the Johnson--Cook flow law~\cite{Johnson-1983} is given as follows:
 \begin{equation}
 \sigma^y=\left(A+B\varepsilon^{p^{n}}\right) \left[1+C\ln\left(\frac{\mdot\varepsilon}{\mdot\varepsilon_0}\right)\right] \left[1-\left(\frac{T-T_0}{T_m-T_0}\right)^{m}\right],\label{eq:Johnson-Cook}
 \end{equation}
-where $A$ is the initial elastic limit of the material, $B$ is the strain hardening coefficient, $n$ is the strain hardening exponent, $C$ and $m$ are the material constants that describe the strain rate hardening coefficient and the thermal softening coefficient, respectively.
-The Johnson-Cook model is the most widely used because it is simple to identify and use and has few parameters to determine \cite{NematNasser-2003, Khan-2004}.
+where $A$ is the initial elastic limit of the material, $B$ is the strain hardening coefficient, $n$ is the strain hardening exponent, and $C$ and $m$ are the material constants that describe the strain rate hardening coefficient and the thermal softening coefficient, respectively.
+The Johnson--Cook model is the most widely used because it is simple to identify and use and has few parameters to determine~\cite{NematNasser-2003, Khan-2004}.
 
-Once the choice has been made concerning the type of flow law to be used for a material, it is then necessary, from a set of experimental tests carried out in the laboratory under conditions close to those of the structure in service, to identify the parameters of these flow laws by machine learning methods based on approaches of minimization of the calculated experiment.
-Therefore, the use of the Johnson-Cook flow law defined by Equation (\ref{eq:Johnson-Cook}) require the identification of $5$ material parameters.
+Once the choice has been made concerning the type of flow law to be used for a material, it is then necessary, from~a set of experimental tests carried out in the laboratory under conditions close to those of the structure in service, to~identify the parameters of these flow laws by machine learning methods based on approaches of minimization of the calculated experiment.
+Therefore, the~use of the Johnson--Cook flow law defined by Equation~(\ref{eq:Johnson-Cook}) requires the identification of $5$ material~parameters.
 
-The main problem that the researchers are confronted with after the phase of realization of the experimental tests concerns the choice of the flow law to use according to the observations made on these test results.
+The main problem that researchers are confronted with after the phase of realization of the experimental tests concerns the choice of the flow law to use according to the observations made on these test results.
 This choice of flow law is also restricted by the FE code used and the availability of such flow laws.
-Thus, a user of the Abaqus FE code, will turn more particularly to a Johnson-Cook \cite{Johnson-1983} flow law where it is natively implemented in this software.
-The choice of another form of flow law, Zerilli-Armstrong, or Arrhenius for example, obliges the user to program himself the computation of the flow stress $\sigma^y$ of the material through a VUMAT subroutine in FORTRAN 77 as proposed by Gao \eal \cite{Gao-2007-FRT}, Ming \eal \cite{Ming-2018} for a Johnson-Cook flow law or Liang \eal \cite{Liang-2022} for an Arrhenius type flow law with the following expression:
+Thus, a~user of the Abaqus FE code will turn more particularly to a Johnson--Cook~\cite{Johnson-1983} flow law, where it is natively implemented in this software.
+The choice of another form of flow law, Zerilli--Armstrong, or~Arrhenius, for example, obliges the user to program himself the computation of the flow stress $\sigma^y$ of the material through a VUMAT subroutine in FORTRAN 77 as proposed by Gao et~al.~\cite{Gao-2007-FRT}, Ming et~al.~\cite{Ming-2018} for a Johnson--Cook flow law, or Liang et~al.~\cite{Liang-2022} for an Arrhenius type flow law with the following expression:
 \begin{equation}
 \sigma^y = \frac{1}{\alpha(\varepsilon)} \ln\left\{\left(\frac{Z(\varepsilon)}{A(\varepsilon)}\right)^{1/n(\varepsilon)} + \sqrt{1 + \left(\frac{Z(\varepsilon)}{A(\varepsilon)}\right)^{2/n(\varepsilon)}}\right\}
 \label{eq:ArDef}
 \end{equation}
-with:
+with
 \begin{equation}
 Z(\varepsilon) = \mdot\varepsilon \exp{\left(\frac{Q(\varepsilon)}{RT}\right)}, \label{eq:ArZ}
 \end{equation}
-where $Z$ is the Zenner-Hollomon parameter \cite{Zener-1944}, $Q(\varepsilon)$ is the apparent activation energy ($\text{J~mol}^{-1}$), $R$ is the universal gas constant ($8.314~\text{J~mol}^{-1} \text{K}^{-1}$).
-$Q(\varepsilon)$, $A(\varepsilon)$, $\alpha(\varepsilon)$ and $n(\varepsilon)$ are expressed as a function of the strain $\varepsilon$ through polynomial functions of degree $m$ (varying from $1$ to $9$), which leads to the identification of up-to $36$ material parameters.
+where $Z$ is the Zenner--Hollomon parameter~\cite{Zener-1944}, $Q(\varepsilon)$ is the apparent activation energy ($\text{J~mol}^{-1}$), $R$ is the universal gas constant ($8.314~\text{J~mol}^{-1} \text{K}^{-1}$).
+$Q(\varepsilon)$, $A(\varepsilon)$, $\alpha(\varepsilon)$ and $n(\varepsilon)$ are expressed as a function of the strain $\varepsilon$ through polynomial functions of degree $m$ (varying from $1$ to $9$), which leads to the identification of up to $36$ material~parameters.
 
-Implementing the flow law as a VUMAT FORTRAN subroutine requires the computation of the derivatives  $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and $\partial\sigma^y/\partial T$ of the flow stress $\sigma^y$ which can quickly become relatively complex as the complexity of the flow law increases, \ie the relative complexity of the Arrhenius flow law defined by Equations (\ref{eq:ArDef}) and (\ref{eq:ArZ}), regarding the relative simplicity of the Johnson-Cook defined by Equation (\ref{eq:Johnson-Cook}), one can refer to the work proposed by Liang \eal \cite{Liang-2022} for details concerning this implementation using the Safe version of the Newton-Raphson method proposed by Ming \eal \cite{Ming-2018}.
-The choice of the flow law to use for a problem, is therefore doubly guided by the behavior of the material on the one hand, but a more important aspect is the list of flow laws implemented natively in the FE code we plan to use for the numerical simulation.
-At this time, there is not yet a flow law generic enough to cover a wide range of material behavior that is simple to implement and use.
+Implementing the flow law as a VUMAT FORTRAN subroutine requires the computation of the derivatives  $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and $\partial\sigma^y/\partial T$ of the flow stress $\sigma^y$, which can quickly become relatively complex as the complexity of the flow law increases, \ie the relative complexity of the Arrhenius flow law defined by Equations~(\ref{eq:ArDef}) and (\ref{eq:ArZ}), regarding the relative simplicity of the Johnson--Cook model defined by Equation~(\ref{eq:Johnson-Cook}), one can refer to the work proposed by Liang et~al.~\cite{Liang-2022} for details concerning this implementation using the safe version of the Newton--Raphson method proposed by Ming et~al.~\cite{Ming-2018}.
+The choice of the flow law to use for a problem is therefore doubly guided by the behavior of the material on the one hand, but~a more important aspect is the list of flow laws implemented natively in the FE code we plan to use for the numerical simulation.
+At this time, there is not yet a flow law generic enough to cover a wide range of material behavior that is simple to implement and~use.
 
-As we have seen in the previous paragraph, the choice of the flow law to use is guided mainly by the list of flow laws available in the Finite Element code used, and very often this choice is made at the expense of the quality of the model.
-For example, Zhou \eal \cite{Zhou-2020}, proposed the identification of the flow law of a GCr15 alloy for a continuous casting bloom with heavy reduction application as introduced by Ji \eal \cite{Ji-2018} who have performed compression tests on this material.
-In their study, Ji \eal \cite{Ji-2018} performed compression tests on GCr15 cylinders in a temperature range of $750~\celsius$ to $1300~\celsius$ in $50~\celsius$ steps, strain rates of $0.001~\ps$,  $0.01~\ps$ and $0.1~\ps$ and strains up-to $0.7$.
-The results of these compression tests, plotted in Figure \ref{fig:Zhou-OriginalData}, show a decrease in flow stress $\sigma^y$ with respect to an increase of the temperature $T$ and a increase of $\sigma^y$ with respect to an increase of the strain rate $\mdot\varepsilon$, as in most metallic materials.
-\begin{figure}[!ht]
-\centering
+As we have seen in the previous paragraph, the~choice of the flow law to use is guided mainly by the list of flow laws available in the finite element code used, and~very often, this choice is made at the expense of the quality of the model.
+For example, Zhou et~al.~\cite{Zhou-2020}, proposed the identification of the flow law of a GCr15 alloy for a continuous casting bloom with heavy reduction application as introduced by Ji et~al.~\cite{Ji-2018}, who performed compression tests on this material.
+In their study, Ji et~al.~\cite{Ji-2018} performed compression tests on GCr15 cylinders in a temperature range of $750~\celsius$ to $1300~\celsius$ in $50~\celsius$ steps, strain rates of $0.001~\ps$,  $0.01~\ps$ and $0.1~\ps$ and strains up-to $0.7$.
+The results of these compression tests, plotted in Figure~\ref{fig:Zhou-OriginalData}, show a decrease in flow stress $\sigma^y$ with respect to an increase in the temperature $T$ and a increase of $\sigma^y$ with respect to an increase in the strain rate $\mdot\varepsilon$, as~in most metallic~materials.
+\begin{figure}[H]
 \includegraphics[width=0.9\columnwidth]{Figures/Zhou-OriginalData}
-\caption{Original data extracted from the publication of Ji \eal \cite{Ji-2018}.}
+\caption{Original data extracted from the publication of Ji et~al.~\cite{Ji-2018}.}
 \label{fig:Zhou-OriginalData}
 \end{figure}
 The evolution of the flow stress as a function of the plastic deformation shows the presence of a dynamic recrystallization (DRX) phenomenon within the material.
 This phenomenon is an additional non-linearity of this type of material compared to other materials, mainly because of high temperatures and low strain rates, which should be considered when describing the material behavior.
-As stated in the publication of Zhou \eal \cite{Zhou-2020}, depending on the flow model used: Johnson-Cook, Modified Zerilli-Armstrong, Arrhenius or new Modified Johnson-Cook, the fidelity of considering the real behavior varies widely with the complexity of the flow model which includes between $5$ parameters for the Johnson-Cook model, and $16$ parameters for the Arrhenius model.
-Thus, and for the input data provides by Ji \eal \cite{Ji-2018}, the two most common models: Johnson-Cook and Zerilli-Armstrong do not correctly describe the material behavior.
-Only the modified Johnson-Cook and Arrhenius models can describe correctly the behavior of the material during the compression process.
-Unfortunately, and this is not part of their study, if these last two models are satisfactory from a theoretical point of view, from a practical point of view for the user of a FE code such as Abaqus, it will be necessary to carry out a numerical implementation in a FORTRAN 77 VUMAT subroutine of the Modified Johnson-Cook flow law or the Arrhenius law as carried out by few authors \cite{Liang-2022, Gao-2007-FRT, Ming-2018} to use these laws for numerical simulation.
-This requires a certain expertise in the development and implementation of flow laws, which is not available to all users of the Abaqus FE code.
+As stated in the publication of \mbox{Zhou et~al.~\cite{Zhou-2020}}, depending on the flow model used---Johnson--Cook, modified Zerilli--Armstrong, Arrhenius or new modified Johnson--Cook---the~fidelity of considering the real behavior varies widely with the complexity of the flow model, which includes between $5$ parameters for the Johnson--Cook model and~$16$ parameters for the Arrhenius model.
+Thus, and~for the input data provided by Ji et~al.~\cite{Ji-2018}, the~two most common models, Johnson--Cook and Zerilli--Armstrong do not correctly describe the material behavior.
+Only the modified Johnson--Cook and Arrhenius models can describe correctly the behavior of the material during the compression process.
+Unfortunately, and~this is not part of their study, if~these last two models are satisfactory from a theoretical point of view, from~a practical point of view for the user of a FE code such as Abaqus, it will be necessary to carry out a numerical implementation in a FORTRAN 77 VUMAT subroutine of the modified Johnson--Cook flow law or the Arrhenius law as carried out by a few authors~\cite{Liang-2022, Gao-2007-FRT, Ming-2018} to use these laws for numerical simulation.
+This requires a certain expertise in the development and implementation of flow laws, which is not available to all users of the Abaqus FE~code.
 
-From this observation, and from the necessity to select a flow law for a type of material, then to identify the parameters of this flow law according to experimental tests, and finally to implement this flow law as a user subroutine in FORTRAN in the Abaqus FE code, we have recently proposed in Pantalé \eal \cite{Pantale-2021} an alternative approach based on the ability of Artificial Neural Networks (ANNs) to behave as universal approximators as reported by Minsky \eal \cite{Minsky-1969} and Hornik \eal \cite{Hornik-1989}.
-In fact, Artificial Neural Networks can solve problems that are difficult to conceptualize using traditional computational methods.
-Unlike a classical approach based on a regression method, an ANN does not need to know the mathematical form of the model it seeks to reproduce, hence we do not need anymore to postulate the mathematical form of the constitutive equation to use it in a FE simulation using this kind of approach.
-Using a Neural Network instead of an analytical constitutive law can lead to a bias related to the validity of the answers according to the domain of use and the learning domain.
-Thus, if ANNs are efficient for the interpolation of results inside the learning domain, their behavior outside of it is not controlled.
-Therefore, if the input values are far from those provided during the training, the outputs can be far from the physical reality of the process.
-It is, of course, the same for analytical laws when modeling non-linear behavior, but if the choice of the model has been made properly, based on physical considerations, they will provide results closer to reality than the ANN model.
-Therefore, care should be taken when using ANN-based flow laws and the validity of the model input data should always be verified.
+From this observation, and~from the necessity to select a flow law for a type of material, then to identify the parameters of this flow law according to experimental tests, and~finally to implement this flow law as a user subroutine in FORTRAN in the Abaqus FE code, we recently proposed in Pantalé et~al.~\cite{Pantale-2021} an alternative approach based on the ability of artificial neural networks (ANNs) to behave as universal approximators as reported by Minsky et~al.~\cite{Minsky-1969} and Hornik et~al.~\cite{Hornik-1989}.
+In fact, artificial neural networks can solve problems that are difficult to conceptualize using traditional computational methods.
+Unlike a classical approach based on a regression method, an~ANN does not need to know the mathematical form of the model it seeks to reproduce; hence, we do not need anymore to postulate the mathematical form of the constitutive equation to use it in a FE simulation using this kind of approach.
+Using a neural network instead of an analytical constitutive law can lead to a bias related to the validity of the answers according to the domain of use and the learning domain.
+Thus, if~ANNs are efficient for the interpolation of results inside the learning domain, their behavior outside of it is not controlled.
+Therefore, if~the input values are far from those provided during the training, the~outputs can be far from the physical reality of the process.
+It is, of~course, the~same for analytical laws when modeling non-linear behavior, but~if the choice of the model is made properly, based on physical considerations, they will provide results closer to reality than the ANN model.
+Therefore, care should be taken when using ANN-based flow laws, and the validity of the model input data should always be~verified.
 
-Implementing ANNs for plasticity in thermomechanics has been studied and a review of the literature can be found for example in Gorji \eal \cite{Gorji-2020} concerning the use of recurrent neural networks, in Jamli \eal \cite{Jamli-2019-SNN} concerning their application in finite element analysis of metal forming processes, or in Jiao \eal \cite{Jiao-2020} concerning the applicability to meta-materials and their characterization.
+Implementing ANNs for plasticity in thermomechanics has been studied, and a review of the literature can be found, for example, in the work of Gorji et~al.~\cite{Gorji-2020} concerning the use of recurrent neural networks, in that of~Jamli et~al.~\cite{Jamli-2019-SNN} concerning their application in finite element analysis of metal forming processes, or~in that of Jiao et~al.~\cite{Jiao-2020} concerning the applicability to meta-materials and their characterization.
 A distinction must be made between ANN-based flow models (the focus of this study) and ANN-based constitutive models.
 Both approaches have been studied by many researchers during the last thirty years.
-Ghaboussi \cite{Ghaboussi-1991} proposed an ANN-based constitutive model for concrete under monotonic biaxial loading and cyclic uniaxial loading.
-They extended their work by introducing adaptive and auto-progressive networks in \cite{Ghaboussi-1998, Ghaboussi-1998-NNA} where the architecture of the network evolves during the learning phase to better learn the complex stress-strain behavior of the materials using a global load-deflection response where the evaluation of the flow stress of the material computed by the ANN is combined with a Radial-Return algorithm.
-Lin \eal \cite{Lin-2008} proposed an ANN to predict the flow stress of 42CrMo4 steel in hot compression tests on a Gleeble thermomechanical device and showed a very good correlation between the experimental results and the model predictions.
-Ashtiani \eal \cite{Ashtiani-2016} compared the predictive capabilities of an ANN versus an analytical model for Johnson-Cook, Arrhenius, and strain-compensated Arrhenius laws and concluded that the neural network had better efficiency and accuracy in predicting the hot behavior of Al-Cu-Mg-Pb alloy.
+Ghaboussi~\cite{Ghaboussi-1991} proposed an ANN-based constitutive model for concrete under monotonic biaxial loading and cyclic uniaxial loading.
+They extended their work by introducing adaptive and auto-progressive networks in~\cite{Ghaboussi-1998, Ghaboussi-1998-NNA}, where the architecture of the network evolves during the learning phase to better learn the complex stress--strain behavior of the materials using a global load-deflection response, where the evaluation of the flow stress of the material computed by the ANN is combined with a radial return algorithm.
+Lin et~al.~\cite{Lin-2008} proposed an ANN to predict the flow stress of 42CrMo4 steel in hot compression tests on a Gleeble thermomechanical device and showed a very good correlation between the experimental results and the model predictions.
+Ashtiani et~al.~\cite{Ashtiani-2016} compared the predictive capabilities of an ANN versus an analytical model for Johnson--Cook, Arrhenius, and~strain-compensated Arrhenius laws and concluded that the neural network had better efficiency and accuracy in predicting the hot behavior of the Al--Cu--Mg--Pb~alloy.
 
-The underlying idea proposed in our approach, is to implement a flow law described by a trained ANN as a FORTRAN 77 subroutine in the Abaqus FE code.
-This ANN was previously trained from the data extracted from mechanical tests of the material and can directly define the value of the flow stress $\sigma^y$ as a function of the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$.
-After a training phase based on the use of the Python library TensorFlow \cite{Abadi-2016, Mattmann-2020}, the weights and biases of the trained neural network are transcoded into a subroutine in FORTRAN 77 which is compiled and linked with the libraries of the Abaqus FE code to include the behavior of the material by allowing the computation of the flow stress $\sigma^y$ as a function of $\varepsilon^p$, $\mdot\varepsilon$ and $T$, and of its three derivatives $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and $\partial\sigma^y/\partial T$.
+The underlying idea proposed in our approach is to implement a flow law described by a trained ANN as a FORTRAN 77 subroutine in the Abaqus FE code.
+This ANN was previously trained from the data extracted from mechanical tests of the material and can directly define the value of the flow stress $\sigma^y$ as a function of the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$.
+After a training phase based on the use of the Python library TensorFlow~\cite{Abadi-2016, Mattmann-2020}, the~weights and biases of the trained neural network are transcoded into a subroutine in FORTRAN 77, which is compiled and linked with the libraries of the Abaqus FE code to include the behavior of the material by allowing the computation of the flow stress $\sigma^y$ as a function of $\varepsilon^p$, $\mdot\varepsilon$ and $T$, and~of its three derivatives $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and $\partial\sigma^y/\partial T$.
 
-The structure of this paper is as follows.
-Section \ref{sec:Training} addresses the presentation of a Neural Network based flow law and its training from the data proposed by Ji \eal \cite{Ji-2018} and reported in Figure \ref{fig:Zhou-OriginalData}.
+The structure of this paper is as follows:
+Section~\ref{sec:Training} addresses the presentation of a neural-network-based flow law and its training from the data proposed by Ji et~al.~\cite{Ji-2018} and reported in Figure~\ref{fig:Zhou-OriginalData}.
 The comparison of several neural network architectures regarding accuracy and implementation complexity will be presented and compared.
-In Section \ref{sec:Use}, we will present the transposition of this neural network into a FORTRAN 77 subroutine for the Abaqus FE code.
-Validation is based on the numerical simulation Abaqus Explicit FE code of a compression test in the same configuration as the one proposed by Ji \eal \cite{Ji-2018} using four different ANN flow laws.
+In Section~\ref{sec:Use}, we will present the transposition of this neural network into a FORTRAN 77 subroutine for the Abaqus FE code.
+Validation is based on the numerical simulation Abaqus Explicit FE code of a compression test in the same configuration as the one proposed by Ji et~al.~\cite{Ji-2018} using four different ANN flow laws.
 In this Section, we will present the problems of over-fitting the neural network and its visible consequences on the results concerning numerical simulations.
-Finally, a conclusion and perspective Section will conclude this paper.
+Finally, a~conclusion and perspective section will conclude this~paper.
 
 %------------------------------------------------------------------------------------
-\section{Training of the ANN flow law}\label{sec:Training}
+\section{Training of the ANN Flow~Law}\label{sec:Training}
 %------------------------------------------------------------------------------------
 
-In this section, we briefly recall, as an introduction, some basic principles of Artificial Neural Networks that apply to this work.
-The global architecture chosen to model the behavior of a material is based on a multi-layer feed-forward ANN which as proposed by Hornik \eal \cite{Hornik-1989} can be used as a universal approximator.
-The architecture retained for this study concerns a neural network with two hidden layers containing a variable number of neurons on these two layers, $3$ input nodes corresponding to the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ respectively and a single output node for the flow stress $\sigma^y$ of the material.
-Figure \ref{fig:ANN-scheme} shows a graphical representation of the global architecture of this neural network.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.7\columnwidth]{Figures/ANN-scheme-2HL}
+In this section, we briefly recall, as~an introduction, some basic principles of artificial neural networks that apply to this work.
+The global architecture chosen to model the behavior of a material is based on a multi-layer feed-forward ANN, which, as proposed by Hornik et~al.~\cite{Hornik-1989}, can be used as a universal approximator.
+The architecture retained for this study concerns a neural network with two hidden layers containing a variable number of neurons on these two layers, $3$ input nodes corresponding to the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$, respectively, and a single output node for the flow stress $\sigma^y$ of the material.
+Figure~\ref{fig:ANN-scheme} shows a graphical representation of the global architecture of this neural~network.
+\begin{figure}[H]
+\includegraphics[width=0.65\columnwidth]{Figures/ANN-scheme-2HL}
 \caption{Global structure of the ANN flow law with two hidden layers, 3 input neurons ($\varepsilon^p$, $\mdot\varepsilon$, $T$) and one output neuron $\sigma^y$.}
 \label{fig:ANN-scheme}
 \end{figure}
-The choice of the number of neurons in the two hidden layers is free, but must be reasonable.
-Indeed, the more neurons the network contains, the more it will reproduce faithfully the training data, but the less it will generalize to new data (the classical problem of over-learning of neural networks).
-Moreover, the more neurons it contains, the more complex its mathematical structure will be, and the more computation time it will require propagating the data inside of it within the routine included in the FE code.
-It is therefore necessary to respect a balance between the capacity of the network to minimize errors during the learning phase, its complexity and the computing CPU time once it is transcribed into the FE code.
+The choice of the number of neurons in the two hidden layers is free, but~must be reasonable.
+Indeed, the~more neurons the network contains, the~more it will reproduce faithfully the training data, but~the less it will generalize to new data (the classical problem of the over-learning of neural networks).
+Moreover, the~more neurons it contains, the~more complex its mathematical structure will be, and~the more computation time it will require for propagating the data inside of it within the routine included in the FE code.
+It is therefore necessary to respect a balance between the capacity of the network to minimize errors during the learning phase, its complexity and the computing CPU time once it is transcribed into the FE~code.
 
 %------------------------------------------------------------------------------------
-\subsection{Neural Network governing equations}\label{sec:ANN-equations}
+\subsection{Neural Network Governing~Equations}\label{sec:ANN-equations}
 %------------------------------------------------------------------------------------
 
-According to Figure \ref{fig:ANN-scheme}, the proposed neural network has $3$ inputs (referred as the input vector $\overrightarrow{x}$) corresponding to the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ respectively.
-These inputs are first normalized within the range $[0,1]$ to avoid an ill-conditioning of the system as presented by many other authors in the literature \cite{Lin-2008, Lu-2011} since these three variables represent different physical data with very different amplitudes ($0.7$ for the plastic strain, $100~\ps$ for the strain rate and $550~\celsius$ for the temperature in the case of the training data reported in Figure \ref{fig:Zhou-OriginalData}).
-Therefore, the three components of the input vector $\overrightarrow{x}$ are coming from the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ using the following expressions:
+According to Figure~\ref{fig:ANN-scheme}, the~proposed neural network has $3$ inputs (referred as the input vector $\overrightarrow{x}$) corresponding to the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$, respectively.
+These inputs are first normalized within the range $[0,1]$ to avoid an ill-conditioning of the system as presented by many other authors in the literature~\cite{Lin-2008, Lu-2011} since these three variables represent different physical data with very different amplitudes ($0.7$ for the plastic strain, $100~\ps$ for the strain rate and $550~\celsius$ for the temperature in the case of the training data reported in Figure~\ref{fig:Zhou-OriginalData}).
+Therefore, the~three components of the input vector $\overrightarrow{x}$ are coming from the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$ using the following expressions:
 \begin{equation}
 \overrightarrow{x}=
 \begin{cases}
@@ -333,54 +329,56 @@ x_3 = \frac{T-[T]_{min}}{[T]_{max}-[T]_{min}}
 \label{eq:CR1}
 \end{equation}
 where $[~]_{min}$ and $[~]_{max}$  are the boundaries of the range of the corresponding field.
-Concerning the strain rate $\mdot\varepsilon$, and considering that its amplitude in a real case can reach $10^5~\ps$, as proposed in Pantalé \eal \cite{Pantale-2021}, we chose initially to substitute $\ln(\mdot\varepsilon/\mdot\varepsilon_0)$, with $\mdot\varepsilon_0$ equal to the lowest strain rate test, for the value of $\mdot\varepsilon$.
-After normalization, these three input variables are introduced into the neural network and are propagated within it by the feed-forward propagation mechanism.
+Concerning the strain rate $\mdot\varepsilon$, and~considering that its amplitude in a real case can reach $10^5~\ps$, as~proposed in Pantalé et~al.~\cite{Pantale-2021}, we chose initially to substitute $\ln(\mdot\varepsilon/\mdot\varepsilon_0)$, with~$\mdot\varepsilon_0$ equal to the lowest strain rate test, for~the value of $\mdot\varepsilon$.
+After normalization, these three input variables are introduced into the neural network and are propagated within it by the feed-forward propagation~mechanism.
 
-Conforming to the structure of the ANN reported in Figure \ref{fig:ANN-scheme} any hidden layer $k$, containing $n$ neurons, takes a weighted sum of the outputs $\overrightarrow{\hat{y}}^{(k-1)}$ of the immediately previous layer $(k-1)$, containing $m$ neurons, given by the following equation:
+Conforming to the structure of the ANN reported in Figure~\ref{fig:ANN-scheme} any hidden layer $k$, containing $n$ neurons, takes a weighted sum of the outputs $\overrightarrow{\hat{y}}^{(k-1)}$ of the immediately previous layer $(k-1)$, containing $m$ neurons, given by the following equation:
 \begin{equation}
 y_i\lay{k} = \sum_{j=1}^m w_{ij}\lay{k} \hat{y}_j^{(k-1)}+ b_i\lay{k},\label{eq:ANN1}
 \end{equation}
-where $y_i\lay{k}$ is the entry of the $i^{th}$ neuron of layer $k$, $\hat{y}_j\lay{k-1}$ is the output of the $j^{th}$ neuron of layer $(k-1)$, $w_{ij}\lay{k}$ is the associated weight parameter between the $i^{th}$ neuron of layer $k$ and the $j^{th}$ neuron of layer $(k-1)$ and $b_i\lay{k}$ is the associated bias of the $i^{th}$ neuron of layer $k$.
-Those weights $w_{ij}$ and bias $b_i$, for each layer, are the training parameters of the ANN that we have to adjust during the training process.
-For the proposed model, we have selected the sigmoid activation function, so that, each neuron in the hidden layer $k$ provides an output value ${\hat{y}}$ from the input value $y$ of the same neuron defined by Equation (\ref{eq:ANN1}) according to the following equation:
+where $y_i\lay{k}$ is the entry of the $i$th neuron of layer $k$, $\hat{y}_j\lay{k-1}$ is the output of the $j$th neuron of layer $(k-1)$, $w_{ij}\lay{k}$ is the associated weight parameter between the $i$th neuron of layer $k$ and the $j$th neuron of layer $(k-1)$ and $b_i\lay{k}$ is the associated bias of the $i$th neuron of layer $k$.
+Those weights $w_{ij}$ and bias $b_i$, for~each layer, are the training parameters of the ANN that we have to adjust during the training process.
+For the proposed model, we selected the sigmoid activation function so that each neuron in the hidden layer $k$ provides an output value ${\hat{y}}$ from the input value $y$ of the same neuron defined by Equation~(\ref{eq:ANN1}) according to the following equation:
 \begin{equation}
 \hat{y}=\frac{1}{1 + \e{-y}}\label{eq:ANN2}
 \end{equation}
 
-According to equations (\ref{eq:ANN1}) and (\ref{eq:ANN2}), the output of each of the two hidden layers ($\overrightarrow{y}_1$ for the first hidden layer and $\overrightarrow{y}_2$ for the second hidden layer) are given by the following two equations:
+According to Equations~(\ref{eq:ANN1}) and (\ref{eq:ANN2}), the~output of each of the two hidden layers ($\overrightarrow{y}_1$ for the first hidden layer and $\overrightarrow{y}_2$ for the second hidden layer) are given by the following two equations:
 \begin{equation}
 \overrightarrow{y}_1 = \left[1 + \exp{\left(- \w_1 \dotp \overrightarrow{x}- \overrightarrow{b}_1\right)}\right]^{-1}\label{eq:ANN3}
 \end{equation}
 \begin{equation}
 \overrightarrow{y}_2 = \left[1 + \exp{\left(- \w_2 \dotp \overrightarrow{y}_1- \overrightarrow{b}_2\right)}\right]^{-1}\label{eq:ANN4}
 \end{equation}
+
 Then we compute the output $s$ of the ANN from the output vector of the second hidden layer $\overrightarrow{y}_2$ using the following equation:
 \begin{equation}
 s = \overrightarrow{w}^T \dotp \overrightarrow{y}_2 + b\label{eq:ANN5}
 \end{equation}
-Finally, since no activation function is used for the output neuron of the ANN as usually done in regression ANN, the flow stress $\sigma^y$ can be obtained from the output $s$ using the following equation:
+
+Finally, since no activation function is used for the output neuron of the ANN as is usually done in regression ANN, the~flow stress $\sigma^y$ can be obtained from the output $s$ using the following equation:
 \begin{equation}
 \sigma^y =  \left([\sigma]_{max}-[\sigma]_{min}\right)s + [\sigma]_{min} \label{eq:CR2}
 \end{equation}
 
 %------------------------------------------------------------------------------------
-\subsection{Computation of the derivatives of the Neural Network}\label{sec:ANN-derivative}
+\subsection{Computation of the Derivatives of the Neural~Network}\label{sec:ANN-derivative}
 %------------------------------------------------------------------------------------
 
-As introduced in Section \ref{sec:Introduction}, implementing a flow law in a FE code requires both the computation of the flow stress $\sigma^y$ as a function of the input data, performed using the previous equations (\ref{eq:CR1}-\ref{eq:CR2}), but also the evaluation of the three derivatives of $\sigma^y$ with respect to the input data to use a Newton-Raphson algorithm within the stress integration scheme, as proposed by many authors \cite{Ponthot-2002, Ming-2018, Liang-2022, Simo-1998} based on the Radial-Return algorithm in the Abaqus FE code.
-It is therefore necessary to perform a numerical evaluation of these three derivatives based on the ANN to obtain these quantities.
+As introduced in Section~\ref{sec:Introduction}, implementing a flow law in a FE code requires both the computation of the flow stress $\sigma^y$ as a function of the input data, performed using the previous Equations~(\ref{eq:CR1})--(\ref{eq:CR2}), but~also the evaluation of the three derivatives of $\sigma^y$ with respect to the input data to use a Newton--Raphson algorithm within the stress integration scheme, as~proposed by many authors~\cite{Ponthot-2002, Ming-2018, Liang-2022, Simo-1998} based on the radial return algorithm in the Abaqus FE code.
+It is, therefore, necessary to perform a numerical evaluation of these three derivatives based on the ANN to obtain these quantities.
 It seems obvious that it is not possible to train a neural network to evaluate these values of derivatives insofar as the training data are not physically collectible data during the experimental tests.
-It is therefore necessary to predict these derivatives from the neural network architecture itself.
-One straightforward, but not recommended, solution to this problem is to compute numerically the derivative of $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following relation:
+It is, therefore, necessary to predict these derivatives from the neural network architecture itself.
+One straightforward, but~not recommended, solution to this problem is to compute numerically the derivative of $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following relation:
 \begin{equation}
 \frac{\partial \sigma(x)}{\partial x} = \frac{\sigma(x+\delta x) - \sigma(x)}{\delta x},
 \end{equation}
 where $\delta x$ is a small increase ($\delta x=10^{-6}$ for example) applied to one of the $3$ variables $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
-As reported in \cite{Pantale-2021}, we need to compute $4$ times a result from the ANN to compute the flow stress and approximate the three derivatives which is quite time-consuming.
-The solution for this study consists, insofar as the architecture of the neural network is known through equations (\ref{eq:ANN1}-\ref{eq:ANN5}), in analytically deriving the output $s$ of the network with respect to the input $\overrightarrow{x}$, then integrating the data normalization operations defined by equations (\ref{eq:CR1}) and (\ref{eq:CR2}).
-Given equations (\ref{eq:CR1}-\ref{eq:CR2}), we can then establish in the case of a neural network containing two hidden layers and a sigmoid activation function on the two hidden layers that the derivative of $\sigma^y$ with respect to the input data $\varepsilon^p$, $\mdot\varepsilon$ and $T$ is given by the following procedure.
+As reported in~\cite{Pantale-2021}, we need to compute a result from the ANN  $4$ times to compute the flow stress and approximate the three derivatives, which is quite time consuming.
+The solution for this study consists, insofar as the architecture of the neural network is known through Equations~(\ref{eq:ANN1})--(\ref{eq:ANN5}), in~analytically deriving the output $s$ of the network with respect to the input $\overrightarrow{x}$, then integrating the data normalization operations defined by Equations~(\ref{eq:CR1}) and (\ref{eq:CR2}).
+Given Equations~(\ref{eq:CR1})--(\ref{eq:CR2}), we can then establish in the case of a neural network containing two hidden layers and a sigmoid activation function on the two hidden layers that the derivative of $\sigma^y$ with respect to the input data $\varepsilon^p$, $\mdot\varepsilon$ and $T$ is given by the following~procedure.
 \begin{itemize}
-\item First we compute the internal terms of the ANN to compute the derivative of the ANN with respect to the input vector $\overrightarrow{x}$:
+\item First, we compute the internal terms of the ANN to compute the derivative of the ANN with respect to the input vector $\overrightarrow{x}$:
 \begin{equation}
 \begin{cases}
 \overrightarrow{z}_1 = \exp{\left(- \w_1 \dotp \overrightarrow{x}- \overrightarrow{b}_1\right)}\\
@@ -391,11 +389,12 @@ Given equations (\ref{eq:CR1}-\ref{eq:CR2}), we can then establish in the case o
 \label{eq:DANN1}
 \end{equation}
 where $\ccirc$ is the element-wise product, known as the Hadamard product, which is a binary operation that takes two matrices $\A$ and $\B$ of the same dimensions and produces another matrix $\C$ of the same dimension as the operands, where each element $C_i=A_i~B_i$.
-\item Then, from the two terms $\overrightarrow{z}_3$ and $\overrightarrow{z}_4$ we can therefore compute the three derivatives of the output $s$ with respect to the input vector $\overrightarrow{x}$ with the following equation where $\overrightarrow{s}'$ is a vector of $3$ components containing the $3$ derivatives $\partial s/\partial\varepsilon^p$, $\partial s/\partial\mdot\varepsilon$ and $\partial s/\partial T$:
+\item Then, from~the two terms $\overrightarrow{z}_3$ and $\overrightarrow{z}_4$, we can therefore compute the three derivatives of the output $s$ with respect to the input vector $\overrightarrow{x}$ with the following equation, where $\overrightarrow{s}'$ is a vector of $3$ components containing the $3$ derivatives $\partial s/\partial\varepsilon^p$, $\partial s/\partial\mdot\varepsilon$ and $\partial s/\partial T$:
 \begin{equation}
 \overrightarrow{s}' = \w_1^T \dotp \left[\left(\w_2^T \dotp \overrightarrow{z}_3 \right) \ccirc \overrightarrow{z}_4\right]\label{eq:DANN2}
 \end{equation}
-\item Finally, from Equation (\ref{eq:DANN2}) and conforming to the normalization of the inputs introduced earlier, one can obtain the $3$ derivatives of the yield stress $\sigma^y$ with respect to the three inputs $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following final equation:
+
+\item Finally, from~Equation~(\ref{eq:DANN2}) and conforming to the normalization of the inputs introduced earlier, one can obtain the $3$ derivatives of the yield stress $\sigma^y$ with respect to the three inputs $\varepsilon^p$, $\mdot\varepsilon$ and $T$ using the following final equation:
 \begin{equation}
 \begin{cases}
 \partial \sigma/\partial \varepsilon^p = s'_1 \frac{[\sigma]_{max} -[\sigma]_{min}}{[\varepsilon^p]_{max} -[\varepsilon^p]_{min}}\\
@@ -406,261 +405,259 @@ where $\ccirc$ is the element-wise product, known as the Hadamard product, which
 \end{equation}
 \end{itemize}
 
-Equations (\ref{eq:DANN1}-\ref{eq:DANN3}) defines the derivatives of the yield stress $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$, as computed by the ANN, and, as shown in \cite{Pantale-2021}, these derivatives can be used for the numerical implementation of the ANN constitutive law in a FE code.
+Equations~(\ref{eq:DANN1})--(\ref{eq:DANN3}) define the derivatives of the yield stress $\sigma^y$ with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$, as~computed by the ANN, and, as~shown in~\cite{Pantale-2021}, these derivatives can be used for the numerical implementation of the ANN constitutive law in a FE~code.
 
 %------------------------------------------------------------------------------------
-\subsection{Training of the Neural Networks}\label{sec:ANN-traning}
+\subsection{Training of the Neural~Networks}\label{sec:ANN-traning}
 %------------------------------------------------------------------------------------
 
 In neural network learning, it is necessary to define the objective function to be minimized and the evaluation of the model error.
-In this study, the error evaluation is based on the Mean Square Error ($\MSE$) and the Root Mean Square Error ($\RMSE$) given by the following equation:
+In this study, the~error evaluation is based on the mean square error ($\MSE$) and the root mean square error ($\RMSE$) given by the following equation:
 \begin{equation}
 \RMSE (\MPa) = \sqrt{\MSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left(\square_i^e - \square_i^y\right)^2}, \label{eq:RMSE}
 \end{equation}
-where $N$ is the total number of numerical training data used, $\square_i^y$ is the $i^{th}$ value predicted by the neural network, and $\square_i^e$ is the corresponding experimental value coming from the experimental tests.
-The accuracy and predictive ability of the models is assessed by the Mean Absolute Relative Error ($\MARE$) defined by Equation (\ref{eq:AARE}):
+where $N$ is the total number of numerical training data used, $\square_i^y$ is the $i$th value predicted by the neural network, and~$\square_i^e$ is the corresponding experimental value coming from the experimental tests.
+The accuracy and predictive ability of the models is assessed by the mean absolute relative error ($\MARE$) defined by Equation~(\ref{eq:AARE}):
 \begin{equation}
 \MARE(\%) = \frac{1}{N} \sum_{i=1}^{N}{\left|\frac{\square_i^y -\square_i^e}{\square_i^e}\right|} \times 100 \label{eq:AARE}
 \end{equation}
 
-The numerical implementation of the learning phase of the neural network was done in Python language, using the TensorFlow library \cite{Abadi-2016, Mattmann-2020}.
-The minimization procedure of the objective function is based on the use of the Adaptive Moment Estimation (ADAM) solver proposed by Kingma \eal \cite{Kingma-2015}.
+The numerical implementation of the learning phase of the neural network was done in Python language, using the TensorFlow library~\cite{Abadi-2016, Mattmann-2020}.
+The minimization procedure of the objective function is based on the use of the adaptive moment estimation (ADAM) solver proposed by Kingma et~al.~\cite{Kingma-2015}.
 
-The training data used in this section are taken from the publication of Ji \eal \cite{Ji-2018}.
-Thus, data for which compression tests were performed for the $3$ strain rates $\mdot\varepsilon=0.001~\ps$, $\mdot\varepsilon=0.01~\ps$ and $\mdot\varepsilon=0.1~\ps$, and the $12$ temperature values between $750~\celsius$ and $1300~\celsius$ in $50~\celsius$ steps are used.
+The training data used in this section are taken from the publication of Ji et~al.~\cite{Ji-2018}.
+Thus, data for which compression tests were performed for the $3$ strain rates $\mdot\varepsilon=0.001~\ps$, $\mdot\varepsilon=0.01~\ps$ and $\mdot\varepsilon=0.1~\ps$, and~the $12$ temperature values between $750~\celsius$ and $1300~\celsius$ in $50~\celsius$ steps are used.
 For each pair of data ($\mdot\varepsilon$, $T$), we have a record of $71$ values of flow stress $\sigma^e$ corresponding to values of deformation between $0$ and $0.7$, regularly spaced of $0.01$.
-We use a database of $2~556$ quadruplets of values ($\varepsilon^p$, $\mdot\varepsilon$, $T$, $\sigma^e$) for the training of the ANNs.
+We use a database of 2556 quadruplets of values ($\varepsilon^p$, $\mdot\varepsilon$, $T$, $\sigma^e$) for the training of the~ANNs.
 
 The set of these data is used as training data for the neural network.
-Several neural network architectures have been studied in this work, they differ from each other by the number of neurons present in the two hidden layers.
-Among them, we have selected 4 different architectures named 3-7-4-1, 3-9-4-1, 3-9-7-1 and 3-15-7-1 for which the name 3-$n$-$m$-1 translates an ANN with 2 hidden layers having $n$ neurons on the first layer and $m$ neurons on the second layer.
+Several neural network architectures have been studied in this work; they differ from each other by the number of neurons present in the two hidden layers.
+Among them, we selected 4 different architectures named 3-7-4-1, 3-9-4-1, 3-9-7-1 and 3-15-7-1 for which the name 3-$n$-$m$-1 translates an ANN with 2 hidden layers, having $n$ neurons on the first layer and $m$ neurons on the second~layer.
 
-All models have been trained for the same number of iterations ($50~000$ iterations), and around $50$ minutes of training on a Dell XPS-13 7390 laptop running Ubuntu 22.04 LTS 64 bits with 16 GB of Ram and an Intel 4-core i7-10510U processor allow getting the converged parameters of the ANN models.
-Figure \ref{fig:Convergence-ANN} shows the evolution of the training error defined by the $\log_{10}$ of the Mean Square Error ($\log_{10}\left[\MSE\right]$) during the training phase.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.9\columnwidth]{Figures/Convergence-ANN}
-\caption{Convergence of the ANN models during the training phase.}
+All models have been trained for the same number of iterations (50,000 iterations), and~around $50$ min of training on a Dell XPS-13 7390 laptop running Ubuntu 22.04 LTS 64 bits with 16 GB of RAM and an Intel 4-core i7-10510U processor allow obtaining the converged parameters of the ANN models.
+Figure~\ref{fig:Convergence-ANN} shows the evolution of the training error defined by the $\log_{10}$ of the mean square error ($\log_{10}\left[\MSE\right]$) during the training~phase.
+\begin{figure}[H]
+\includegraphics[width=0.65\columnwidth]{Figures/Convergence-ANN}
+\caption{Convergence of the ANN models during the training~phase.}
 \label{fig:Convergence-ANN}
 \end{figure}
-As we can see on this figure, after $50~000$ iterations, we can consider that we have reached a stationary state of the model learning and that it is useless to continue the learning phase.
-As expected, the more neurons the model contains, the more it can follow the non-linear evolution of the material’s behavior and therefore the more the Mean Square Error ($\MSE$) during the learning phase decreases.
-Table \ref{tab:ErrorANN} shows the main results of the training of these neural networks.
-\begin{table}[h!]
-\centering
-\caption{Results concerning the training of the four ANN flow laws.}
-\begin{tabular}{lccccc}
-	\hline
-	ANN      & $n_v$ &  $t$  &      $\MSE$      & $\MARE$ & $\RMSE$ \\
-	         &       & (min) & $\times 10^{-5}$ &  (\%)   &  (MPa)  \\ \hline
+As we can see on this figure, after~50,000 iterations, we can consider that we have reached a stationary state of the model learning and that it is useless to continue the learning phase.
+As expected, the~more neurons the model contains, the~more it can follow the non-linear evolution of the material’s behavior and therefore the more the mean square error ($\MSE$) during the learning phase decreases.
+Table~\ref{tab:ErrorANN} shows the main results of the training of these neural~networks.
+\begin{table}[H]
+\caption{Results concerning the training of the four ANN flow~laws. \label{tab:ErrorANN}}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{lCCCCC}
+	\toprule
+	\textbf{ANN}      & \boldmath{$n_v$} &  \boldmath{$t$}  &     {\bf $\MSE$}      & {\bf $\MARE$} & {\bf $\RMSE$} \\
+	         &       & \textbf{(min)} & \boldmath{$\times 10^{-5}$} &  \textbf{(\%)}   &  \textbf{(MPa)}  \\ \midrule
 	3-7-4-1  &  65   &  48   &       3.91       &  1.88   &  3.05   \\
 	3-9-4-1  &  81   &  48   &       3.29       &  1.70   &  2.75   \\
 	3-9-7-1  &  114  &  49   &       1.83       &  1.25   &  2.44   \\
-	3-15-7-1 &  180  &  50   &       1.01       &  0.97   &  2.30   \\ \hline
-\end{tabular}
-\label{tab:ErrorANN}
-\end{table}
-It can be noted that the number of internal variables $n_v$ of the networks varies from $65$ to $180$ for the most complex and the most powerful one, but that this complexity has no real influence on the learning time $t$ which oscillates around a value of $50$ minutes whatever the architecture chosen.
-Concerning the internal accuracy $\MSE$ of the network, it varies in proportions in accordance with the graphical representation of Figure \ref{fig:Convergence-ANN}.
-From the plot in Figure \ref{fig:Convergence-ANN} and the results reported in Table \ref{tab:ErrorANN}, the user would normally be tempted to select the most complex model, namely 3-15-7-1, as it gives the smallest deviation between predicted and experimental values of flow stress $\sigma^y$.
-This will be analyzed in the next Section concerning the numerical simulation of the compression of a cylinder on the Abaqus Explicit software using the ANN flow law.
+	3-15-7-1 &  180  &  50   &       1.01       &  0.97   &  2.30   \\ \bottomrule
+\end{tabularx}
 
-Since, as reported in Figure \ref{fig:Convergence-ANN}, the 3-7-4-1 model seems to have converged after the training phase, we are going to compare it with the 'accurate' model, the 3-15-7-1 model.
-From a more physical point of view, Figures \ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} show the correlation between the data predicted by the neural network and the experimental data for the 3-7-4-1 and 3-15-7-1 networks, respectively.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{Figures/CompExpANN-3-7-4-1}
+\end{table}
+
+\vspace{-6pt}
+
+It can be noted that the number of internal variables $n_v$ of the networks varies from $65$ to $180$ for the most complex and the most powerful one, but~that this complexity has no real influence on the learning time $t$ which oscillates around a value of $50$ min, regardless of the architecture chosen.
+Concerning the internal accuracy $\MSE$ of the network, it varies in proportions in accordance with the graphical representation of Figure~\ref{fig:Convergence-ANN}.
+From the plot in Figure~\ref{fig:Convergence-ANN} and the results reported in Table~\ref{tab:ErrorANN}, the~user would normally be tempted to select the most complex model, namely 3-15-7-1, as~it gives the smallest deviation between predicted and experimental values of flow stress $\sigma^y$.
+This will be analyzed in the next section concerning the numerical simulation of the compression of a cylinder on the Abaqus Explicit software using the ANN flow~law.
+
+Since, as~reported in Figure~\ref{fig:Convergence-ANN}, the~3-7-4-1 model seems to have converged after the training phase, we are going to compare it with the 'accurate' model, the~3-15-7-1 model.
+From a more physical point of view, Figures~\ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} show the correlation between the data predicted by the neural network and the experimental data for the 3-7-4-1 and 3-15-7-1 networks, respectively.
+\begin{figure}[H]
+\includegraphics[width=0.9\columnwidth]{Figures/CompExpANN-3-7-4-1}
 \caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-7-4-1 ANN (continuous line) and the experimental data for the GCr15 (square markers).}
 \label{fig:CompExpANN-9-4}
 \end{figure}
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=\columnwidth]{Figures/CompExpANN-3-15-7-1}
+\unskip
+\begin{figure}[H]
+\includegraphics[width=0.9\columnwidth]{Figures/CompExpANN-3-15-7-1}
 \caption{Comparison of the flow stress $\sigma^y$ predicted by the 3-15-7-1 ANN (continuous line) and the experimental data for the GCr15 (square markers).}
 \label{fig:CompExpANN-15-7}
 \end{figure}
-Analysis of Figures \ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} shows a very good correlation between the ANN results and the experimental results, which is reflected by the very low values of the $\MARE$ and $\RMSE$ coefficients reported in Table \ref{tab:ErrorANN}.
-As reported by Phaniraj \cite{Phaniraj-2003}, the correlation coefficient ($\R$) is generally not a good measure in our case of study because it only shows the correlation of the model with respect to the data and not its accuracy, which is a determining factor in the qualification of a model.
-Therefore, this type of coefficient is not used in this work for comparing the different models.
+Analysis of Figures~\ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} shows a very good correlation between the ANN results and the experimental results, which is reflected by the very low values of the $\MARE$ and $\RMSE$ coefficients reported in Table~\ref{tab:ErrorANN}.
+As reported by Phaniraj~\cite{Phaniraj-2003}, the~correlation coefficient ($\R$) is generally not a good measure in our case of study because it only shows the correlation of the model with respect to the data and not its accuracy, which is a determining factor in the qualification of a model.
+Therefore, this type of coefficient is not used in this work for comparing the different~models.
 
-Concerning the performance of the ANN flow laws, the correlation results for both reported models, are much better than the ones obtained by Zhou \eal \cite{Zhou-2020} during his work on the same material with four different analytical flow laws, especially since he had to split the data into two groups according to the temperature value (one on the range $T=750-850~\celsius$ and one on the range $T=850-1300~\celsius$) and to identify two sets of parameters for each flow law to reduce the error of his identified analytical models.
-This of course raises the question of the usability of those analytical laws where the temperature of the material changes from one group to the other during a thermomechanical transformation.
+Concerning the performance of the ANN flow laws, the~correlation results for both reported models, are much better than the ones obtained by Zhou et~al.~\cite{Zhou-2020} during his work on the same material with four different analytical flow laws, especially since he had to split the data into two groups according to the temperature value (one on the range \mbox{$T=750-850~\celsius$} and one on the range \mbox{$T=850-1300~\celsius$}) and to identify two sets of parameters for each flow law to reduce the error of his identified analytical models.
+\textls[-11]{This of course raises the question of the usability of those analytical laws where the temperature of the material changes from one group to the other during a thermomechanical~transformation.}
 
-In our approach and by using an ANN flow law, the identified law is not only valid over the whole temperature range, but it displays an $\MARE$ value $5$ times lower than the best flow law proposed by Zhou \eal \cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750-850~\celsius$ and $\MARE=5.76\%$ over the range $T=850-1300~\celsius$ while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.88\%$ for the 3-7-4-1 ANN flow laws proposed here.
+In our approach and by using an ANN flow law, the~identified law is not only valid over the whole temperature range, but~it displays a $\MARE$ value $5$ times lower than the best flow law proposed by Zhou et~al.~\cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750-850~\celsius$ and $\MARE=5.76\%$ over the range $T=850-1300~\celsius$, while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.88\%$ for the 3-7-4-1 ANN flow laws proposed~here.
 
 The disadvantage of developing a flow law model based on neural networks is the number of internal variables in the network ($180$ in the case of the 3-15-7-1 network), which makes it difficult to translate the network into printable results.
-Using a Johnson-Cook type flow law, for example, allows the reader to quickly get an idea of the law, where the analytical formulation of the law is known to the users, and the behavior of a material is based on the knowledge of only $5$ internal parameters to be identified, which makes it easy to publish in a table.
-Concerning an Arrhenius law, this task becomes a little more complex as one can have from $24$ to $36$ coefficients.
-But in our case, the publication of the $65$ coefficients of the 3-7-4-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
-As an illustration, we provide in the Appendix \ref{sec:Appendix} all the coefficients of the 3-7-4-1 model identified during this study.
+Using a Johnson--Cook-type flow law, for~example, allows the reader to quickly get an idea of the law, where the analytical formulation of the law is known to the users, and~the behavior of a material is based on the knowledge of only $5$ internal parameters to be identified, which makes it easy to publish in a table.
+Concerning an Arrhenius law, this task becomes a little more complex, as one can have from $24$ to $36$ coefficients.
+However, in our case, the~publication of the $65$ coefficients of the 3-7-4-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
+As an illustration, we provide in the Appendix \ref{sec:Appendix} all the coefficients of the 3-7-4-1 model identified during this~study.
 
-Once the identification phase has been completed, it is now necessary to transpose this ANN model into a subroutine in FORTRAN or C++ that can be used by a FE code such as Abaqus (for the FORTRAN 77 version) or DynELA (for the C++ version not presented in this paper).
-This is the main topic of the next Section.
-
-%------------------------------------------------------------------------------------
-\section{ANN flow law implementation in FE software}\label{sec:Use}
-%------------------------------------------------------------------------------------
-
-Once the neural network has been trained as presented in Section \ref{sec:ANN-traning}, it can be used in a Finite Element code for the numerical simulation of a structure subjected to thermomechanical loading.
-This requires the extraction of the internal variables of the neural network and their transfer as a subroutine in FORTRAN 77 based on equations proposed in Sections \ref{sec:ANN-equations} and \ref{sec:ANN-derivative}.
+Once the identification phase is complete, it is now necessary to transpose this ANN model into a subroutine in FORTRAN or C++ that can be used by a FE code, such as Abaqus (for the FORTRAN 77 version) or DynELA (for the C++ version not presented in this paper).
+This is the main topic of the next~section.
 
 %------------------------------------------------------------------------------------
-\subsection{Implementation of the ANN flow law}\label{sec:Implementation}
+\section{ANN Flow Law Implementation in FE~Software}\label{sec:Use}
 %------------------------------------------------------------------------------------
 
-If we refer to the general flowchart of a finite element code as shown in Figure \ref{fig:StressUpdate}, integrating the flow law described by the ANN concerns the computation of the stress tensor $\Sig_1$ at the end of an increment, in the yellow rectangle on the figure.
-\begin{figure}[!ht]
-\centering
+Once the neural network is trained as presented in Section~\ref{sec:ANN-traning}, it can be used in a finite element code for the numerical simulation of a structure subjected to thermomechanical loading.
+This requires the extraction of the internal variables of the neural network and their transfer as a subroutine in FORTRAN 77 based on equations proposed in Sections~\ref{sec:ANN-equations} and \ref{sec:ANN-derivative}.
+
+%------------------------------------------------------------------------------------
+\subsection{Implementation of the ANN Flow~Law}\label{sec:Implementation}
+%------------------------------------------------------------------------------------
+
+If we refer to the general flowchart of a finite element code as shown in Figure~\ref{fig:StressUpdate}, integrating the flow law described by the ANN concerns the computation of the stress tensor $\Sig_1$ at the end of an increment, in~the yellow rectangle on the~figure.
+\begin{figure}[H]
 \includegraphics[width=0.9\columnwidth]{Figures/StressUpdate}
-\caption{General flowchart of a FE code, focus on the stresses computation.}
+\caption{General flowchart of a FE code, focus on the stresses~computation using an iterative solving procedure.}
 \label{fig:StressUpdate}
 \end{figure}
 Within the framework of a FE formulation in large deformations such as the one used in thermomechanical modeling of processes, this computation of the stress tensor $\Sig_1$ is to be carried out on all the integration points of each element of the studied structure.
-Since the numerical model can include thousands of elements, themselves comprising between $1$ and $8$ integration points depending on the elements used, this stress computation must be as fast as possible in order not to increase the CPU time too much, but precise enough so that the results are under the physics of the process.
-This is even more important if we want to integrate this flow law in an explicit FE code such as Abaqus/Explicit for which one second of physical simulation corresponds to several million iterations of these stress computations.
-Thus, the complexity of the ANN, \ie the number of computational steps that must be performed to compute the flow stress as a function of the input variables, is a major parameter in the choice of the neural network.
-As an example, for the model presented in section \ref{sec:ANN-traning}, $180$ internal variables, $15$ neurons on the first hidden layer and $7$ neurons on the second hidden layer were listed.
-Given the equations described in Sections \ref{sec:ANN-equations} and \ref{sec:ANN-derivative}, it will be necessary to compute $22$ exponentials, to make matrix-vector products of size $15\times3$ and $15\times7$ plus many other numerical operations to compute the flow stress $\sigma^y$ and the $3$ derivatives of it with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
+Since the numerical model can include thousands of elements, themselves comprising between $1$ and $8$ integration points depending on the elements used, this stress computation must be as fast as possible in order not to increase the CPU time too much, but~precise enough so that the results are under the physics of the process.
+This is even more important if we want to integrate this flow law in an explicit FE code, such as Abaqus/Explicit, for which one second of physical simulation corresponds to several million iterations of these stress computations.
+Thus, the~complexity of the ANN, \ie the number of computational steps that must be performed to compute the flow stress as a function of the input variables, is a major parameter in the choice of the neural network.
+As an example, for~the model presented in Section~\ref{sec:ANN-traning}, $180$ internal variables, $15$ neurons on the first hidden layer and $7$ neurons on the second hidden layer were listed.
+Given the equations described in Sections~\ref{sec:ANN-equations} and~\ref{sec:ANN-derivative}, it will be necessary to compute $22$ exponentials, to~make matrix--vector products of size $15\times3$ and $15\times7$ plus many other numerical operations to compute the flow stress $\sigma^y$ and the $3$ derivatives of it with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
 
-Implementing the ANN flow law identified above is realized here in a VUHARD subroutine, similarly as proposed by van Rensburg \eal \cite{JansenVanRensburg-2012}, used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3 derivatives as a function of the model input data.
-This subroutine is used when calculating the stress tensor $\Sig_1$ at the end of an increment from the stress tensor at the beginning of the increment $\Sig_0$, the deformations, the material parameters and the history of the deformation at each finite element integration points, according to the stress integration algorithm based on the Radial-Return method as described in Simo \eal \cite{Simo-1998} for the general aspects, Ming \eal \cite{Ming-2018} for Abaqus Explicit FE code or Pantalé \eal \cite{Pantale-2004} for the DynELA FE code.
-Thus, without going into too much detail about the stress integration scheme used in finite element codes (the curious reader can refer to \cite{Ponthot-2002, Ming-2018, Pantale-2004, Liang-2022} for details about this method), Figure \ref{fig:RadialReturn} shows the location of the VUHARD subroutine used to compute the flow stress $\sigma^y$ and its derivative $\partial\sigma^y/\partial\Gamma$ used in the writing of the two quantities $\gamma(\Gamma)$ and $\gamma^{'}(\Gamma)$ used in the Newton-Raphson solving procedure from the following relation:
+Implementing the ANN flow law identified above is realized here in a VUHARD subroutine, similarly as proposed by van Rensburg et~al.~\cite{JansenVanRensburg-2012}, used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3 derivatives as a function of the model input data.
+This subroutine is used when calculating the stress tensor $\Sig_1$ at the end of an increment from the stress tensor at the beginning of the increment $\Sig_0$, the~deformations, the~material parameters and the history of the deformation at each finite element integration points, according to the stress integration algorithm based on the radial return method as described in Simo et~al.~\cite{Simo-1998} for the general aspects, Ming et~al.~\cite{Ming-2018} for Abaqus Explicit FE code, or Pantalé et~al.~\cite{Pantale-2004} for the DynELA FE code.
+Thus, without~going into too much detail about the stress integration scheme used in finite element codes (the curious reader can refer to~\cite{Ponthot-2002, Ming-2018, Pantale-2004, Liang-2022} for details about this method), Figure~\ref{fig:RadialReturn} shows the location of the VUHARD subroutine used to compute the flow stress $\sigma^y$ and its derivative $\partial\sigma^y/\partial\Gamma$ used in the writing of the two quantities $\gamma(\Gamma)$ and $\gamma^{'}(\Gamma)$ used in the Newton--Raphson solving procedure from the following relation:
 \begin{equation}
 \frac{d\sigma^{y}}{d\Gamma} = \sqrt{\frac{2}{3}}\left(\frac{\partial\sigma^{y}}{\partial\varepsilon^{p}}+\frac{1}{\Delta t}\frac{\partial\sigma^{y}}{\partial\mdot{\varepsilon}^p}+\frac{\eta\sigma^{y}}{\rho C_{p}}\frac{\partial\sigma^{y}}{\partial T}\right)\label{eq:derivatives},
 \end{equation}
-where $\Gamma$ is the consistency parameter used in the Radial-Return algorithm as defined by Simo \eal \cite{Simo-1998}, $\Delta t$ is the time increment, $\eta$ is the Taylor-Quinney coefficient defining the amount of plastic work converted into heat energy, $C_{p}$ is the specific heat coefficient, $\rho$ is the density of the material and $\partial \sigma^y/\partial\varepsilon^p$, $\partial \sigma^y/\partial\mdot\varepsilon$ and $\partial \sigma^y/\partial T$ are the three derivatives defined in Equation (\ref{eq:DANN3}).
-\begin{figure}[!ht]
-\centering
+where $\Gamma$ is the consistency parameter used in the radial return algorithm as defined by Simo et~al.~\cite{Simo-1998}, $\Delta t$ is the time increment, $\eta$ is the Taylor--Quinney coefficient defining the amount of plastic work converted into heat energy, $C_{p}$ is the specific heat coefficient, $\rho$ is the density of the material and $\partial \sigma^y/\partial\varepsilon^p$, $\partial \sigma^y/\partial\mdot\varepsilon$ and $\partial \sigma^y/\partial T$ are the three derivatives defined in Equation~(\ref{eq:DANN3}).
+\begin{figure}[H]
 \includegraphics[width=0.6\columnwidth]{Figures/VumatGeneralNewtonRaphson}
-\caption{General flowchart of the Radial-Return algorithm to compute the final stress tensor $\Sig_1$.}
+\caption{General flowchart of the radial return algorithm to compute the final stress tensor $\Sig_1$.}
 \label{fig:RadialReturn}
 \end{figure}
+\unskip
 
 %------------------------------------------------------------------------------------
-\subsection{Numerical simulations and benchmarks tests}\label{sec:Simulations}
+\subsection{Numerical Simulations and Benchmarks~Tests}\label{sec:Simulations}
 %------------------------------------------------------------------------------------
 
-To validate the proposed approach and to compare the different neural network architectures proposed in section \ref{sec:ANN-traning}, we propose here to simulate on the Abaqus Explicit FE code the high-temperature compression of a cylinder on a Gleeble-type thermomechanical device.
-We consider a cylinder in compression with an initial diameter $d_0=8~\text{mm}$ and an initial height $h_0=12~\text{mm}$ made of GCr15 material, for which the final height after compression is $h=6~\text{mm}$, that is a reduction of $50\%$ of its total height.
-The compression of the sample is done in $10~\text{s}$ so that the strain rate  $\mdot\varepsilon$ is in the corresponding range of the characterization of the material behavior defined by Ji \eal \cite{Ji-2018}.
-Concerning the flow laws, the 4 models presented in Section \ref{sec:ANN-traning} will be used and compared between them.
-Unfortunately, it is not possible here to compare these results with experimental results, even if the initial shape of the specimen is the same, as these are not available in the references of the work of Zhou \eal \cite{Zhou-2020} or Ji \eal \cite{Ji-2018}.
+To validate the proposed approach and to compare the different neural network architectures proposed in Section~\ref{sec:ANN-traning}, we propose here to simulate on the Abaqus Explicit FE code the high-temperature compression of a cylinder on a Gleeble-type thermomechanical device.
+We consider a cylinder in compression with an initial diameter $d_0=8~\text{mm}$ and an initial height $h_0=12~\text{mm}$ made of GCr15 material, for~which the final height after compression is $h=6~\text{mm}$, which is a reduction of $50\%$ of its total height.
+The compression of the sample is done in $10~\text{s}$ so that the strain rate  $\mdot\varepsilon$ is in the corresponding range of the characterization of the material behavior defined by Ji et~al.~\cite{Ji-2018}.
+Concerning the flow laws, the~4 models presented in Section~\ref{sec:ANN-traning} will be used and compared between them.
+Unfortunately, it is not possible here to compare these results with the experimental results, even if the initial shape of the specimen is the same, as~these are not available in the references of the work of Zhou et~al.~\cite{Zhou-2020} or Ji et~al.~\cite{Ji-2018}.
 
 The mesh of the sample is made with $850$ axis-symmetric quadrilateral finite elements with $4$ nodes and reduced integration (named CAX4R in the Abaqus software) with $50$ elements in the vertical direction and $17$ elements in the radial direction, respectively.
-The cylinder is between two rigid surfaces and a Coulomb friction law with a friction coefficient at the contact surfaces was set to $\mu=0.15$.
-The simulation time being fixed at $10~\text{s}$, in order to reduce the simulation time, considering that an explicit integration scheme is used, a global mass scaling is used for all simulations.
+The cylinder is between two rigid surfaces, and the Coulomb friction law with a friction coefficient at the contact surfaces was set to $\mu=0.15$.
+The simulation time being fixed at $10~\text{s}$ in~order to reduce the simulation time, considering that an explicit integration scheme is used, a~global mass scaling is used for all simulations.
 The VUHARD subroutine is compiled using the GNU gfortran 11.3.0 and linked to the main Abaqus Explicit executable.
-All benchmarks tests have been solved using Abaqus Explicit 2022 on a Dell XPS 13 laptop running Ubuntu 20.04 64~bits with 16~GiB of Ram and one 4 core i7-10510U Intel Processor.
-All computations have been done using the double precision option of Abaqus, with parallel threads execution on two cores.
+All benchmarks tests were solved using Abaqus Explicit 2022 on a Dell XPS 13 laptop running Ubuntu 20.04 64~bits with 16~GiB of RAM and one 4 core i7-10510U Intel Processor.
+All computations were performed using the double precision option of Abaqus, with~parallel threads execution on two~cores.
 
-Figure \ref{fig:peeqContourplot} shows the plastic strain field $\varepsilon^p$ contourplot within the structure at the end of the simulation for both the 3-7-4-1 (left side) and the 3-15-7-1 (right side) flow laws, while Figure \ref{fig:dpeeqContourplot} shows the temperature field $T$ contourplot for the same models.
-\begin{figure}[!ht]
-\centering
+Figure~\ref{fig:peeqContourplot} shows the plastic strain field $\varepsilon^p$ contourplot within the structure at the end of the simulation for both the 3-7-4-1 (left side) and the 3-15-7-1 (right side) flow laws, while Figure~\ref{fig:dpeeqContourplot} shows the temperature field $T$ contourplot for the same~models.
+\begin{figure}[H]
 \includegraphics[width=0.90\columnwidth]{Figures/peeq}
-\caption{Equivalent plastic strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
+\caption{Equivalent plastic strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow~laws.}
 \label{fig:peeqContourplot}
 \end{figure}
-\begin{figure}[!ht]
-\centering
+\unskip
+\begin{figure}[H]
 \includegraphics[width=0.90\columnwidth]{Figures/temp}
-\caption{Temperature $T$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow laws.}
+\caption{Temperature $T$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow~laws.}
 \label{fig:dpeeqContourplot}
 \end{figure}
-Both sides of the figures looks more or less the same with some visible differences from the left to the right concerning the shape of the isovalues zones and the maximum value, but in fact the two models with the lowest and the highest number of neurons give coherent results concerning for the plastic strain $\varepsilon^p$ and temperature $T$ contourplots.
-The maximum plastic strains are concentrated in the center of the specimen with a maximum value of $\varepsilon^p=0.89$ for the 3-7-4-1 model and $\varepsilon^p=0.95$ for the 3-15-7-1 model, which is slightly beyond the limit set by the training data which varies from $0$ to $0.7$.
-As shown by Pantalé \eal \cite{Pantale-2021}, the flow laws defined by neural networks are able to correctly extrapolate the flow stresses $\sigma^y$ when the plastic deformations are higher than at least $150\%$ of the maximum plastic strain used during training.
-Concerning the temperature $T$, the maximum value is around $T=795~\celsius$ and $T=799~\celsius$, which is very close and in accordance to the experiments used for the learning phase.
+Both sides of the figures look more or less the same with some visible differences from the left to the right concerning the shape of the isovalues zones and the maximum value, but~in fact, the two models with the lowest and the highest number of neurons give coherent results concerning for the plastic strain $\varepsilon^p$ and temperature $T$ contourplots.
+The maximum plastic strains are concentrated in the center of the specimen with a maximum value of $\varepsilon^p=0.89$ for the 3-7-4-1 model and $\varepsilon^p=0.95$ for the 3-15-7-1 model, which is slightly beyond the limit set by the training data, which varies from $0$ to $0.7$.
+As shown by Pantalé et~al.~\cite{Pantale-2021}, the~flow laws defined by neural networks are able to correctly extrapolate the flow stresses $\sigma^y$ when the plastic deformations are higher than at least $150\%$ of the maximum plastic strain used during training.
+Concerning the temperature $T$, the~maximum value is around $T=795~\celsius$ and $T=799~\celsius$, which is very close and in accordance to the experiments used for the learning~phase.
 
-Figure \ref{fig:radiusCurve} shows the evolution of the maximum radius $r$ of the cylinder (measured at the middle of the sample height) as a function of the vertical displacement of the top of the cylinder.
-\begin{figure}[!ht]
-\centering
+Figure~\ref{fig:radiusCurve} shows the evolution of the maximum radius $r$ of the cylinder (measured at the middle of the sample height) as a function of the vertical displacement of the top of the~cylinder.
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{Figures/radiusCurve}
 \caption{Evolution of the external radius $r$ of the specimen during the compression process using the four ANN flow laws (only the 3-15-7-1 model differs).}
 \label{fig:radiusCurve}
 \end{figure}
 This figure shows a slight difference of the four models during the numerical simulation.
-In the rest of this Section, the four models will be referred as $M_{1234}$.
+In the rest of this section, the~four models will be referred to as $M_{1234}$.
 The final value therefore differs from $r=5.870~\text{mm}$ for $M_{1}$ to  $r=5.917~\text{mm}$ for $M_{34}$.
 
-Table \ref{tab:SimuResults}, gathers the results allowing the comparison of the four identified flow laws.
-\begin{table}[h!]
-\centering
-\caption{Compression of a cylinder using the four ANN flow laws, results for the center element of the structure.}
-\begin{tabular}{lccccccc}
-	\hline
-	Model &   ANN    & $N_{inc}$ & $t$  &  $r$  & $\varepsilon^p$ &    $T$     & $\sigma$ \\
-	      &          &           & (s)  & (mm)  &                 & (\celsius) &  (MPa)   \\ \hline
-	$M_1$ & 3-7-4-1  &  1367147  & 886  & 5.870 &      0.891      &   794.74   &  161.95  \\
-	$M_2$ & 3-9-4-1  &  1405471  & 941  & 5.895 &      0.927      &   798.29   &  178.78  \\
-	$M_3$ & 3-9-7-1  &  1408680  & 1023 & 5.917 &      0.965      &   798.76   &  164.25  \\
-	$M_4$ & 3-15-7-1 &  1418586  & 1263 & 5.917 &      0.950      &   796.56   &  165.80  \\ \hline
-\end{tabular}
+Table~\ref{tab:SimuResults} gathers the results allowing the comparison of the four identified flow~laws.
+\begin{table}[H]
+\caption{Compression of a cylinder using the four ANN flow laws, results for the center element of the~structure.}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\begin{tabularx}{\textwidth}{lCCCCCCC}
+	\toprule
+	\textbf{Model} &   \textbf{ANN}    & \boldmath{$N_{inc}$} & \boldmath{$t$}  &  \boldmath{$r$}  & \boldmath{$\varepsilon^p$} &    \boldmath{$T$}     & \boldmath{$\sigma$} \\
+	      &          &           & \textbf{(s)}  & \textbf{(mm)}  &                 & \textbf{(\celsius)} &  \textbf{(MPa)}   \\ \midrule
+	$M_1$ & 3-7-4-1  &  1,367,147  & 886  & 5.870 &      0.891      &   794.74   &  161.95  \\
+	$M_2$ & 3-9-4-1  &  1,405,471  & 941  & 5.895 &      0.927      &   798.29   &  178.78  \\
+	$M_3$ & 3-9-7-1  &  1,408,680  & 1023 & 5.917 &      0.965      &   798.76   &  164.25  \\
+	$M_4$ & 3-15-7-1 &  1,418,586  & 1263 & 5.917 &      0.950      &   796.56   &  165.80  \\ \bottomrule
+\end{tabularx}
 \label{tab:SimuResults}
 \end{table}
-It appears from the study of this table that the modification of the number of neurons in the hidden layers has an influence on the computation time $t$ which increases with the complexity of the network structure as expected and varies within the range from $886$~s to $1263$~s approximately, since this information is hard to capture from a commercial software that does not contain accurate CPU time reports as the Abaqus software.
+
+\vspace{-6pt}
+
+It appears from the study of this table that the modification of the number of neurons in the hidden layers has an influence on the computation time $t$, which increases with the complexity of the network structure as expected and varies within the range from $886$~s to $1263$~s approximately since this information is hard to capture from a commercial software that does not contain accurate CPU time reports as the Abaqus software.
 It is obvious from this table that all models do not give exactly the same results.
-Computing time is increasing from $M_{1}$ to $M_4$, proof that the increase in complexity of the ANN has an influence on the global computation time $t$.
+The computing time increases from $M_{1}$ to $M_4$, proof that the increase in complexity of the ANN has an influence on the global computation time $t$.
 
-The results, both from the point of view of the dimensional characteristics of the sample (maximum radius $r$), or the internal fields such as the temperatures $T$ and the plastic strains $\varepsilon^p$ and equivalent stresses $\sigma$ in the center of the sample are more or less the same for all $M_{1234}$ flow models.
+The results, both from the point of view of the dimensional characteristics of the sample (maximum radius $r$), or~the internal fields, such as the temperatures $T$ and the plastic strains $\varepsilon^p$ and equivalent stresses $\sigma$ in the center of the sample, are more or less the same for all $M_{1234}$ flow~models.
 
-To have a better analysis of the difference between models $M_{1234}$, Figure \ref{fig:misesCurve} shows the evolution of the equivalent von Mises stress $\sigma$ for the element in the center of the cylinder during the compression.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.75\columnwidth]{Figures/vonMisesCurve}
-\caption{Evolution of the equivalent von Mises stress $\sigma$ of the specimen during the compression process using the four ANN flow laws.}
+To have a better analysis of the difference between models $M_{1234}$, Figure~\ref{fig:misesCurve} shows the evolution of the equivalent von Mises stress $\sigma$ for the element in the center of the cylinder during the~compression.
+\begin{figure}[H]
+\includegraphics[width=0.72\columnwidth]{Figures/vonMisesCurve}
+\caption{Evolution of the equivalent von Mises stress $\sigma$ of the specimen during the compression process using the four ANN flow~laws.}
 \label{fig:misesCurve}
 \end{figure}
-As shown in this figure, the $M_{1234}$ models give equivalent results with more or less the same value of the equivalent stress $\sigma$ at the end of the cylinder compression as shown in Table \ref{tab:SimuResults}.
+As shown in this figure, the~$M_{1234}$ models give equivalent results with more or less the same value of the equivalent stress $\sigma$ at the end of the cylinder compression as shown in Table~\ref{tab:SimuResults}.
 The appearance of the curve for the $M_3$ and $M_4$ models is very oscillating in the first $1/3$ of the graph.
-This is probably related to the fact that the $M_{34}$ models are over-fitted and cannot serve as a universal approximator for the flow stress.
+This is probably related to the fact that the $M_{34}$ models are over-fitted and cannot serve as a universal approximator for the flow~stress.
 
-To verify this assumption, Figure \ref{fig:ShapeOF1} shows a plot of the predicted flow stress $\sigma^y$ using the 3-15-7-1 ANN model as a function of the plastic strain $\varepsilon^p$ and the plastic strain rate $\mdot\varepsilon$ for a fixed temperature $T=750~\celsius$.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.75\columnwidth]{Figures/Shape-3-15-7-1}
-\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-15-7-1 model.}
+To verify this assumption, Figure~\ref{fig:ShapeOF1} shows a plot of the predicted flow stress $\sigma^y$ using the 3-15-7-1 ANN model as a function of the plastic strain $\varepsilon^p$ and the plastic strain rate $\mdot\varepsilon$ for a fixed temperature $T=750~\celsius$.
+\begin{figure}[H]
+\includegraphics[width=0.72\columnwidth]{Figures/Shape-3-15-7-1}
+\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-15-7-1~model.}
 \label{fig:ShapeOF1}
 \end{figure}
-This figure shows that when $\mdot\varepsilon$ varies between $0.001~\ps$ and $0.01~\ps$, and for a value of $\varepsilon^p<0.3$, the representative curves of $\sigma^y$ ‘cross’, demonstrates the poor interpolation of the flow stresses $\sigma^y$ when the strain rate varies (there is a zone in black dashed lines above the blue line).
-Thus, for a strain rate between $0.001~\ps$ and $0.01~\ps$, and for a plastic strain less than $0.3$, the flow stress $\sigma^y$ is greater than the value of $\sigma^y$ calculated for the same plastic strain and $\mdot\varepsilon=0.001~\ps$, which is physically not admissible for the behavior of GCr15 material.
-This causes the oscillations visible in Figure \ref{fig:misesCurve}.
-For comparison, Figure \ref{fig:ShapeOF2} shows a similar study to Figure \ref{fig:ShapeOF1}, for the 3-7-4-1 model.
-\begin{figure}[!ht]
-\centering
+This figure shows that when $\mdot\varepsilon$ varies between $0.001~\ps$ and $0.01~\ps$, and~for a value of $\varepsilon^p<0.3$, the~representative curves of $\sigma^y$ ‘cross’ demonstrate the poor interpolation of the flow stresses $\sigma^y$ when the strain rate varies (there is a zone in black dashed lines above the blue line).
+Thus, for~a strain rate between $0.001~\ps$ and $0.01~\ps$, and~for a plastic strain less than $0.3$, the~flow stress $\sigma^y$ is greater than the value of $\sigma^y$ calculated for the same plastic strain and $\mdot\varepsilon=0.001~\ps$, which is physically not admissible for the behavior of GCr15 material.
+This causes the oscillations visible in Figure~\ref{fig:misesCurve}.
+For comparison, Figure~\ref{fig:ShapeOF2} shows a similar study to Figure~\ref{fig:ShapeOF1} for~the 3-7-4-1~model.
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{Figures/Shape-3-7-4-1}
-\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-7-4-1 model.}
+\caption{Predicted flow stress $\sigma^y$ as a function of ($\varepsilon^p, \mdot\varepsilon$) for a fixed temperature $T=750~\celsius$ using the 3-7-4-1~model.}
 \label{fig:ShapeOF2}
 \end{figure}
-This time, there is no visible area where the representative curves 'cross' except perhaps for low values of the strain where it is hard to distinguish the curves.
+This time, there is no visible area where the representative curves 'cross', except perhaps for low values of the strain, where it is hard to distinguish the~curves.
 
-This problem occurs for the 3-15-7-1 ANN because we do not have enough training points regarding the strain rate $\mdot\varepsilon$ (only 3 strain rates are used) regarding the number of internal variable of the ANN, and this leads to erroneous calculations of the flow stress $\sigma^y$ when the strain rate values differ from those used during training ($0.001~\ps$, $0.01~\ps$ and $0.1~\ps$).
-Even though the $M_4$ model has the lowest values of $\MARE$ and $\RMSE$ during the training phase, it is not usable for numerical simulation of the GCr15 flow law in FE simulations. The same type of conclusions can be draw for the $M_3$ model.
+This problem occurs for the 3-15-7-1 ANN because we do not have enough training points regarding the strain rate $\mdot\varepsilon$ (only 3 strain rates are used) regarding the number of internal variable of the ANN, and~this leads to erroneous calculations of the flow stress $\sigma^y$ when the strain rate values differ from those used during training ($0.001~\ps$, $0.01~\ps$ and $0.1~\ps$).
+Even though the $M_4$ model has the lowest values of $\MARE$ and $\RMSE$ during the training phase, it is not usable for numerical simulation of the GCr15 flow law in FE simulations. The~same type of conclusions can be drawn for the $M_3$ model.
 
-We can conclude here that only the two first models $M_{12}$ can be used for numerical simulation of the compression of a cylinder, but we must avoid the models $M_{34}$, as it seems to be over-fitted, and the behavior of the GCr15 alloy is badly represented even if the curves reported in Figure \ref{fig:CompExpANN-15-7} shows that the prediction of model $M_4$ is excellent.
+We can conclude here that only the two first models $M_{12}$ can be used for numerical simulation of the compression of a cylinder, but~we must avoid the models $M_{34}$, as~it seems to be over-fitted, and~the behavior of the GCr15 alloy is badly represented, even if the curves reported in Figure~\ref{fig:CompExpANN-15-7} show that the prediction of model $M_4$ is~excellent.
 
 %------------------------------------------------------------------------------------
-\section{Conclusions and future work}\label{sec:Conclusions}
+\section{Conclusions and Future~Work}\label{sec:Conclusions}
 %------------------------------------------------------------------------------------
 
-In this paper, a flow law based on an artificial neural network capable of predicting the flow stress of a material as a function of input data such as the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ for a metallic material subjected to high thermomechanical loading has been presented.
+In this paper, a~flow law based on an artificial neural network capable of predicting the flow stress of a material as a function of input data, such as the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$, for a metallic material subjected to high thermomechanical loading is~presented.
 
-From the equations that govern the writing of the neural network, the expressions of the derivatives of the flow stress of the model as a function of the plastic strain $\varepsilon^p$, the strain rate $\mdot\varepsilon$ and the temperature $T$ have been established.
-These expressions allow the transfer of the neural network behavior into a VUHARD subroutine written in FORTRAN 77 language to allow the use of this network for the computation of the material flow stresses within the Abaqus FE code.
+From the equations that govern the writing of the neural network, the~expressions of the derivatives of the flow stress of the model as a function of the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$ were established.
+These expressions allow the transfer of the neural network behavior into a VUHARD subroutine written in FORTRAN 77 language to allow the use of this network for the computation of the material flow stresses within the Abaqus FE~code.
 
-In a first step, data from the works of Ji \eal \cite{Ji-2018} and Zhou \eal \cite{Zhou-2020}, allowed to train several architectures of the proposed model and to compare the results of these ANN models regarding the fidelity of reproduction of the experimental behavior.
-The comparison of the results obtained allowed to validate the approach and to show the superiority of the ANN model compared to the analytical models based on Johnson-Cook or Arrhenius flow laws, both in terms of fidelity of the model and quality of the results.
-In a second step, after transferring the training data to the VUHARD subroutines for the Abaqus FE code, we have shown the consistency and quality of the numerical results obtained during the numerical simulation of the compression of a GCr15 alloy cylinder.
+In a first step, data from the works of Ji et~al.~\cite{Ji-2018} and Zhou et~al.~\cite{Zhou-2020}, allowed to train several architectures of the proposed model and to compare the results of these ANN models regarding the fidelity of reproduction of the experimental behavior.
+The comparison of the results obtained allowed to validate the approach and to show the superiority of the ANN model compared to the analytical models based on Johnson--Cook or Arrhenius flow laws, both in terms of the fidelity of the model and quality of the results.
+In a second step, after~transferring the training data to the VUHARD subroutines for the Abaqus FE code, we showed the consistency and quality of the numerical results obtained during the numerical simulation of the compression of a GCr15 alloy cylinder.
 In the same section, we also discussed the problems of over-fitting the ANN when the number of neurons is too large compared to the training data ranges.
-It is therefore important to always adjust the structure and size of the neural network to the experimental data that we wish to approximate to avoid this over-fitting phenomenon.
+It is therefore important to always adjust the structure and size of the neural network to the experimental data that we wish to approximate to avoid this over-fitting~phenomenon.
 
-This work has thus allowed to highlight the significant contributions of flow laws based on neural networks in numerical simulation by finite elements on a commercial FE code such as the Abaqus software.
-The quality of the results obtained allows us to go further in the use of the simulation results and in particular to consider that the results of these finite element simulations can predict the phase transformations and the dynamic recrystallization within the material during the thermomechanical transformation at high temperature.
+This work thus allowed to highlight the significant contributions of flow laws based on neural networks in numerical simulation by finite elements on a commercial FE code, such as the Abaqus software.
+The quality of the results obtained allows us to go further in the use of the simulation results and in particular to consider that the results of these finite element simulations can predict the phase transformations and the dynamic recrystallization within the material during the thermomechanical transformation at high~temperature.
 
 \vspace{6pt}
 
 %\authorcontributions{For research articles with several authors, a short paragraph specifying their individual contributions must be provided. The following statements should be used ``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.; validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation, X.X.; resources, X.X.; data curation, X.X.; writing---original draft preparation, X.X.; writing---review and editing, X.X.; visualization, X.X.; supervision, X.X.; project administration, X.X.; funding acquisition, Y.Y. All authors have read and agreed to the published version of the manuscript.'', please turn to the  \href{http://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT taxonomy} for the term explanation. Authorship must be limited to those who have contributed substantially to the work~reported.}
 
-\funding{This research received no external funding.}
+\funding{This research received no external~funding.}
 
 %\institutionalreview{In this section, you should add the Institutional Review Board Statement and approval number, if relevant to your study. You might choose to exclude this statement if the study did not require ethical approval. Please note that the Editorial Office might ask you for further information. Please add “The study was conducted in accordance with the Declaration of Helsinki, and approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving humans. OR “The animal study protocol was approved by the Institutional Review Board (or Ethics Committee) of NAME OF INSTITUTE (protocol code XXX and date of approval).” for studies involving animals. OR “Ethical review and approval were waived for this study due to REASON (please provide a detailed justification).” OR “Not applicable” for studies not involving humans or animals.}
 
@@ -693,14 +690,14 @@ The following abbreviations are used in this manuscript:\\
 \end{tabular}
 }
 
-\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixtitles{yes} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If~the appendix sections contain a heading then change the argument to "yes".
 \appendixstart
 \appendix
 %----------------------------------------------------------------------------------
-\section[\appendixname~\thesection]{ANN flow law coefficients\label{sec:Appendix}}
+\section[\appendixname~\thesection]{ANN Flow Law Coefficients\label{sec:Appendix}}
 %----------------------------------------------------------------------------------
 
-In order to complete this paper, we report here after the computing process and the $65$ coefficients of the Artificial Neural Network ANN-3-7-4-1 model used in Section \ref{sec:ANN-traning}.
+In order to complete this paper, we report here after the computing process and the $65$~coefficients of the artificial neural network ANN-3-7-4-1 model used in Section~\ref{sec:ANN-traning}.
 The weight matrix for the first hidden layer $\w_1$ is a $7\times3$ matrix:
 \begin{equation*}
 \w_1 = \left[
@@ -714,7 +711,8 @@ The weight matrix for the first hidden layer $\w_1$ is a $7\times3$ matrix:
 	3.4733   & 6.0173   & -2.2098
 \end{array}\right]
 \end{equation*}
-The biases of the first hidden layer $\overrightarrow{b_1}$ is a $7$ components vector:
+
+The biases of the first hidden layer $\overrightarrow{b_1}$ is a $7$-component vector:
 \begin{equation*}
 \overrightarrow{b}_1 = \left[
 \begin{array}{r}
@@ -727,6 +725,7 @@ The biases of the first hidden layer $\overrightarrow{b_1}$ is a $7$ components 
 	-7.2849
 \end{array}\right]
 \end{equation*}
+
 The weight matrix for the second hidden layer $\w_2$ is a $4\times7$ matrix:
 \begin{equation*}
 \w_2^T = \left[
@@ -740,7 +739,8 @@ The weight matrix for the second hidden layer $\w_2$ is a $4\times7$ matrix:
 	0.9444   & 3.5816   & 0.4988   & -0.6497
 \end{array}\right]
 \end{equation*}
-The biases of the second hidden layer $\overrightarrow{b_2}$ is a $4$ components vector:
+
+The biases of the second hidden layer $\overrightarrow{b_2}$ are a $4$-component vector:
 \begin{equation*}
 \overrightarrow{b}_2 = \left[
 \begin{array}{r}
@@ -750,7 +750,8 @@ The biases of the second hidden layer $\overrightarrow{b_2}$ is a $4$ components
 	1.7122
 \end{array}\right]
 \end{equation*}
-The weight vector for the output layer $\overrightarrow{w}$ is a $4$ components vector:
+
+The weight vector for the output layer $\overrightarrow{w}$ is a $4$-component vector:
 \begin{equation*}
 \overrightarrow{w} = \left[
 \begin{array}{r}
@@ -760,20 +761,25 @@ The weight vector for the output layer $\overrightarrow{w}$ is a $4$ components 
 	-0.1879
 \end{array}\right]
 \end{equation*}
+
 The bias of the output layer $b$ is a scalar:
 \begin{equation*}
 b = 0.1631
 \end{equation*}
 
-The boundaries of the range of the corresponding field are:
+The boundaries of the range of the corresponding field~are as follows:
 \begin{itemize}
 \item $\varepsilon^p\!\in\!\left[0.0,0.7\right]$
 \item $\mdot{\varepsilon}\!\in\!\left[0.001~\ps,0.1~\ps\right]$
 \item $T\!\in\!\left[750~\celsius,1300~\celsius\right]$
 \item $\sigma\!\in\!\left[3.052~\MPa,306.096~\MPa\right]$.
 \end{itemize}
+
 The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 
+
+\begin{adjustwidth}{-\extralength}{0cm}
+%\centering %% If there is a figure in wide page, please release command \centering
 \reftitle{References}
 
 % Citations and References in Supplementary files are permitted provided that they also appear in the reference list here.
@@ -781,7 +787,355 @@ The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 %=====================================
 % References, variant A: external bibliography
 %=====================================
-\bibliography{bibliography}
+%\bibliography{bibliography}
+\begin{thebibliography}{999}
+
+\bibitem[Pantal{\'e} \em{et~al.}(2004)Pantal{\'e}, Caperaa, and
+  Rakotomalala]{Pantale-2004}
+Pantal{\'e}, O.; Caperaa, S.; Rakotomalala, R.
+\newblock Development of an object-oriented finite element program: Application
+  to metal-forming and impact simulations.
+\newblock {\em J. Comput. Appl. Math.} {\bf 2004},
+  {\em 168},~341--351.
+\newblock {{https://doi.org/10.1016/j.cam.2003.04.009}}.
+
+\bibitem[Dey \em{et~al.}(2007)Dey, Borvik, Hopperstad, and Langseth]{Dey-2007}
+Dey, S.; Borvik, T.; Hopperstad, O.S.; Langseth, M.
+\newblock {On the influence of constitutive relation in projectile impact of
+  steel plates}.
+\newblock {\em Int. J. Impact Eng.} {\bf 2007}, {\em
+  34},~464--486.
+\newblock {{https://doi.org/10.1016/j.ijimpeng.2005.10.003}}.
+
+\bibitem[Lin \em{et~al.}(2009)Lin, Chen, and Zhang]{Lin-2009}
+Lin, Y.C.; Chen, M.S.; Zhang, J.
+\newblock Modeling of flow stress of {42CrMo} steel under hot compression.
+\newblock {\em Mater. Sci. Eng. A} {\bf 2009}, {\em
+  499},~88--92.
+\newblock {{https://doi.org/10.1016/j.msea.2007.11.119}}.
+
+\bibitem[Kolsky(1949)]{Kolsky-1949}
+Kolsky, H.
+\newblock An {Investigation} of the {Mechanical} {Properties} of {Materials} at
+  very {High} {Rates} of {Loading}.
+\newblock {\em Proc. Phys. Society. Sect. B} {\bf 1949}, {\em
+  62},~676--700.
+\newblock {{https://doi.org/10.1088/0370-1301/62/11/302}}.
+
+\bibitem[Lee and Liu(2006)]{Lee-2006}
+Lee, W.S.; Liu, C.Y.
+\newblock {The effects of temperature and strain rate on the dynamic flow
+  behaviour of different steels}.
+\newblock {\em Mater. Sci. Eng. A} {\bf 2006}, {\em
+  426},~101--113.
+\newblock {{https://doi.org/10.1016/j.msea.2006.03.087}}.
+
+\bibitem[Lennon and Ramesh(2004)]{Lennon-2004}
+Lennon, A.M.; Ramesh, K.T.
+\newblock {The influence of crystal structure on the dynamic behavior of
+  materials at high temperatures}.
+\newblock {\em Int. J. Plast.} {\bf 2004}, {\em
+  20},~269--290.
+\newblock {{https://doi.org/10.1016/S0749-6419(03)00037-8}}.
+
+\bibitem[Zhang \em{et~al.}(2012)Zhang, Chen, and Baoxiang]{Zhang-2012}
+Zhang, J.; Chen, B.; Baoxiang, Z.
+\newblock {Effect of initial microstructure on the hot compression deformation
+  behavior of a 2219 aluminum alloy}.
+\newblock {\em Mater. Des.} {\bf 2012}, {\em 34},~15--21.
+\newblock {{https://doi.org/10.1016/j.matdes.2011.07.061}}.
+
+\bibitem[Johnson and Cook(1983)]{Johnson-1983}
+Johnson, G.R.; Cook, W.H.
+\newblock {A Constitutive Model and Data for Metals Subjected to Large Strains,
+  High Strain Rates, and High Temperatures}.
+\newblock In Proceedings of the 7th {{International Symposium}} on
+  {{Ballistics}}, The Hague, The Netherlands, 19--21 April 1983;
+ pp. 541--547.
+
+\bibitem[Johnson and Holmquist(1988)]{Johnson-1988}
+Johnson, G.R.; Holmquist, T.J.
+\newblock {Evaluation of cylinder‐impact test data for constitutive model
+  constants}.
+\newblock {\em J. Appl. Phys.} {\bf 1988}, {\em 64},~3901--3910.
+\newblock {{https://doi.org/10.1063/1.341344}}.
+
+\bibitem[Zerilli and Armstrong(1987)]{Zerilli-1987}
+Zerilli, F.J.; Armstrong, R.W.
+\newblock {Dislocation‐mechanics‐based constitutive relations for material
+  dynamics calculations}.
+\newblock {\em J. Appl. Phys.} {\bf 1987}, {\em 61},~1816--1825.
+\newblock {{https://doi.org/10.1063/1.338024}}.
+
+\bibitem[Lin and Chen(2011)]{Lin-2011}
+Lin, Y.; Chen, X.M.
+\newblock {A critical review of experimental results and constitutive
+  descriptions for metals and alloys in hot working}.
+\newblock {\em Mater. Des.} {\bf 2011}, {\em 32},~1733--1759.
+\newblock {{https://doi.org/10.1016/j.matdes.2010.11.048}}.
+
+\bibitem[Li \em{et~al.}(2013)Li, Wang, Duan, and Liu]{Li-2013}
+Li, H.Y.; Wang, X.F.; Duan, J.Y.; Liu, J.J.
+\newblock {A modified Johnson Cook model for elevated temperature flow behavior
+  of T24 steel}.
+\newblock {\em Mater. Sci. Eng. A} {\bf 2013}, {\em
+  577},~138--146.
+\newblock {{https://doi.org/10.1016/j.msea.2013.04.041}}.
+
+\bibitem[Zhang \em{et~al.}(2015)Zhang, Shangguan, Xie, and Liu]{Zhang-2015}
+Zhang, D.N.; Shangguan, Q.Q.; Xie, C.J.; Liu, F.
+\newblock {A modified Johnson--Cook model of dynamic tensile behaviors for
+  7075-T6 aluminum alloy}.
+\newblock {\em J. Alloy. Compd.} {\bf 2015}, {\em
+  619},~186--194.
+\newblock {{https://doi.org/10.1016/j.jallcom.2014.09.002}}.
+
+\bibitem[Zhou \em{et~al.}(2020)Zhou, Ji, and Zhu]{Zhou-2020}
+Zhou, Q.; Ji, C.; Zhu, M.y.
+\newblock {Research on Several Constitutive Models to Predict the Flow
+  Behaviour of GCr15 Continuous Casting Bloom with Heavy Reduction}.
+\newblock {\em Mater. Res. Express} {\bf 2020}, {\em 6}.
+\newblock {{https://doi.org/10.1088/2053-1591/ab52c2}}.
+
+\bibitem[Jia \em{et~al.}(2021)Jia, Guan, Zang, Wang, and Lei]{Jia-2021}
+Jia, Z.; Guan, B.; Zang, Y.; Wang, Y.; Lei, M.
+\newblock {Modified Johnson-Cook model of aluminum alloy 6016-T6 sheets at low
+  dynamic strain rates}.
+\newblock {\em Mater. Sci. Eng. A} {\bf 2021}, {\em
+  820},~141565.
+\newblock {{https://doi.org/10.1016/j.msea.2021.141565}}.
+
+\bibitem[Rule and Jones(1998)]{Rule-1998}
+Rule, W.K.; Jones, S.E.
+\newblock {A revised form for the Johnson-Cook Strengh Model}.
+\newblock {\em Int. J. Impact Eng.} {\bf 1998}, {\em
+  21},~609--624.
+\newblock {{https://doi.org/10.1016/S0734-743X(97)00081-X}}.
+
+\bibitem[Lin \em{et~al.}(2010)Lin, Chen, and Liu]{Lin2010}
+Lin, Y.; Chen, X.M.; Liu, G.
+\newblock {A modified Johnson--Cook model for tensile behaviors of typical
+  high-strength alloy steel}.
+\newblock {\em Mater. Sci. Eng. A} {\bf 2010}, {\em
+  527},~6980--6986.
+\newblock {{https://doi.org/10.1016/j.msea.2010.07.061}}.
+
+\bibitem[Lennon and Ramesh(2017)]{Muralli-2017}
+Lennon, A.M.; Ramesh, K.T.
+\newblock {On the performance of modified Zerilli-Armstrong constitutive model
+  in simulating the metal-cutting process}.
+\newblock {\em J. Manuf. Process.} {\bf 2017}, {\em
+  28},~253--265.
+\newblock {{https://doi.org/10.1016/j.jmapro.2017.06.011}}.
+
+\bibitem[Cheng and Mahnken(2021)]{Cheng-2021}
+Cheng, C.; Mahnken, R.
+\newblock {A modified Zerilli--Armstrong model as the asymmetric visco-plastic
+  part of a multi-mechanism model for cutting simulations}.
+\newblock {\em Arch. Appl. Mech.} {\bf 2021}, \emph{91}, 3869--3888.
+\newblock {{https://doi.org/10.1007/s00419-021-01982-6}}.
+
+\bibitem[Hensel and Spittel(1978)]{Hensel-1978}
+Hensel, A.; Spittel, T.
+\newblock {\em {Kraft- und Arbeitsbedarf Bildsamer Formgebungsverfahren}};
+Deutscher Verlag f{\"u}r Grundstoffindustrie, Leipzig, Duchland, 1978.
+
+\bibitem[Chadha \em{et~al.}(2018)Chadha, Shahriari, and Jahazi]{Chadha-2018}
+Chadha, K.; Shahriari, D.; Jahazi, M.
+\newblock {An Approach to Develop Hansel--Spittel Constitutive Equation during
+  Ingot Breakdown Operation of Low Alloy Steels}. In {\em Frontiers in
+  Materials Processing, Applications, Research and Technology}; Springer, Hyderabad, India, 2018; pp. 239--246.
+\newblock {{https://doi.org/10.1007/978-981-10-4819-7\_20}}.
+
+\bibitem[Jonas \em{et~al.}(1969)Jonas, Sellars, and Tegart]{Jonas-1969}
+Jonas, J.; Sellars, C.; Tegart, W.M.
+\newblock {Strength and structure under hot-working conditions}.
+\newblock {\em Metall. Rev.} {\bf 1969}, {\em 14},~1--24.
+\newblock {{https://doi. org/10.1179/mtlr.1969.14.1.1}}.
+
+\bibitem[He \em{et~al.}(2013)He, Xie, Zhang, and Wang]{He-2013}
+He, A.; Xie, G.; Zhang, H.; Wang, X.
+\newblock {A comparative study on Johnson--Cook, modified Johnson--Cook and
+  Arrhenius--type constitutive models to predict the high temperature flow
+  stress in 20CrMo alloy steel}.
+\newblock {\em Mater. Des. (1980-2015)} {\bf 2013}, {\em 52},~677--685.
+\newblock {{https://doi.org/10.1016/j.matdes.2013.06.010}}.
+
+\bibitem[Liang \em{et~al.}(2022)Liang, Kong, Zhang, and Li]{Liang-2022}
+Liang, P.; Kong, N.; Zhang, J.; Li, H.
+\newblock {A Modified Arrhenius-Type Constitutive Model and its Implementation
+  by Means of the Safe Version of Newton--Raphson Method}.
+\newblock {\em Steel Res. Int.} {\bf 2022}, \emph{94}, 2200443.
+\newblock {{https://doi.org/10.1002/srin.202200443}}.
+
+\bibitem[Nemat-Nasser and Guo(2003)]{NematNasser-2003}
+Nemat-Nasser, S.; Guo, W.G.
+\newblock {Thermomechanical response of DH-36 structural steel over a wide
+  range of strain rates and temperatures}.
+\newblock {\em Mech. Mater.} {\bf 2003}, {\em 35},~1023--1047.
+\newblock {{https://doi.org/10.1016/S0167-6636(02)00323-X}}.
+
+\bibitem[Khan \em{et~al.}(2004)Khan, {Sung Suh}, and Kazmi]{Khan-2004}
+Khan, A.S.; {Sung Suh}, Y.; Kazmi, R.
+\newblock {Quasi-static and dynamic loading responses and constitutive modeling
+  of titanium alloys}.
+\newblock {\em Int. J. Plast.} {\bf 2004}, {\em
+  20},~2233--2248.
+\newblock {{https://doi.org/10.1016/j.ijplas.2003.06.005}}.
+
+\bibitem[Gao(2007)]{Gao-2007-FRT}
+Gao, C.Y.
+\newblock {{FE}} Realization of a Thermo-Visco-Plastic Constitutive Model Using
+  {{VUMAT}} in {{ABAQUS}}/{{Explicit}} Program.
+\newblock In \emph{Computational Mechanics}; {Springer}: {Berlin/Heidelberg}, Germany, 2007; pp. 301--301.
+
+\bibitem[Ming and Pantal{\'e}(2018)]{Ming-2018}
+Ming, L.; Pantal{\'e}, O.
+\newblock {An Efficient and Robust VUMAT Implementation of Elastoplastic
+  Constitutive Laws in Abaqus/Explicit Finite Element Code}.
+\newblock {\em Mech. Ind.} {\bf 2018}, {\em 19},~308.
+\newblock {{https://doi.org/doi.org/10.1051/meca/2018021}}.
+
+\bibitem[Zener and Hollomon(1944)]{Zener-1944}
+Zener, C.; Hollomon, J.H.
+\newblock {Effect of Strain Rate Upon Plastic Flow of Steel}.
+\newblock {\em J. Appl. Phys.} {\bf 1944}, {\em 15},~22--32.
+\newblock {{https://doi.org/10.1063/ 1.1707363}}.
+
+\bibitem[Ji \em{et~al.}(2018)Ji, Wang, Wu, and Zhu]{Ji-2018}
+Ji, C.; Wang, Z.; Wu, C.; Zhu, M.
+\newblock {Constitutive Modeling of the Flow Stress of GCr15 Continuous Casting
+  Bloom in the Heavy Reduction Process}.
+\newblock {\em Metall. Mater. Trans. B} {\bf 2018}, {\em
+  49},~767--782.
+\newblock {{https://doi.org/10.1007/s11663-018-1188-9}}.
+
+\bibitem[Pantal{\'e} \em{et~al.}(2022)Pantal{\'e}, {Tize Mha}, and
+  Tongne]{Pantale-2021}
+Pantal{\'e}, O.; {Tize Mha}, P.; Tongne, A.
+\newblock {Efficient implementation of non-linear flow law using neural network
+  into the Abaqus Explicit FEM code}.
+\newblock {\em Finite Elem. Anal. Des.} {\bf 2022}, {\em
+  198},~103647.
+\newblock {{https://doi.org/10.1016/j.finel.2021.103647}}.
+
+\bibitem[Minsky and Papert(1969)]{Minsky-1969}
+Minsky, M.L.; Papert, S.
+\newblock {\em Perceptrons; an {{Introduction}} to {{Computational Geometry}}};
+  MIT Press:, Cambridge, England, 1969.
+
+\bibitem[Hornik \em{et~al.}(1989)Hornik, Stinchcombe, and White]{Hornik-1989}
+Hornik, K.; Stinchcombe, M.; White, H.
+\newblock {Multilayer Feedforward Networks Are Universal Approximators}.
+\newblock {\em Neural Netw. } {\bf 1989}, {\em 2},~359--366.
+\newblock {{https://doi.org/10.1016/0893-6080(89)90020-8}}.
+
+\bibitem[Gorji \em{et~al.}(2020)Gorji, Mozaffar, Heidenreich, Cao, and
+  Mohr]{Gorji-2020}
+Gorji, M.B.; Mozaffar, M.; Heidenreich, J.N.; Cao, J.; Mohr, D.
+\newblock On the Potential of Recurrent Neural Networks for Modeling Path
+  Dependent Plasticity.
+\newblock {\em J. Mech. Phys. Solids} {\bf 2020}, {\em
+  143}.
+
+\bibitem[Jamli and Farid(2019)]{Jamli-2019-SNN}
+Jamli, M.; Farid, N.
+\newblock The Sustainability of Neural Network Applications within Finite
+  Element Analysis in Sheet Metal Forming: {{A}} Review.
+\newblock {\em Measurement} {\bf 2019}, {\em 138},~446--460.
+
+\bibitem[Jiao and Alavi(2020)]{Jiao-2020}
+Jiao, P.; Alavi, A.H.
+\newblock Artificial Intelligence-Enabled Smart Mechanical Metamaterials:
+  Advent and Future Trends.
+\newblock {\em Int. Mater. Rev.} {\bf 2020}, \emph{66}, 365--393.
+
+\bibitem[Ghaboussi \em{et~al.}(1991)Ghaboussi, Garrett, and Wu]{Ghaboussi-1991}
+Ghaboussi, J.; Garrett, J.H.; Wu, X.
+\newblock Knowledge-{{Based Modeling}} of {{Material Behavior}} with {{Neural
+  Networks}}.
+\newblock {\em J. Eng. Mech.} {\bf 1991}, {\em
+  117},~132--153.
+
+\bibitem[Ghaboussi \em{et~al.}(1998)Ghaboussi, Pecknold, Zhang, and
+  {Haj-Ali}]{Ghaboussi-1998}
+Ghaboussi, J.; Pecknold, D.A.; Zhang, M.; {Haj-Ali}, R.M.
+\newblock Autoprogressive Training of Neural Network Constitutive Models. \emph{ Int. J. Numer. Methods Eng.} \textbf{1998}, \emph{42}, 105--126.
+
+\bibitem[Ghaboussi and Sidarta(1998)]{Ghaboussi-1998-NNA}
+Ghaboussi, J.; Sidarta, D.
+\newblock New Nested Adaptive Neural Networks ({{NANN}}) for Constitutive
+  Modeling.
+\newblock {\em Comput. Geotech.} {\bf 1998}, {\em 22},~29--52.
+
+\bibitem[Lin \em{et~al.}(2008)Lin, Zhang, and Zhong]{Lin-2008}
+Lin, Y.; Zhang, J.; Zhong, J.
+\newblock Application of Neural Networks to Predict the Elevated Temperature
+  Flow Behavior of a Low Alloy Steel.
+\newblock {\em Comput. Mater. Sci.} {\bf 2008}, {\em 43},~752--758.
+
+\bibitem[Ashtiani and Shahsavari(2016)]{Ashtiani-2016}
+Ashtiani, H.R.; Shahsavari, P.
+\newblock A Comparative Study on the Phenomenological and Artificial Neural
+  Network Models to Predict Hot Deformation Behavior of {{AlCuMgPb}} Alloy.
+\newblock {\em J. Alloy. Compd.} {\bf 2016}, {\em
+  687},~263--273.
+
+\bibitem[Abadi \em{et~al.}(2016)Abadi, Barham, Chen, Chen, Davis, Dean, Devin,
+  Ghemawat, Irving, Isard, Kudlur, Levenberg, Monga, Moore, Murray, Steiner,
+  Tucker, Vasudevan, Warden, Wicke, Yu, and Zheng]{Abadi-2016}
+Abadi, M.; Barham, P.; Chen, J.; Chen, Z.; Davis, A.; Dean, J.; Devin, M.;
+  Ghemawat, S.; Irving, G.; Isard, M.;  et~al.
+\newblock {TensorFlow: A System for Large-Scale Machine Learning}.
+\newblock In Proceedings of the 12th {{USENIX}} Conference
+  on {{Operating Systems Design}} and {{Implementation}}, {OSDI}'16, Savannah, GA, USA, 2--4 November 2016; USENIX Association: 
+  {USA}, 2016; pp. 265--283.
+
+\bibitem[Mattmann(2020)]{Mattmann-2020}
+Mattmann, C.
+\newblock {\em Machine {{Learning}} with {{Tensorflow}}}; O'REILLY MEDIA, Shelter Island, NY 11964, USA, :~{S.l.},  2020.
+
+\bibitem[Lu \em{et~al.}(2011)Lu, Pan, Liu, Qin, He, and Cao]{Lu-2011}
+Lu, Z.; Pan, Q.; Liu, X.; Qin, Y.; He, Y.; Cao, S.
+\newblock Artificial Neural Network Prediction to the Hot Compressive
+  Deformation Behavior of {{Al}}--{{Cu}}--{{Mg}}--{{Ag}} Heat-Resistant
+  Aluminum Alloy.
+\newblock {\em Mech. Res. Commun.} {\bf 2011}, {\em
+  38},~192--197.
+
+\bibitem[Ponthot(2002)]{Ponthot-2002}
+Ponthot, J.P.
+\newblock Unified Stress Update Algorithms for the Numerical Simulation of
+  Large Deformation Elasto-Plastic and Elasto-Viscoplastic Processes.
+\newblock {\em Int. J. Plast.} {\bf 2002}, \emph{18}, 91--126.
+
+\bibitem[Simo and Hughes(1998)]{Simo-1998}
+Simo, J.C.; Hughes, T.J.R.
+\newblock {\em Computational Inelasticity}; Interdisciplinary Applied
+  Mathematics, {Springer}: {New York}, NY, USA,  1998.
+
+\bibitem[Kingma and Lei(2015)]{Kingma-2015}
+Kingma, D.P.; Lei, J.
+\newblock {Adam: A method for stochastic optimization}. \emph{arXiv Preprint} \textbf{2014}, arXiv:1412.6980
+
+
+\bibitem[Phaniraj and Lahiri(2003)]{Phaniraj-2003}
+Phaniraj, M.P.; Lahiri, A.K.
+\newblock {The applicability of neural network model to predict flow stress for
+  carbon steels}.
+\newblock {\em J. Mater. Process. Technol.} {\bf 2003}, {\em
+  141},~219--227.
+\newblock {{https://doi.org/10.1016/S0924-0136(02)01123-8}}.
+
+\bibitem[{Jansen van Rensburg} and Kok(2012)]{JansenVanRensburg-2012}
+{Jansen van Rensburg}, G.; Kok, S.
+\newblock Tutorial on State Variable Based Plasticity: {{An Abaqus UHARD}}
+  Subroutine.
+\newblock In Proceedings of the Eighth {{South African Conference}} on
+  {{Computational}} and {{Applied Mechanics}}---{{SACAM2012}}, Johannesburg, South Africa, 3--5 September 2012.
+
+\end{thebibliography}
+
 
 % If authors have biography, please use the format below
 %\section*{Short Biography of Authors}
@@ -806,5 +1160,8 @@ The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 %}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\end{adjustwidth}
-\end{document}
 
+
+\PublishersNote{}
+\end{adjustwidth}
+\end{document}

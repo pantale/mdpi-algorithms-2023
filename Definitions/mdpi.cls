@@ -17,7 +17,7 @@
 %% %%		v2.0 when Dr. Janine Daum started (March 2013)
 %% %%		v3.0 layout change September 2015
 %%%%		v4.0 layout change December 2020
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% IDENTIFICATION
 \NeedsTeXFormat{LaTeX2e}

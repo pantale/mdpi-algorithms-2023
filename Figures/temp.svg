@@ -24,15 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.2938725"
-     inkscape:cx="1456.8669"
-     inkscape:cy="370.97937"
-     inkscape:window-width="2560"
-     inkscape:window-height="1374"
+     inkscape:zoom="2.1164993"
+     inkscape:cx="1794.4726"
+     inkscape:cy="229.62446"
+     inkscape:window-width="1920"
+     inkscape:window-height="1014"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g61212"
      showguides="true" />
   <defs
      id="defs31193" />
@@ -473,67 +473,93 @@
          x="-273.41055"
          y="13.124286"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10346">+7.717e+02</text>
+         id="text10346">+7.717x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10153">+2</tspan></text>
       <text
          x="-273.41055"
          y="9.1555357"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10348">+7.737e+02</text>
+         id="text10348">+7.737x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10175">+2</tspan></text>
       <text
          x="-273.41055"
          y="5.1867857"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10350">+7.758e+02</text>
+         id="text10350">+7.758x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10173">+2</tspan></text>
       <text
          x="-273.41055"
          y="1.2180356"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10352">+7.779e+02</text>
+         id="text10352">+7.779x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10171">+2</tspan></text>
       <text
          x="-273.41055"
          y="-2.7507143"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10354">+7.799e+02</text>
+         id="text10354">+7.799x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10169">+2</tspan></text>
       <text
          x="-273.41055"
          y="-6.7194643"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10356">+7.820e+02</text>
+         id="text10356">+7.820x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10167">+2</tspan></text>
       <text
          x="-273.41055"
          y="-10.688214"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10358">+7.841e+02</text>
+         id="text10358">+7.841x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10165">+2</tspan></text>
       <text
          x="-273.41055"
          y="-14.656964"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10360">+7.861e+02</text>
+         id="text10360">+7.861x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10163">+2</tspan></text>
       <text
          x="-273.41055"
          y="-18.625713"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10362">+7.882e+02</text>
+         id="text10362">+7.882x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10161">+2</tspan></text>
       <text
          x="-273.41055"
          y="-22.594463"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10364">+7.902e+02</text>
+         id="text10364">+7.902x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10159">+2</tspan></text>
       <text
          x="-273.41055"
          y="-26.563213"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10366">+7.923e+02</text>
+         id="text10366">+7.923x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10157">+2</tspan></text>
       <text
          x="-273.41055"
          y="-30.531963"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10368">+7.944e+02</text>
+         id="text10368">+7.944x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10155">+2</tspan></text>
       <text
          x="-273.41055"
          y="-34.500713"
          style="font-style:normal;font-weight:normal;font-size:4.24656px;font-family:verdana;fill:#000000;stroke-width:0.264583"
-         id="text10370">+7.964e+02</text>
+         id="text10370">+7.964x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10151">+2</tspan></text>
     </g>
     <text
        x="-218.58623"

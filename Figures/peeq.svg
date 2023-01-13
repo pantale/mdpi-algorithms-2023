@@ -24,15 +24,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.64693622"
-     inkscape:cx="1282.9704"
-     inkscape:cy="449.8125"
-     inkscape:window-width="2560"
-     inkscape:window-height="1374"
+     inkscape:zoom="2.0182692"
+     inkscape:cx="1777.7609"
+     inkscape:cy="282.91569"
+     inkscape:window-width="1920"
+     inkscape:window-height="1014"
      inkscape:window-x="0"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g95674" />
   <defs
      id="defs10362" />
   <g
@@ -24964,67 +24964,93 @@
          x="99.199997"
          y="270.48001"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19928">+3.870e-01</text>
+         id="text19928">+3.870x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10075">-1</tspan></text>
       <text
          x="99.199997"
          y="255.49001"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19930">+4.338e-01</text>
+         id="text19930">+4.338x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10077">-1</tspan></text>
       <text
          x="99.199997"
          y="240.5"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19932">+4.807e-01</text>
+         id="text19932">+4.807x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10079">-1</tspan></text>
       <text
          x="99.199997"
          y="225.52"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19934">+5.275e-01</text>
+         id="text19934">+5.275x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10081">-1</tspan></text>
       <text
          x="99.199997"
          y="210.53"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19936">+5.743e-01</text>
+         id="text19936">+5.743x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10083">-1</tspan></text>
       <text
          x="99.199997"
          y="195.53999"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19938">+6.212e-01</text>
+         id="text19938">+6.212x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10073">-1</tspan></text>
       <text
          x="99.199997"
          y="180.56"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19940">+6.680e-01</text>
+         id="text19940">+6.680x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10071">-1</tspan></text>
       <text
          x="99.199997"
          y="165.57001"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19942">+7.148e-01</text>
+         id="text19942">+7.148x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10069">-1</tspan></text>
       <text
          x="99.199997"
          y="150.59"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19944">+7.617e-01</text>
+         id="text19944">+7.617x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10067">-1</tspan></text>
       <text
          x="99.199997"
          y="135.60001"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19946">+8.085e-01</text>
+         id="text19946">+8.085x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10065">-1</tspan></text>
       <text
          x="99.199997"
          y="120.61"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19948">+8.553e-01</text>
+         id="text19948">+8.553x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10063">-1</tspan></text>
       <text
          x="99.199997"
          y="105.63"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19950">+9.022e-01</text>
+         id="text19950">+9.022x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10061">-1</tspan></text>
       <text
          x="99.199997"
          y="90.639999"
          style="font-style:normal;font-weight:normal;font-size:16.01px;font-family:verdana;fill:#000000"
-         id="text19952">+9.490e-01</text>
+         id="text19952">+9.490x10<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan10059">-1</tspan></text>
     </g>
     <g
        id="g145379"

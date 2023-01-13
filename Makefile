@@ -2,8 +2,6 @@ SOURCE=Article
 
 all:
 	pdflatex $(SOURCE).tex
-	bibtex $(SOURCE).aux
-	pdflatex $(SOURCE).tex
 	pdflatex $(SOURCE).tex
 	pdflatex $(SOURCE).tex
 
