@@ -2,7 +2,7 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[algorithms,article,accept,pdftex,moreauthors]{Definitions/mdpi}
+\documentclass[algorithms,article,accept,pdftex,oneauthors]{Definitions/mdpi}
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 %--------------------
@@ -42,20 +42,20 @@
 \makeatletter
 \setcounter{page}{\@firstpage}
 \makeatother
-\pubvolume{1}
+\pubvolume{16}
 \issuenum{1}
-\articlenumber{0}
+\articlenumber{56}
 \pubyear{2023}
 \copyrightyear{2023}
-\externaleditor{{ Xiang Zhang, Xiaoxiao Li } %MDPI: please add the academic editors.
+\externaleditor{Academic Editors:{ Xiang Zhang and Xiaoxiao Li } %MDPI: please add the academic editors.
 }
 \datereceived{16 December 2022}
 \daterevised{10 January 2023} % Only for the journal Acoustics
 \dateaccepted{12 January 2023}
-\datepublished{}
+\datepublished{13 January 2023}
 %\datecorrected{} % Corrected papers include a "Corrected: XXX" date in the original paper.
 %\dateretracted{} % Corrected papers include a "Retracted: XXX" date in the original paper.
-\hreflink{https://doi.org/} % If needed use \linebreak
+\hreflink{https://doi.org/10.3390/\linebreak a16010056} % If needed use \linebreak
 %\doinum{}
 %------------------------------------------------------------------
 % The following line should be uncommented if the LaTeX file is uploaded to arXiv.org
@@ -108,7 +108,9 @@
 %\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Olivier Pantal\'{e}\orcidA{}}
+\Author{{Olivier Pantal\'{e}} %MDPI: Please carefully check the accuracy of names and affiliations.
+% Name is correct
+ \orcidA{}}
 
 %\longauthorlist{yes}
 
@@ -120,7 +122,9 @@
 % If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
 
 % Affiliations / Addresses (Add [XX] after \address if there is only one affiliation.)
-\address[1]{Laboratoire Génie de Production, Institut National Polytechnique/Ecole Nationale d'Ingénieurs de Tarbes, Université de Toulouse, 47 Av d'Azereix, F-65016 Tarbes, France; Olivier.Pantale@enit.fr; Tel.: +33-562442933}
+\address[1]{Laboratoire Génie de Production, Institut National Polytechnique/Ecole Nationale d'Ingénieurs de Tarbes, Université de Toulouse, 47 Av d'Azereix, F-65016 Tarbes, France; olivier.pantale@enit.fr; Tel.: +33-562442933}
+
+
 
 % Current address and/or shared authorship
 
@@ -139,7 +143,7 @@ The flow law modeling by ANN shows a significant superiority in terms of model p
 Once the ANN parameters have been identified on the base of experiments, the implementation of this flow law in a finite element code shows promising results in terms of solution quality and respect of the material behavior.}
 
 % Keywords
-\keyword{ANN flow law; constitutive behavior; radial return algorithm; numerical implementation; VUHARD ; GrC15; Abaqus Explicit}
+\keyword{ANN flow law; constitutive behavior; radial return algorithm; numerical implementation; VUHARD; GrC15; Abaqus Explicit}
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -211,7 +215,7 @@ Therefore, for~each type of material, it is necessary to define behavior laws wh
 The quality and the accuracy of the results of any numerical simulation depend on the choice of these behavior laws and on the ability of the user to identify the coefficients of these behavior laws for a given material by performing experiments under conditions close to those encountered during the real stress of the structure in service that one wishes to design~\cite{Dey-2007}.
 Depending on the nature of the solicitations, these tests are based on quasi-static or dynamic tensile or compression tests, tests on thermomechanical simulators such as Gleeble~\cite{Lin-2009} or impact tests using gas launchers or Hopkinson bars~\cite{Kolsky-1949}.
 
-In the thermomechanical simulation of forming processes, these behavior laws define the dependence~\cite{Lee-2006} of the flow stress of the material $\sigma^y$ as a function of the three input variables, which are the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following expression:
+In the thermomechanical simulation of forming processes, these behavior laws define the dependence~\cite{Lee-2006} of the flow stress of the material $\sigma^y$ as a function of the three input variables, which are the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$ of the material, so that the general form of the flow law can be written with the following~expression:
 \begin{equation}
 \sigma^y = f\left(\varepsilon^p,\mdot\varepsilon,T\right)\label{eq:GenFlow}
 \end{equation}
@@ -284,7 +288,7 @@ Ashtiani et~al.~\cite{Ashtiani-2016} compared the predictive capabilities of an 
 
 The underlying idea proposed in our approach is to implement a flow law described by a trained ANN as a FORTRAN 77 subroutine in the Abaqus FE code.
 This ANN was previously trained from the data extracted from mechanical tests of the material and can directly define the value of the flow stress $\sigma^y$ as a function of the plastic strain $\varepsilon^p$, the~strain rate $\mdot\varepsilon$ and the temperature $T$.
-After a training phase based on the use of the Python library TensorFlow~\cite{Abadi-2016, Mattmann-2020}, the~weights and biases of the trained neural network are transcoded into a subroutine in FORTRAN 77, which is compiled and linked with the libraries of the Abaqus FE code to include the behavior of the material by allowing the computation of the flow stress $\sigma^y$ as a function of $\varepsilon^p$, $\mdot\varepsilon$ and $T$, and~of its three derivatives $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and $\partial\sigma^y/\partial T$.
+After a training phase based on the use of the Python library TensorFlow~\cite{Abadi-2016, Mattmann-2020}, the~weights and biases of the trained neural network are transcoded into a subroutine in FORTRAN 77, which is compiled and linked with the libraries of the Abaqus FE code to include the behavior of the material by allowing the computation of the flow stress $\sigma^y$ as a function of $\varepsilon^p$, $\mdot\varepsilon$ and $T$, and~of its three derivatives $\partial\sigma^y/\partial\varepsilon^p$, $\partial\sigma^y/\partial\mdot\varepsilon$ and~$\partial\sigma^y/\partial T$.
 
 The structure of this paper is as follows:
 Section~\ref{sec:Training} addresses the presentation of a neural-network-based flow law and its training from the data proposed by Ji et~al.~\cite{Ji-2018} and reported in Figure~\ref{fig:Zhou-OriginalData}.
@@ -336,7 +340,8 @@ Conforming to the structure of the ANN reported in Figure~\ref{fig:ANN-scheme} a
 \begin{equation}
 y_i\lay{k} = \sum_{j=1}^m w_{ij}\lay{k} \hat{y}_j^{(k-1)}+ b_i\lay{k},\label{eq:ANN1}
 \end{equation}
-where $y_i\lay{k}$ is the entry of the $i$th neuron of layer $k$, $\hat{y}_j\lay{k-1}$ is the output of the $j$th neuron of layer $(k-1)$, $w_{ij}\lay{k}$ is the associated weight parameter between the $i$th neuron of layer $k$ and the $j$th neuron of layer $(k-1)$ and $b_i\lay{k}$ is the associated bias of the $i$th neuron of layer $k$.
+where $y_i\lay{k}$ is the entry of the $i${{th}} %MDPI: OK for me
+ neuron of layer $k$, $\hat{y}_j\lay{k-1}$ is the output of the $j${{th}} neuron of layer $(k-1)$, $w_{ij}\lay{k}$ is the associated weight parameter between the $i${{th}} neuron of layer $k$ and the $j${{th}} neuron of layer $(k-1)$ and $b_i\lay{k}$ is the associated bias of the $i${{th}} neuron of layer $k$.
 Those weights $w_{ij}$ and bias $b_i$, for~each layer, are the training parameters of the ANN that we have to adjust during the training process.
 For the proposed model, we selected the sigmoid activation function so that each neuron in the hidden layer $k$ provides an output value ${\hat{y}}$ from the input value $y$ of the same neuron defined by Equation~(\ref{eq:ANN1}) according to the following equation:
 \begin{equation}
@@ -351,7 +356,8 @@ According to Equations~(\ref{eq:ANN1}) and (\ref{eq:ANN2}), the~output of each o
 \overrightarrow{y}_2 = \left[1 + \exp{\left(- \w_2 \dotp \overrightarrow{y}_1- \overrightarrow{b}_2\right)}\right]^{-1}\label{eq:ANN4}
 \end{equation}
 
-Then we compute the output $s$ of the ANN from the output vector of the second hidden layer $\overrightarrow{y}_2$ using the following equation:
+{Then} %MDPI: This is OK for me
+ we compute the output $s$ of the ANN from the output vector of the second hidden layer $\overrightarrow{y}_2$ using the following equation:
 \begin{equation}
 s = \overrightarrow{w}^T \dotp \overrightarrow{y}_2 + b\label{eq:ANN5}
 \end{equation}
@@ -416,7 +422,7 @@ In this study, the~error evaluation is based on the mean square error ($\MSE$) a
 \begin{equation}
 \RMSE (\MPa) = \sqrt{\MSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left(\square_i^e - \square_i^y\right)^2}, \label{eq:RMSE}
 \end{equation}
-where $N$ is the total number of numerical training data used, $\square_i^y$ is the $i$th value predicted by the neural network, and~$\square_i^e$ is the corresponding experimental value coming from the experimental tests.
+where $N$ is the total number of numerical training data used, $\square_i^y$ is the $i${{th}} value predicted by the neural network, and~$\square_i^e$ is the corresponding experimental value coming from the experimental tests.
 The accuracy and predictive ability of the models is assessed by the mean absolute relative error ($\MARE$) defined by Equation~(\ref{eq:AARE}):
 \begin{equation}
 \MARE(\%) = \frac{1}{N} \sum_{i=1}^{N}{\left|\frac{\square_i^y -\square_i^e}{\square_i^e}\right|} \times 100 \label{eq:AARE}
@@ -432,13 +438,14 @@ We use a database of 2556 quadruplets of values ($\varepsilon^p$, $\mdot\varepsi
 
 The set of these data is used as training data for the neural network.
 Several neural network architectures have been studied in this work; they differ from each other by the number of neurons present in the two hidden layers.
-Among them, we selected 4 different architectures named 3-7-4-1, 3-9-4-1, 3-9-7-1 and 3-15-7-1 for which the name 3-$n$-$m$-1 translates an ANN with 2 hidden layers, having $n$ neurons on the first layer and $m$ neurons on the second~layer.
+Among them, we selected 4~different architectures named 3-7-4-1, 3-9-4-1, 3-9-7-1 and 3-15-7-1 for which the name 3-$n$-$m$-1 translates an ANN with 2 hidden layers, having $n$ neurons on the first layer and $m$ neurons on the second~layer.
 
 All models have been trained for the same number of iterations (50,000 iterations), and~around $50$ min of training on a Dell XPS-13 7390 laptop running Ubuntu 22.04 LTS 64 bits with 16 GB of RAM and an Intel 4-core i7-10510U processor allow obtaining the converged parameters of the ANN models.
 Figure~\ref{fig:Convergence-ANN} shows the evolution of the training error defined by the $\log_{10}$ of the mean square error ($\log_{10}\left[\MSE\right]$) during the training~phase.
 \begin{figure}[H]
 \includegraphics[width=0.65\columnwidth]{Figures/Convergence-ANN}
-\caption{Convergence of the ANN models during the training~phase.}
+\caption{{Convergence} %MDPI: This has been done here
+ of the ANN models during the training~phase.}
 \label{fig:Convergence-ANN}
 \end{figure}
 As we can see on this figure, after~50,000 iterations, we can consider that we have reached a stationary state of the model learning and that it is useless to continue the learning phase.
@@ -483,15 +490,15 @@ Analysis of Figures~\ref{fig:CompExpANN-9-4} and \ref{fig:CompExpANN-15-7} shows
 As reported by Phaniraj~\cite{Phaniraj-2003}, the~correlation coefficient ($\R$) is generally not a good measure in our case of study because it only shows the correlation of the model with respect to the data and not its accuracy, which is a determining factor in the qualification of a model.
 Therefore, this type of coefficient is not used in this work for comparing the different~models.
 
-Concerning the performance of the ANN flow laws, the~correlation results for both reported models, are much better than the ones obtained by Zhou et~al.~\cite{Zhou-2020} during his work on the same material with four different analytical flow laws, especially since he had to split the data into two groups according to the temperature value (one on the range \mbox{$T=750-850~\celsius$} and one on the range \mbox{$T=850-1300~\celsius$}) and to identify two sets of parameters for each flow law to reduce the error of his identified analytical models.
+Concerning the performance of the ANN flow laws, the~correlation results for both reported models, are much better than the ones obtained by Zhou et~al.~\cite{Zhou-2020} during his work on the same material with four different analytical flow laws, especially since he had to split the data into two groups according to the temperature value (one on the range \mbox{$T=750$--$850~\celsius$} and one on the range \mbox{$T=850$--$1300~\celsius$}) and to identify two sets of parameters for each flow law to reduce the error of his identified analytical models.
 \textls[-11]{This of course raises the question of the usability of those analytical laws where the temperature of the material changes from one group to the other during a thermomechanical~transformation.}
 
-In our approach and by using an ANN flow law, the~identified law is not only valid over the whole temperature range, but~it displays a $\MARE$ value $5$ times lower than the best flow law proposed by Zhou et~al.~\cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750-850~\celsius$ and $\MARE=5.76\%$ over the range $T=850-1300~\celsius$, while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.88\%$ for the 3-7-4-1 ANN flow laws proposed~here.
+In our approach and by using an ANN flow law, the~identified law is not only valid over the whole temperature range, but~it displays a $\MARE$ value $5$ times lower than the best flow law proposed by Zhou et~al.~\cite{Zhou-2020}: the Arrhenius law with an $\MARE=3.74\%$ over the range $T=750$--$850~\celsius$ and $\MARE=5.76\%$ over the range $T=850$--$1300~\celsius$, while the $\MARE=0.97\%$ for the 3-15-7-1 and $\MARE=1.88\%$ for the 3-7-4-1 ANN flow laws proposed~here.
 
 The disadvantage of developing a flow law model based on neural networks is the number of internal variables in the network ($180$ in the case of the 3-15-7-1 network), which makes it difficult to translate the network into printable results.
 Using a Johnson--Cook-type flow law, for~example, allows the reader to quickly get an idea of the law, where the analytical formulation of the law is known to the users, and~the behavior of a material is based on the knowledge of only $5$ internal parameters to be identified, which makes it easy to publish in a table.
 Concerning an Arrhenius law, this task becomes a little more complex, as one can have from $24$ to $36$ coefficients.
-However, in our case, the~publication of the $65$ coefficients of the 3-7-4-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
+However, in our case, the~publication of the $65$~coefficients of the 3-7-4-1 model or the $180$ coefficients of the 3-15-7-1 model makes this task delicate.
 As an illustration, we provide in the Appendix \ref{sec:Appendix} all the coefficients of the 3-7-4-1 model identified during this~study.
 
 Once the identification phase is complete, it is now necessary to transpose this ANN model into a subroutine in FORTRAN or C++ that can be used by a FE code, such as Abaqus (for the FORTRAN 77 version) or DynELA (for the C++ version not presented in this paper).
@@ -501,17 +508,19 @@ This is the main topic of the next~section.
 \section{ANN Flow Law Implementation in FE~Software}\label{sec:Use}
 %------------------------------------------------------------------------------------
 
-Once the neural network is trained as presented in Section~\ref{sec:ANN-traning}, it can be used in a finite element code for the numerical simulation of a structure subjected to thermomechanical loading.
-This requires the extraction of the internal variables of the neural network and their transfer as a subroutine in FORTRAN 77 based on equations proposed in Sections~\ref{sec:ANN-equations} and \ref{sec:ANN-derivative}.
+\textls[-15]{Once the neural network is trained as presented in Section~\ref{sec:ANN-traning}, it can be used in a finite element code for the numerical simulation of a structure subjected to thermomechanical loading.
+This requires the extraction of the internal variables of the neural network and their transfer as a subroutine in FORTRAN 77 based on equations proposed in Sections~\ref{sec:ANN-equations} and \ref{sec:ANN-derivative}.}
 
 %------------------------------------------------------------------------------------
 \subsection{Implementation of the ANN Flow~Law}\label{sec:Implementation}
 %------------------------------------------------------------------------------------
 
-If we refer to the general flowchart of a finite element code as shown in Figure~\ref{fig:StressUpdate}, integrating the flow law described by the ANN concerns the computation of the stress tensor $\Sig_1$ at the end of an increment, in~the yellow rectangle on the~figure.
+If we refer to the general flowchart of a finite element code as shown in Figure~\ref{fig:StressUpdate}, integrating the flow law described by the ANN concerns the computation of the stress tensor $\Sig_1$ {at the end of} %MDPI:\Sig is the stress tensor, while \sigma is a scalar value
+ an increment, in~the yellow rectangle on the~figure.
 \begin{figure}[H]
 \includegraphics[width=0.9\columnwidth]{Figures/StressUpdate}
-\caption{General flowchart of a FE code, focus on the stresses~computation using an iterative solving procedure.}
+\caption{{General flowchart} %MDPI: Caption has been extended
+ of a FE code, focus on the stresses~computation using an iterative solving~procedure.}
 \label{fig:StressUpdate}
 \end{figure}
 Within the framework of a FE formulation in large deformations such as the one used in thermomechanical modeling of processes, this computation of the stress tensor $\Sig_1$ is to be carried out on all the integration points of each element of the studied structure.
@@ -521,7 +530,7 @@ Thus, the~complexity of the ANN, \ie the number of computational steps that must
 As an example, for~the model presented in Section~\ref{sec:ANN-traning}, $180$ internal variables, $15$ neurons on the first hidden layer and $7$ neurons on the second hidden layer were listed.
 Given the equations described in Sections~\ref{sec:ANN-equations} and~\ref{sec:ANN-derivative}, it will be necessary to compute $22$ exponentials, to~make matrix--vector products of size $15\times3$ and $15\times7$ plus many other numerical operations to compute the flow stress $\sigma^y$ and the $3$ derivatives of it with respect to $\varepsilon^p$, $\mdot\varepsilon$ and $T$.
 
-Implementing the ANN flow law identified above is realized here in a VUHARD subroutine, similarly as proposed by van Rensburg et~al.~\cite{JansenVanRensburg-2012}, used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3 derivatives as a function of the model input data.
+Implementing the ANN flow law identified above is realized here in a VUHARD subroutine, similarly as proposed by van Rensburg et~al.~\cite{JansenVanRensburg-2012}, used by the Abaqus Explicit FE code in order to allow a user to program the computation of the flow stress $\sigma^y$ and its 3~derivatives as a function of the model input data.
 This subroutine is used when calculating the stress tensor $\Sig_1$ at the end of an increment from the stress tensor at the beginning of the increment $\Sig_0$, the~deformations, the~material parameters and the history of the deformation at each finite element integration points, according to the stress integration algorithm based on the radial return method as described in Simo et~al.~\cite{Simo-1998} for the general aspects, Ming et~al.~\cite{Ming-2018} for Abaqus Explicit FE code, or Pantalé et~al.~\cite{Pantale-2004} for the DynELA FE code.
 Thus, without~going into too much detail about the stress integration scheme used in finite element codes (the curious reader can refer to~\cite{Ponthot-2002, Ming-2018, Pantale-2004, Liang-2022} for details about this method), Figure~\ref{fig:RadialReturn} shows the location of the VUHARD subroutine used to compute the flow stress $\sigma^y$ and its derivative $\partial\sigma^y/\partial\Gamma$ used in the writing of the two quantities $\gamma(\Gamma)$ and $\gamma^{'}(\Gamma)$ used in the Newton--Raphson solving procedure from the following relation:
 \begin{equation}
@@ -545,7 +554,7 @@ The compression of the sample is done in $10~\text{s}$ so that the strain rate  
 Concerning the flow laws, the~4 models presented in Section~\ref{sec:ANN-traning} will be used and compared between them.
 Unfortunately, it is not possible here to compare these results with the experimental results, even if the initial shape of the specimen is the same, as~these are not available in the references of the work of Zhou et~al.~\cite{Zhou-2020} or Ji et~al.~\cite{Ji-2018}.
 
-The mesh of the sample is made with $850$ axis-symmetric quadrilateral finite elements with $4$ nodes and reduced integration (named CAX4R in the Abaqus software) with $50$ elements in the vertical direction and $17$ elements in the radial direction, respectively.
+The mesh of the sample is made with $850$ axis-symmetric quadrilateral finite elements with $4$ nodes and reduced integration (named CAX4R in the Abaqus software) with $50$~elements in the vertical direction and $17$ elements in the radial direction, respectively.
 The cylinder is between two rigid surfaces, and the Coulomb friction law with a friction coefficient at the contact surfaces was set to $\mu=0.15$.
 The simulation time being fixed at $10~\text{s}$ in~order to reduce the simulation time, considering that an explicit integration scheme is used, a~global mass scaling is used for all simulations.
 The VUHARD subroutine is compiled using the GNU gfortran 11.3.0 and linked to the main Abaqus Explicit executable.
@@ -555,13 +564,15 @@ All computations were performed using the double precision option of Abaqus, wit
 Figure~\ref{fig:peeqContourplot} shows the plastic strain field $\varepsilon^p$ contourplot within the structure at the end of the simulation for both the 3-7-4-1 (left side) and the 3-15-7-1 (right side) flow laws, while Figure~\ref{fig:dpeeqContourplot} shows the temperature field $T$ contourplot for the same~models.
 \begin{figure}[H]
 \includegraphics[width=0.90\columnwidth]{Figures/peeq}
-\caption{Equivalent plastic strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow~laws.}
+\caption{{Equivalent plastic} %MDPI: Changes have been done.
+ strain $\varepsilon^p$ contourplot for the compression of a cylinder using the 3-7-4-1 (\textbf{left side}) and the 3-15-7-1 (\textbf{right side}) ANN flow~laws.}
 \label{fig:peeqContourplot}
 \end{figure}
 \unskip
 \begin{figure}[H]
 \includegraphics[width=0.90\columnwidth]{Figures/temp}
-\caption{Temperature $T$ contourplot for the compression of a cylinder using the 3-7-4-1 (left side) and the 3-15-7-1 (right side) ANN flow~laws.}
+\caption{{Temperature} %MDPI: Changes have been done.
+ $T$ contourplot for the compression of a cylinder using the 3-7-4-1 (\textbf{left side}) and the 3-15-7-1 (\textbf{right side}) ANN flow~laws.}
 \label{fig:dpeeqContourplot}
 \end{figure}
 Both sides of the figures look more or less the same with some visible differences from the left to the right concerning the shape of the isovalues zones and the maximum value, but~in fact, the two models with the lowest and the highest number of neurons give coherent results concerning for the plastic strain $\varepsilon^p$ and temperature $T$ contourplots.
@@ -791,328 +802,306 @@ The reference strain rate is $\mdot{\varepsilon_0} = 0.001~\ps$.
 \begin{thebibliography}{999}
 
 \bibitem[Pantal{\'e} \em{et~al.}(2004)Pantal{\'e}, Caperaa, and
-  Rakotomalala]{Pantale-2004}
+Rakotomalala]{Pantale-2004}
 Pantal{\'e}, O.; Caperaa, S.; Rakotomalala, R.
 \newblock Development of an object-oriented finite element program: Application
-  to metal-forming and impact simulations.
+to metal-forming and impact simulations.
 \newblock {\em J. Comput. Appl. Math.} {\bf 2004},
-  {\em 168},~341--351.
-\newblock {{https://doi.org/10.1016/j.cam.2003.04.009}}.
+{\em 168},~341--351. [\href{http://doi.org/10.1016/j.cam.2003.04.009}{CrossRef}]
 
 \bibitem[Dey \em{et~al.}(2007)Dey, Borvik, Hopperstad, and Langseth]{Dey-2007}
 Dey, S.; Borvik, T.; Hopperstad, O.S.; Langseth, M.
 \newblock {On the influence of constitutive relation in projectile impact of
-  steel plates}.
+steel plates}.
 \newblock {\em Int. J. Impact Eng.} {\bf 2007}, {\em
-  34},~464--486.
-\newblock {{https://doi.org/10.1016/j.ijimpeng.2005.10.003}}.
+34},~464--486. [\href{http://dx.doi.org/10.1016/j.ijimpeng.2005.10.003}{CrossRef}]
 
 \bibitem[Lin \em{et~al.}(2009)Lin, Chen, and Zhang]{Lin-2009}
 Lin, Y.C.; Chen, M.S.; Zhang, J.
 \newblock Modeling of flow stress of {42CrMo} steel under hot compression.
 \newblock {\em Mater. Sci. Eng. A} {\bf 2009}, {\em
-  499},~88--92.
-\newblock {{https://doi.org/10.1016/j.msea.2007.11.119}}.
+499},~88--92. [\href{http://dx.doi.org/10.1016/j.msea.2007.11.119}{CrossRef}]
 
 \bibitem[Kolsky(1949)]{Kolsky-1949}
 Kolsky, H.
 \newblock An {Investigation} of the {Mechanical} {Properties} of {Materials} at
-  very {High} {Rates} of {Loading}.
+very {High} {Rates} of {Loading}.
 \newblock {\em Proc. Phys. Society. Sect. B} {\bf 1949}, {\em
-  62},~676--700.
-\newblock {{https://doi.org/10.1088/0370-1301/62/11/302}}.
+62},~676--700. [\href{http://dx.doi.org/10.1088/0370-1301/62/11/302}{CrossRef}]
 
 \bibitem[Lee and Liu(2006)]{Lee-2006}
 Lee, W.S.; Liu, C.Y.
 \newblock {The effects of temperature and strain rate on the dynamic flow
-  behaviour of different steels}.
+behaviour of different steels}.
 \newblock {\em Mater. Sci. Eng. A} {\bf 2006}, {\em
-  426},~101--113.
-\newblock {{https://doi.org/10.1016/j.msea.2006.03.087}}.
+426},~101--113. [\href{http://dx.doi.org/10.1016/j.msea.2006.03.087}{CrossRef}]
 
 \bibitem[Lennon and Ramesh(2004)]{Lennon-2004}
 Lennon, A.M.; Ramesh, K.T.
 \newblock {The influence of crystal structure on the dynamic behavior of
-  materials at high temperatures}.
+materials at high temperatures}.
 \newblock {\em Int. J. Plast.} {\bf 2004}, {\em
-  20},~269--290.
-\newblock {{https://doi.org/10.1016/S0749-6419(03)00037-8}}.
+20},~269--290. [\href{http://dx.doi.org/10.1016/S0749-6419(03)00037-8}{CrossRef}]
 
 \bibitem[Zhang \em{et~al.}(2012)Zhang, Chen, and Baoxiang]{Zhang-2012}
 Zhang, J.; Chen, B.; Baoxiang, Z.
 \newblock {Effect of initial microstructure on the hot compression deformation
-  behavior of a 2219 aluminum alloy}.
-\newblock {\em Mater. Des.} {\bf 2012}, {\em 34},~15--21.
-\newblock {{https://doi.org/10.1016/j.matdes.2011.07.061}}.
+behavior of a 2219 aluminum alloy}.
+\newblock {\em Mater. Des.} {\bf 2012}, {\em 34},~15--21. [\href{http://dx.doi.org/10.1016/j.matdes.2011.07.061}{CrossRef}]
 
 \bibitem[Johnson and Cook(1983)]{Johnson-1983}
 Johnson, G.R.; Cook, W.H.
 \newblock {A Constitutive Model and Data for Metals Subjected to Large Strains,
-  High Strain Rates, and High Temperatures}.
+High Strain Rates, and High Temperatures}.
 \newblock In Proceedings of the 7th {{International Symposium}} on
-  {{Ballistics}}, The Hague, The Netherlands, 19--21 April 1983;
- pp. 541--547.
+{{Ballistics}}, {The Hague, The Netherlands, 19--21 April 1983;} 
+pp. 541--547.
 
 \bibitem[Johnson and Holmquist(1988)]{Johnson-1988}
 Johnson, G.R.; Holmquist, T.J.
 \newblock {Evaluation of cylinder‐impact test data for constitutive model
-  constants}.
-\newblock {\em J. Appl. Phys.} {\bf 1988}, {\em 64},~3901--3910.
-\newblock {{https://doi.org/10.1063/1.341344}}.
+constants}.
+\newblock {\em J. Appl. Phys.} {\bf 1988}, {\em 64},~3901--3910. [\href{http://dx.doi.org/10.1063/1.341344}{CrossRef}]
 
 \bibitem[Zerilli and Armstrong(1987)]{Zerilli-1987}
 Zerilli, F.J.; Armstrong, R.W.
 \newblock {Dislocation‐mechanics‐based constitutive relations for material
-  dynamics calculations}.
-\newblock {\em J. Appl. Phys.} {\bf 1987}, {\em 61},~1816--1825.
-\newblock {{https://doi.org/10.1063/1.338024}}.
+dynamics calculations}.
+\newblock {\em J. Appl. Phys.} {\bf 1987}, {\em 61},~1816--1825. [\href{http://dx.doi.org/10.1063/1.338024}{CrossRef}]
 
 \bibitem[Lin and Chen(2011)]{Lin-2011}
 Lin, Y.; Chen, X.M.
 \newblock {A critical review of experimental results and constitutive
-  descriptions for metals and alloys in hot working}.
-\newblock {\em Mater. Des.} {\bf 2011}, {\em 32},~1733--1759.
-\newblock {{https://doi.org/10.1016/j.matdes.2010.11.048}}.
+descriptions for metals and alloys in hot working}.
+\newblock {\em Mater. Des.} {\bf 2011}, {\em 32},~1733--1759. [\href{http://dx.doi.org/10.1016/j.matdes.2010.11.048}{CrossRef}]
 
 \bibitem[Li \em{et~al.}(2013)Li, Wang, Duan, and Liu]{Li-2013}
 Li, H.Y.; Wang, X.F.; Duan, J.Y.; Liu, J.J.
 \newblock {A modified Johnson Cook model for elevated temperature flow behavior
-  of T24 steel}.
+of T24 steel}.
 \newblock {\em Mater. Sci. Eng. A} {\bf 2013}, {\em
-  577},~138--146.
-\newblock {{https://doi.org/10.1016/j.msea.2013.04.041}}.
+577},~138--146. [\href{http://dx.doi.org/10.1016/j.msea.2013.04.041}{CrossRef}]
 
 \bibitem[Zhang \em{et~al.}(2015)Zhang, Shangguan, Xie, and Liu]{Zhang-2015}
 Zhang, D.N.; Shangguan, Q.Q.; Xie, C.J.; Liu, F.
 \newblock {A modified Johnson--Cook model of dynamic tensile behaviors for
-  7075-T6 aluminum alloy}.
+7075-T6 aluminum alloy}.
 \newblock {\em J. Alloy. Compd.} {\bf 2015}, {\em
-  619},~186--194.
-\newblock {{https://doi.org/10.1016/j.jallcom.2014.09.002}}.
+619},~186--194. [\href{http://dx.doi.org/10.1016/j.jallcom.2014.09.002}{CrossRef}]
 
 \bibitem[Zhou \em{et~al.}(2020)Zhou, Ji, and Zhu]{Zhou-2020}
 Zhou, Q.; Ji, C.; Zhu, M.y.
 \newblock {Research on Several Constitutive Models to Predict the Flow
-  Behaviour of GCr15 Continuous Casting Bloom with Heavy Reduction}.
-\newblock {\em Mater. Res. Express} {\bf 2020}, {\em 6}.
-\newblock {{https://doi.org/10.1088/2053-1591/ab52c2}}.
+Behaviour of GCr15 Continuous Casting Bloom with Heavy Reduction}.
+\newblock {\em Mater. Res. Express} {\bf 2020}, {\em 6}, 1265f2. [\href{http://dx.doi.org/10.1088/2053-1591/ab52c2}{CrossRef}]
 
 \bibitem[Jia \em{et~al.}(2021)Jia, Guan, Zang, Wang, and Lei]{Jia-2021}
 Jia, Z.; Guan, B.; Zang, Y.; Wang, Y.; Lei, M.
 \newblock {Modified Johnson-Cook model of aluminum alloy 6016-T6 sheets at low
-  dynamic strain rates}.
+dynamic strain rates}.
 \newblock {\em Mater. Sci. Eng. A} {\bf 2021}, {\em
-  820},~141565.
-\newblock {{https://doi.org/10.1016/j.msea.2021.141565}}.
+820},~141565. [\href{http://dx.doi.org/10.1016/j.msea.2021.141565}{CrossRef}]
 
 \bibitem[Rule and Jones(1998)]{Rule-1998}
 Rule, W.K.; Jones, S.E.
 \newblock {A revised form for the Johnson-Cook Strengh Model}.
 \newblock {\em Int. J. Impact Eng.} {\bf 1998}, {\em
-  21},~609--624.
-\newblock {{https://doi.org/10.1016/S0734-743X(97)00081-X}}.
+21},~609--624. [\href{http://dx.doi.org/10.1016/S0734-743X(97)00081-X}{CrossRef}]
 
 \bibitem[Lin \em{et~al.}(2010)Lin, Chen, and Liu]{Lin2010}
 Lin, Y.; Chen, X.M.; Liu, G.
 \newblock {A modified Johnson--Cook model for tensile behaviors of typical
-  high-strength alloy steel}.
+high-strength alloy steel}.
 \newblock {\em Mater. Sci. Eng. A} {\bf 2010}, {\em
-  527},~6980--6986.
-\newblock {{https://doi.org/10.1016/j.msea.2010.07.061}}.
+527},~6980--6986. [\href{http://dx.doi.org/10.1016/j.msea.2010.07.061}{CrossRef}]
 
 \bibitem[Lennon and Ramesh(2017)]{Muralli-2017}
 Lennon, A.M.; Ramesh, K.T.
 \newblock {On the performance of modified Zerilli-Armstrong constitutive model
-  in simulating the metal-cutting process}.
+in simulating the metal-cutting process}.
 \newblock {\em J. Manuf. Process.} {\bf 2017}, {\em
-  28},~253--265.
-\newblock {{https://doi.org/10.1016/j.jmapro.2017.06.011}}.
+28},~253--265. [\href{http://dx.doi.org/10.1016/j.jmapro.2017.06.011}{CrossRef}]
 
 \bibitem[Cheng and Mahnken(2021)]{Cheng-2021}
 Cheng, C.; Mahnken, R.
 \newblock {A modified Zerilli--Armstrong model as the asymmetric visco-plastic
-  part of a multi-mechanism model for cutting simulations}.
-\newblock {\em Arch. Appl. Mech.} {\bf 2021}, \emph{91}, 3869--3888.
-\newblock {{https://doi.org/10.1007/s00419-021-01982-6}}.
+part of a multi-mechanism model for cutting simulations}.
+\newblock {\em Arch. Appl. Mech.} {\bf 2021}, \emph{91}, 3869--3888. [\href{http://dx.doi.org/10.1007/s00419-021-01982-6}{CrossRef}]
 
 \bibitem[Hensel and Spittel(1978)]{Hensel-1978}
 Hensel, A.; Spittel, T.
 \newblock {\em {Kraft- und Arbeitsbedarf Bildsamer Formgebungsverfahren}};
-Deutscher Verlag f{\"u}r Grundstoffindustrie, Leipzig, Duchland, 1978.
+{Deutscher Verlag f{\"u}r Grundstoffindustrie:} Leipzig, Duchland,  
+1978.
 
 \bibitem[Chadha \em{et~al.}(2018)Chadha, Shahriari, and Jahazi]{Chadha-2018}
 Chadha, K.; Shahriari, D.; Jahazi, M.
 \newblock {An Approach to Develop Hansel--Spittel Constitutive Equation during
-  Ingot Breakdown Operation of Low Alloy Steels}. In {\em Frontiers in
-  Materials Processing, Applications, Research and Technology}; Springer, Hyderabad, India, 2018; pp. 239--246.
-\newblock {{https://doi.org/10.1007/978-981-10-4819-7\_20}}.
+Ingot Breakdown Operation of Low Alloy Steels}. In {\em Frontiers in
+Materials Processing, Applications, Research and Technology}; {Springer:} Hyderabad, India, 
+2018; pp. 239--246.
+\newblock [\href{http://dx.doi.org/10.1007/978-981-10-4819-7_20}{CrossRef}]
 
 \bibitem[Jonas \em{et~al.}(1969)Jonas, Sellars, and Tegart]{Jonas-1969}
 Jonas, J.; Sellars, C.; Tegart, W.M.
 \newblock {Strength and structure under hot-working conditions}.
 \newblock {\em Metall. Rev.} {\bf 1969}, {\em 14},~1--24.
-\newblock {{https://doi. org/10.1179/mtlr.1969.14.1.1}}.
+\newblock  [\href{http://dx.doi.org/10.1179/095066069790138056}{CrossRef}]
 
 \bibitem[He \em{et~al.}(2013)He, Xie, Zhang, and Wang]{He-2013}
 He, A.; Xie, G.; Zhang, H.; Wang, X.
 \newblock {A comparative study on Johnson--Cook, modified Johnson--Cook and
-  Arrhenius--type constitutive models to predict the high temperature flow
-  stress in 20CrMo alloy steel}.
-\newblock {\em Mater. Des. (1980-2015)} {\bf 2013}, {\em 52},~677--685.
-\newblock {{https://doi.org/10.1016/j.matdes.2013.06.010}}.
+Arrhenius--type constitutive models to predict the high temperature flow
+stress in 20CrMo alloy steel}.
+\newblock {\em Mater. Des. (1980--2015)} {\bf 2013}, {\em 52},~677--685. [\href{http://dx.doi.org/10.1016/j.matdes.2013.06.010}{CrossRef}]
 
 \bibitem[Liang \em{et~al.}(2022)Liang, Kong, Zhang, and Li]{Liang-2022}
 Liang, P.; Kong, N.; Zhang, J.; Li, H.
 \newblock {A Modified Arrhenius-Type Constitutive Model and its Implementation
-  by Means of the Safe Version of Newton--Raphson Method}.
-\newblock {\em Steel Res. Int.} {\bf 2022}, \emph{94}, 2200443.
-\newblock {{https://doi.org/10.1002/srin.202200443}}.
+by Means of the Safe Version of Newton--Raphson Method}.
+\newblock {\em Steel Res. Int.} {\bf 2022}, \emph{94}, 2200443. [\href{http://dx.doi.org/10.1002/srin.202200443}{CrossRef}]
 
 \bibitem[Nemat-Nasser and Guo(2003)]{NematNasser-2003}
 Nemat-Nasser, S.; Guo, W.G.
 \newblock {Thermomechanical response of DH-36 structural steel over a wide
-  range of strain rates and temperatures}.
-\newblock {\em Mech. Mater.} {\bf 2003}, {\em 35},~1023--1047.
-\newblock {{https://doi.org/10.1016/S0167-6636(02)00323-X}}.
+range of strain rates and temperatures}.
+\newblock {\em Mech. Mater.} {\bf 2003}, {\em 35},~1023--1047. [\href{http://dx.doi.org/10.1016/S0167-6636(02)00323-X}{CrossRef}]
 
 \bibitem[Khan \em{et~al.}(2004)Khan, {Sung Suh}, and Kazmi]{Khan-2004}
 Khan, A.S.; {Sung Suh}, Y.; Kazmi, R.
 \newblock {Quasi-static and dynamic loading responses and constitutive modeling
-  of titanium alloys}.
+of titanium alloys}.
 \newblock {\em Int. J. Plast.} {\bf 2004}, {\em
-  20},~2233--2248.
-\newblock {{https://doi.org/10.1016/j.ijplas.2003.06.005}}.
+20},~2233--2248. [\href{http://dx.doi.org/10.1016/j.ijplas.2003.06.005}{CrossRef}]
 
 \bibitem[Gao(2007)]{Gao-2007-FRT}
 Gao, C.Y.
 \newblock {{FE}} Realization of a Thermo-Visco-Plastic Constitutive Model Using
-  {{VUMAT}} in {{ABAQUS}}/{{Explicit}} Program.
-\newblock In \emph{Computational Mechanics}; {Springer}: {Berlin/Heidelberg}, Germany, 2007; pp. 301--301.
+{{VUMAT}} in {{ABAQUS}}/{{Explicit}} Program.
+\newblock In \emph{Computational Mechanics}; {Springer}: {Berlin/Heidelberg}, Germany, 2007; p. 301.
 
 \bibitem[Ming and Pantal{\'e}(2018)]{Ming-2018}
 Ming, L.; Pantal{\'e}, O.
 \newblock {An Efficient and Robust VUMAT Implementation of Elastoplastic
-  Constitutive Laws in Abaqus/Explicit Finite Element Code}.
-\newblock {\em Mech. Ind.} {\bf 2018}, {\em 19},~308.
-\newblock {{https://doi.org/doi.org/10.1051/meca/2018021}}.
+Constitutive Laws in Abaqus/Explicit Finite Element Code}.
+\newblock {\em Mech. Ind.} {\bf 2018}, {\em 19},~308. [\href{http://dx.doi.org/10.1051/meca/2018021}{CrossRef}]
 
 \bibitem[Zener and Hollomon(1944)]{Zener-1944}
 Zener, C.; Hollomon, J.H.
 \newblock {Effect of Strain Rate Upon Plastic Flow of Steel}.
 \newblock {\em J. Appl. Phys.} {\bf 1944}, {\em 15},~22--32.
-\newblock {{https://doi.org/10.1063/ 1.1707363}}.
+\newblock [\href{http://dx.doi.org/10.1063/1.1707363}{CrossRef}]
 
 \bibitem[Ji \em{et~al.}(2018)Ji, Wang, Wu, and Zhu]{Ji-2018}
 Ji, C.; Wang, Z.; Wu, C.; Zhu, M.
 \newblock {Constitutive Modeling of the Flow Stress of GCr15 Continuous Casting
-  Bloom in the Heavy Reduction Process}.
+Bloom in the Heavy Reduction Process}.
 \newblock {\em Metall. Mater. Trans. B} {\bf 2018}, {\em
-  49},~767--782.
-\newblock {{https://doi.org/10.1007/s11663-018-1188-9}}.
+49},~767--782. [\href{http://dx.doi.org/10.1007/s11663-018-1188-9}{CrossRef}]
 
 \bibitem[Pantal{\'e} \em{et~al.}(2022)Pantal{\'e}, {Tize Mha}, and
-  Tongne]{Pantale-2021}
+Tongne]{Pantale-2021}
 Pantal{\'e}, O.; {Tize Mha}, P.; Tongne, A.
 \newblock {Efficient implementation of non-linear flow law using neural network
-  into the Abaqus Explicit FEM code}.
+into the Abaqus Explicit FEM code}.
 \newblock {\em Finite Elem. Anal. Des.} {\bf 2022}, {\em
-  198},~103647.
-\newblock {{https://doi.org/10.1016/j.finel.2021.103647}}.
+198},~103647. [\href{http://dx.doi.org/10.1016/j.finel.2021.103647}{CrossRef}]
 
 \bibitem[Minsky and Papert(1969)]{Minsky-1969}
 Minsky, M.L.; Papert, S.
-\newblock {\em Perceptrons; an {{Introduction}} to {{Computational Geometry}}};
-  MIT Press:, Cambridge, England, 1969.
+\newblock {\em Perceptrons: An {{Introduction}} to {{Computational Geometry}}};
+{MIT Press:} Cambridge, UK, 
+1969.
 
 \bibitem[Hornik \em{et~al.}(1989)Hornik, Stinchcombe, and White]{Hornik-1989}
 Hornik, K.; Stinchcombe, M.; White, H.
 \newblock {Multilayer Feedforward Networks Are Universal Approximators}.
-\newblock {\em Neural Netw. } {\bf 1989}, {\em 2},~359--366.
-\newblock {{https://doi.org/10.1016/0893-6080(89)90020-8}}.
+\newblock {\em Neural Netw. } {\bf 1989}, {\em 2},~359--366. [\href{http://dx.doi.org/10.1016/0893-6080(89)90020-8}{CrossRef}]
 
 \bibitem[Gorji \em{et~al.}(2020)Gorji, Mozaffar, Heidenreich, Cao, and
-  Mohr]{Gorji-2020}
+Mohr]{Gorji-2020}
 Gorji, M.B.; Mozaffar, M.; Heidenreich, J.N.; Cao, J.; Mohr, D.
 \newblock On the Potential of Recurrent Neural Networks for Modeling Path
-  Dependent Plasticity.
+Dependent Plasticity.
 \newblock {\em J. Mech. Phys. Solids} {\bf 2020}, {\em
-  143}.
+143}, 103972. [\href{http://dx.doi.org/10.1016/j.jmps.2020.103972}{CrossRef}]
 
 \bibitem[Jamli and Farid(2019)]{Jamli-2019-SNN}
 Jamli, M.; Farid, N.
 \newblock The Sustainability of Neural Network Applications within Finite
-  Element Analysis in Sheet Metal Forming: {{A}} Review.
-\newblock {\em Measurement} {\bf 2019}, {\em 138},~446--460.
+Element Analysis in Sheet Metal Forming: {{A}} Review.
+\newblock {\em Measurement} {\bf 2019}, {\em 138},~446--460. [\href{http://dx.doi.org/10.1016/j.measurement.2019.02.034}{CrossRef}]
 
 \bibitem[Jiao and Alavi(2020)]{Jiao-2020}
 Jiao, P.; Alavi, A.H.
 \newblock Artificial Intelligence-Enabled Smart Mechanical Metamaterials:
-  Advent and Future Trends.
-\newblock {\em Int. Mater. Rev.} {\bf 2020}, \emph{66}, 365--393.
+Advent and Future Trends.
+\newblock {\em Int. Mater. Rev.} {\bf 2020}, \emph{66}, 365--393. [\href{http://dx.doi.org/10.1080/09506608.2020.1815394}{CrossRef}]
 
 \bibitem[Ghaboussi \em{et~al.}(1991)Ghaboussi, Garrett, and Wu]{Ghaboussi-1991}
 Ghaboussi, J.; Garrett, J.H.; Wu, X.
 \newblock Knowledge-{{Based Modeling}} of {{Material Behavior}} with {{Neural
-  Networks}}.
+Networks}}.
 \newblock {\em J. Eng. Mech.} {\bf 1991}, {\em
-  117},~132--153.
+117},~132--153. [\href{http://dx.doi.org/10.1061/(ASCE)0733-9399(1991)117:1(132)}{CrossRef}]
 
 \bibitem[Ghaboussi \em{et~al.}(1998)Ghaboussi, Pecknold, Zhang, and
-  {Haj-Ali}]{Ghaboussi-1998}
+{Haj-Ali}]{Ghaboussi-1998}
 Ghaboussi, J.; Pecknold, D.A.; Zhang, M.; {Haj-Ali}, R.M.
-\newblock Autoprogressive Training of Neural Network Constitutive Models. \emph{ Int. J. Numer. Methods Eng.} \textbf{1998}, \emph{42}, 105--126.
+\newblock Autoprogressive Training of Neural Network Constitutive Models. \emph{ Int. J. Numer. Methods Eng.} \textbf{1998}, \emph{42}, 105--126. [\href{http://dx.doi.org/10.1002/(SICI)1097-0207(19980515)42:1<105::AID-NME356>3.0.CO;2-V}{CrossRef}]
 
 \bibitem[Ghaboussi and Sidarta(1998)]{Ghaboussi-1998-NNA}
 Ghaboussi, J.; Sidarta, D.
 \newblock New Nested Adaptive Neural Networks ({{NANN}}) for Constitutive
-  Modeling.
-\newblock {\em Comput. Geotech.} {\bf 1998}, {\em 22},~29--52.
+Modeling.
+\newblock {\em Comput. Geotech.} {\bf 1998}, {\em 22},~29--52. [\href{http://dx.doi.org/10.1016/S0266-352X(97)00034-7}{CrossRef}]
 
 \bibitem[Lin \em{et~al.}(2008)Lin, Zhang, and Zhong]{Lin-2008}
 Lin, Y.; Zhang, J.; Zhong, J.
 \newblock Application of Neural Networks to Predict the Elevated Temperature
-  Flow Behavior of a Low Alloy Steel.
-\newblock {\em Comput. Mater. Sci.} {\bf 2008}, {\em 43},~752--758.
+Flow Behavior of a Low Alloy Steel.
+\newblock {\em Comput. Mater. Sci.} {\bf 2008}, {\em 43},~752--758. [\href{http://dx.doi.org/10.1016/j.commatsci.2008.01.039}{CrossRef}]
 
 \bibitem[Ashtiani and Shahsavari(2016)]{Ashtiani-2016}
 Ashtiani, H.R.; Shahsavari, P.
 \newblock A Comparative Study on the Phenomenological and Artificial Neural
-  Network Models to Predict Hot Deformation Behavior of {{AlCuMgPb}} Alloy.
+Network Models to Predict Hot Deformation Behavior of {{AlCuMgPb}} Alloy.
 \newblock {\em J. Alloy. Compd.} {\bf 2016}, {\em
-  687},~263--273.
+687},~263--273. [\href{http://dx.doi.org/10.1016/j.jallcom.2016.04.300}{CrossRef}]
 
 \bibitem[Abadi \em{et~al.}(2016)Abadi, Barham, Chen, Chen, Davis, Dean, Devin,
-  Ghemawat, Irving, Isard, Kudlur, Levenberg, Monga, Moore, Murray, Steiner,
-  Tucker, Vasudevan, Warden, Wicke, Yu, and Zheng]{Abadi-2016}
+Ghemawat, Irving, Isard, Kudlur, Levenberg, Monga, Moore, Murray, Steiner,
+Tucker, Vasudevan, Warden, Wicke, Yu, and Zheng]{Abadi-2016}
 Abadi, M.; Barham, P.; Chen, J.; Chen, Z.; Davis, A.; Dean, J.; Devin, M.;
-  Ghemawat, S.; Irving, G.; Isard, M.;  et~al.
+Ghemawat, S.; Irving, G.; Isard, M.;  et~al.
 \newblock {TensorFlow: A System for Large-Scale Machine Learning}.
 \newblock In Proceedings of the 12th {{USENIX}} Conference
-  on {{Operating Systems Design}} and {{Implementation}}, {OSDI}'16, Savannah, GA, USA, 2--4 November 2016; USENIX Association: 
-  {USA}, 2016; pp. 265--283.
+on {{Operating Systems Design}} and {{Implementation}}, {OSDI}'16, {Savannah, GA, USA, 2--4 November 2016;} 
+{USENIX Association: Berkeley, CA, }
+{USA}, 2016; pp. 265--283.
 
 \bibitem[Mattmann(2020)]{Mattmann-2020}
 Mattmann, C.
-\newblock {\em Machine {{Learning}} with {{Tensorflow}}}; O'REILLY MEDIA, Shelter Island, NY 11964, USA, :~{S.l.},  2020.
+\newblock {\em Machine {{Learning}} with {{Tensorflow}}}; {O'REILLY MEDIA}: Shelter Island, NY, USA,  2020.
 
 \bibitem[Lu \em{et~al.}(2011)Lu, Pan, Liu, Qin, He, and Cao]{Lu-2011}
 Lu, Z.; Pan, Q.; Liu, X.; Qin, Y.; He, Y.; Cao, S.
 \newblock Artificial Neural Network Prediction to the Hot Compressive
-  Deformation Behavior of {{Al}}--{{Cu}}--{{Mg}}--{{Ag}} Heat-Resistant
-  Aluminum Alloy.
+Deformation Behavior of {{Al}}--{{Cu}}--{{Mg}}--{{Ag}} Heat-Resistant
+Aluminum Alloy.
 \newblock {\em Mech. Res. Commun.} {\bf 2011}, {\em
-  38},~192--197.
+38},~192--197. [\href{http://dx.doi.org/10.1016/j.mechrescom.2011.02.015}{CrossRef}]
 
 \bibitem[Ponthot(2002)]{Ponthot-2002}
 Ponthot, J.P.
 \newblock Unified Stress Update Algorithms for the Numerical Simulation of
-  Large Deformation Elasto-Plastic and Elasto-Viscoplastic Processes.
-\newblock {\em Int. J. Plast.} {\bf 2002}, \emph{18}, 91--126.
+Large Deformation Elasto-Plastic and Elasto-Viscoplastic Processes.
+\newblock {\em Int. J. Plast.} {\bf 2002}, \emph{18}, 91--126. [\href{http://dx.doi.org/10.1016/S0749-6419(00)00097-8}{CrossRef}]
 
 \bibitem[Simo and Hughes(1998)]{Simo-1998}
 Simo, J.C.; Hughes, T.J.R.
 \newblock {\em Computational Inelasticity}; Interdisciplinary Applied
-  Mathematics, {Springer}: {New York}, NY, USA,  1998.
+Mathematics, {Springer}: {New York}, NY, USA,  1998.
 
 \bibitem[Kingma and Lei(2015)]{Kingma-2015}
 Kingma, D.P.; Lei, J.
@@ -1122,17 +1111,16 @@ Kingma, D.P.; Lei, J.
 \bibitem[Phaniraj and Lahiri(2003)]{Phaniraj-2003}
 Phaniraj, M.P.; Lahiri, A.K.
 \newblock {The applicability of neural network model to predict flow stress for
-  carbon steels}.
+carbon steels}.
 \newblock {\em J. Mater. Process. Technol.} {\bf 2003}, {\em
-  141},~219--227.
-\newblock {{https://doi.org/10.1016/S0924-0136(02)01123-8}}.
+141},~219--227. [\href{http://dx.doi.org/10.1016/S0924-0136(02)01123-8}{CrossRef}]
 
 \bibitem[{Jansen van Rensburg} and Kok(2012)]{JansenVanRensburg-2012}
 {Jansen van Rensburg}, G.; Kok, S.
 \newblock Tutorial on State Variable Based Plasticity: {{An Abaqus UHARD}}
-  Subroutine.
+Subroutine.
 \newblock In Proceedings of the Eighth {{South African Conference}} on
-  {{Computational}} and {{Applied Mechanics}}---{{SACAM2012}}, Johannesburg, South Africa, 3--5 September 2012.
+{{Computational}} and {{Applied Mechanics}}---{{SACAM2012}}, Johannesburg, South Africa, 3--5 September 2012.
 
 \end{thebibliography}
 
